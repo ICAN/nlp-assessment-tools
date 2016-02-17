@@ -1,0 +1,294 @@
+<DOCUMENT 1>
+1 Between us there was, as I have already said somewhere, the bond ofthe sea.
+2 Besides holding our hearts together through long periods ofseparation, it had the effect of making us tolerant of each other'syarns--and even convictions.
+3 The Lawyer--the best of old fellows--had,because of his many years and many virtues, the only cushion on deck,and was lying on the only rug.
+4 The Accountant had brought out already abox of dominoes, and was toying architecturally with the bones.
+5 Marlowsat cross-legged right aft, leaning against the mizzen-mast.
+6 He hadsunken cheeks, a yellow complexion, a straight back, an ascetic aspect, and, with his arms dropped, the palms of hands outwards, resembled anidol.
+7 The director, satisfied the anchor had good hold, made his wayaft and sat down amongst us.
+8 We exchanged a few words lazily.
+9 Afterwardsthere was silence on board the yacht.
+10 For some reason or other we didnot begin that game of dominoes.
+11 We felt meditative, and fit for nothingbut placid staring.
+12 The day was ending in a serenity of still andexquisite brilliance.
+13 The water shone pacifically; the sky, without aspeck, was a benign immensity of unstained light; the very mist on theEssex marsh was like a gauzy and radiant fabric, hung from the woodedrises inland, and draping the low shores in diaphanous folds.
+14 Only thegloom to the west, brooding over the upper reaches, became more sombreevery minute, as if angered by the approach of the sun.
+15 And at last, in its curved and imperceptible fall, the sun sank low, and from glowing white changed to a dull red without rays and without heat, as if about to go out suddenly, stricken to death by the touch of that gloom brooding over a crowd of men.
+16 Forthwith a change came over the waters, and the serenity became less brilliant but more profound.
+17 The old river in its broad reach rested unruffled at the decline of day, after ages of good service done to the race that peopled its banks, spread out in the tranquil dignity of a waterway leading to the uttermost ends of the earth.
+18 We looked at the venerable stream not in the vivid flush of a short day that comes and departs for ever, but in the august light of abiding memories.
+19 And indeed nothing is easier for a man who has, as the phrase goes, "followed the sea" with reverence and affection, than to evoke the great spirit of the past upon the lower reaches of the Thames.
+20 The tidal current runs to and fro in its unceasing service, crowded with memories of men and ships it had borne to the rest of home or to the battles of the sea.
+21 It had known and served all the men of whom the nation is proud, from Sir Francis Drake to Sir John Franklin, knights all, titled and untitledthe great knights-errant of the sea.
+22 It had borne all the ships whose names are like jewels flashing in the night of time, from the Golden Hind returning with her rotund flanks full of treasure, to be visited by the Queen's Highness and thus pass out of the gigantic tale, to the Erebus and Terror, bound on other conquestsand that never returned.
+23 It had known the ships and the men.
+24 They had sailed from Deptford, from Greenwich, from Eriththe adventurers and the settlers; kings' ships and the ships of men on 'Change; captains, admirals, the dark "interlopers" of the Eastern trade, and the commissioned "generals" of East India fleets.
+25 Hunters for gold or pursuers of fame, they all had gone out on that stream, bearing the sword, and often the torch, messengers of the might within the land, bearers of a spark from the sacred fire.
+26 What greatness had not floated on the ebb of that river into the mystery of an unknown earth!...
+27 The dreams of men, the seed of commonwealths, the germs of empires.
+<DOCUMENT 2>
+1 The swaying had come to a halt and it was dark.
+2 The Explorer was not comfortable in the alien air.
+3 It felt as thick as soup and he had to breathe shallowly.
+4 Even so  He reached out in a sudden need for company.
+5 The Merchant was warm to the touch.
+6 His breathing was rough, he moved in an occasional spasm, and was obviously asleep.
+7 The Explorer hesitated and decided not to wake him.
+8 It would serve no real purpose.
+9 There would be no rescue, of course.
+10 That was the penalty paid for the high profits which unrestrained competition could lead to.
+11 The Merchant who opened a new planet could have a ten year monopoly of its trade, which he might hug to himself or, more likely, rent out to all comers at a stiff price.
+12 It followed that planets were searched for in secrecy and, preferably, away from the usual trade routes.
+13 In a case such as theirs, then, there was little or no chance that another ship would come within range of their subetherics except for the most improbable of coincidences.
+14 Even if they were in their ship, that is, rather than in thisthiscage.
+15 The Explorer grasped the thick bars.
+16 Even if they blasted those away, as they could, they would be stuck too high in open air for leaping.
+17 It was too bad.
+18 They had landed twice before in the scout-ship.
+19 They had established contact with the natives who were grotesquely huge, but mild and unaggressive.
+20 It was obvious that they had once owned a flourishing technology, but hadn't faced up to the consequences of such a technology.
+21 It would have been a wonderful market.
+22 And it was a tremendous world.
+23 The Merchant, especially, had been taken aback.
+24 He had known the figures that expressed the planet's diameter, but from a distance of two light-seconds, he had stood at the visi-plate and muttered, "Unbelievable!"
+25 "Oh, there are larger worlds," the Explorer said.
+26 It wouldn't do for an Explorer to be too easily impressed.
+27 "Inhabited?"
+28 "Well, no."  "Why, you could drop your planet into that large ocean and drown it."
+29 The Explorer smiled.
+30 It was a gentle dig at his Arcturian homeland, which was smaller than most planets.
+31 He said, "Not quite."
+32 The Merchant followed along the line of his thoughts. "
+33 And the inhabitants are large in proportion to their world?"
+34 He sounded as though the news struck him less favorably now.
+<DOCUMENT 3>
+1 Solvency 2 standards will make a radical change in risk management practices in the actuarial sector.
+2 They are based on a strengthening of risk control and minimization of a ruin probability.
+3 The determination of the economic regulatory capital will be faced under this prudential mechanism with a kind of methodological revolution.
+4 A choices of a dependence model between different risks and of an aggregation methodology are both required.
+5 In the prescribed Standard Formula, risks aggregation is done using correlation matrices that connect families and subfamilies of risks.
+6 Once the Solvency Capital Requirement (SCR) is calculated, its allocation between the different risky activity branches becomes the new operational challenge.
+7 Capital allocation is an internal exercise, certainly not controlled by the first pillar of Solvency 2, but it plays a crucial role in determining performance of all the insurer activity.
+8 The case of insurance groups requires special treatment in the context of the Own Risk and Solvency Assessment (ORSA) approach.
+9 In this context, a multivariate analysis of risk seems relevant.
+10 The issue of capital allocation in a multivariate context arises from the presence of dependence between the various risky activities which may generate a diversification effect.
+11 Several allocation methods in the literature are based on a choice of a univariate risk measure and an allocation principle.
+12 Others are based on optimizing a multivariate ruin probability or some multivariate risk indicators.
+13 In this paper, we focus on the allocation technique by minimizing some risk indicators.
+14 The literature on the subject of capital allocation methods is very rich.
+15 Several principles have been proposed over the last twenty years.
+16 The most important and most studied are the Shapley method, the Aumann-Shapley method and the Eulers method.
+17 The Shapley method is based on cooperative game theory.
+18 It is described in detail in Denaults paper (2001) [10].
+19 Denault proved that this method, originally used to allocate the total cost between players in coalitional games context, can be easily adapted to solve the problem of the overall risk allocation between segments.
+20 Tasche devoted two papers [21] and [22] to describe Eulers method.
+21 Eulers method is also found in the literature under the name of gradient method.
+22 It is based on the idea of allocating capital according to the infinitesimal marginal impact of each risk.
+23 This impact corresponds to the increase obtained on the overall risk, yielding an infinitely small increment in a marginal risk.
+24 Eulers method is very present in the literature.
+25 Several papers analyze its properties (RORAC compatibility [6], [23], Coherence [5],...) under different assumptions (Tasche (2004) [20], Balog (2011) [2]).
+26 Its fame is due to the existence of economic arguments that can justify its use to develop allocation rules.
+27 Finally, Aumann-Shapley method is a continuous generalization of Shapley method.
+28 Its principle is based on the value introduced by Aumann and Shaplay in game theory.
+29 Denault [10] analyzes this method and its application to capital allocation.
+30 These three capital allocation principles rely on different risk measures.
+31 The coherence of the allocation method depends on the properties of the selected risk measure.
+32 Several papers deal with capital allocation coherence based on the properties of the risk measure used.
+33 We quote as examples, Fischer (2003) [12], Bush and Dorfleitner (2008) [5], and Kalkbrener (2009) [16].
+<DOCUMENT 4>
+1 Lecturers are non-tenure track adjunct-faculty members.
+2 They say that they are not treated like professionals, even though they teach classes, engage in writing and research, and hold advanced degrees from top universities.
+3 Across the University of California system about one-third of all classes are taught by Lecturers, and contingent faculty members teach over half of the UC's undergraduate credit hours in total, if graduate student teachers are included in the equation.
+4 The majority of Lecturers are hired year-by-year or quarter-by-quarter as "temp" workers, which leaves them with no job security.
+5 Additionally, a full-time Lecturer's workload is typically twice that of a tenure track professor, yet they are paid significantly less.
+6 Many of the picket signs displayed at the picnic communicated around the theme of precarity.
+7 One such message, "A Precarious Faculty = A Precarious University," was emblazoned on a gold flag along with the stencil of a fist holding a pencil.
+8 Precarity has been defined as a condition of instability in the workforce created in postindustrial societies when management seeks to increase its own strength by limiting job opportunities to temporary and or part-time work.
+9 In February, organizers of the National Adjunct Day of Action adopted "Saint Precaria" as their "icon saint" and individuals at UC Santa Cruz continue to develop themes surrounding precarity.
+10 "All these movements that we are building together are really interconnected, all the student movements and the union movements that we have been working on for many years together," explained Josh Brahinsky at a mid-day rally held at the picnic.
+11 Brahinsky teaches courses at both UC Santa Cruz and San Jose State University.
+12 "We're all facing a certain kind of neo-liberal budget where they play with it, and mess with the money," he said.
+13 "They don't spend the money on undergraduate education, which is what we are all here to make happen."
+14 Brahinsky said that the University of California has, "made a priority out of administrative spending," noting that it has increased by over 250% in the last 20 years.
+15 The growth of faculty spending over the same time period has only increased by 50%, he said, adding that 20 years ago there were five faculty members for every two administrators, but the figure has shifted dramatically, and presently there are only five faculty members for every six administrators, on average.
+<DOCUMENT 5>
+1 Conventional silicon based computing has been successful over the past several decades.
+2 It is fast, flexible, and well understood.
+3 But it has reached its limitations of design  complexity, processing power, memory, energy consumption, density and heat dissipation.
+4 Alternatives to these traditional methods of building computers have been proposed and in recent past molecular computing has gained considerable attention for  non-silicon based computing which can overcome conventional computation problems.
+5 The Watson-Crick base pairing makes DNA a powerful tool for engineering at nano-scale [Adleman, 1994; Benenson et al., 2001; Green et al., 2006; Winfree et al.,  1998].
+6 The behaviour of DNA molecules can be predicted, and by setting up strands of DNA in the right way, they can draw conclusion from a set of logical inference rules [Ray and Mondal, 2011a; Ray and Mondal, 2011b].
+7 In this paper we have performed logical reasoning by modus ponens using DNA  strand algebra, which can be defined as a branch of process algebra.
+8 The operations of DNA strands in present model are based on the mechanism of DNA strand displacement.
+9 Process algebras are widely used for defining the formal semantics of concurrent communicating processes.
+10 Process calculi provide a tool for the high-level description of interactions, communications, and synchronizations between a collection of independent agents or processes.
+11 They also provide algebraic laws that allow process descriptions to be manipulated and analyzed, and permit  formal reasoning about equivalences between processes.
+12 The main components of DNA strand algebra are DNA strands, DNA gates, and their interactions.
+13 Before going in detail description of DNA strand algebra we first have to know  what is syntax and semantics.
+14 How are they different? [Cardelli, 2009; Cardelli 2013]   A language is a set of valid sentences.
+15 The validity of language can be broken down into two things: syntax and semantics.
+16 The term syntax refers to grammatical structure of a language, rather than what they refer to or mean.
+17 Whereas the term semantics is concerned to the meaning of the vocabulary symbols arranged with that structure, often in relation to their truth and falsehood.
+18 Grammatical (syntactically) valid does not imply sensible (semantically) valid.
+19 In mathematics, computer science and linguistics, a formal language is a set of strings of symbols that may be constrained by rules that are specific to it.
+20 In computer science, the process algebras [Baeten, 2004] are mathematically rigorous languages with well defined semantics that permit describing and verifying properties of concurrent communicating systems.
+21 Process calculi provide a tool for the high-level description of interactions, communications, and synchronizations between a collection of independent agents or processes.
+22 They also provide algebraic laws that allow process descriptions to be manipulated and analyzed, and permit formal reasoning about equivalences between processes.
+<DOCUMENT 6>
+1 ERHS Pre and post picture of UAA preview days.
+2 Thank you UAA for a great day.
+3 #UAAmazing ERHS students attend UAA preview days - let the fun begin! #UAAmazing Selfies with spirit at UAA: University of Alaska Anchorage Spring Preview Day! #uaamazing http://fb.me/5yAxSmtkn  #uaamazing cuddy center bakery cart on T/Th.
+4 these prices.
+5 Made fresh every morning.
+6 UAA Student Union Gallerys Claybody Invitational opens today featuring #UAAmazing ceramics from 2015's school year http://ow.ly/XEf83 .
+7 he only reason I'm going to UAA. Thank you scholarships #uaamazing Let me hurry up & finish this HW..tonight @BreeNewsome will be doing a public lecture in Art 150 at 7pm.
+8 #UAAmazing #UAA @BreeNewsome @uaanchorage MLK Student Appreciation Brunch.
+9 #UAAmazing #BlackLivesMatter
+10 https://www.instagram.com/p/BBLgb8wM5oX/
+11 Just had the pleasure of meeting @BreeNewsome @uaanchorage MLK Student Appreciation Brunch.
+12 #UAAmazing
+13 Paying less than  100 for a semester of college.
+14 :) #uaamazing UAA is having a Star Wars night at the Commons.
+15 But guys.
+16 The gravy...
+17 #UAAmazing  when u have to pay  34.12 for a semester of college.
+18 :') #blessup #UAAmazing UAA: fucking me over since day 1 #UAAMAZING knew I should've stayed in Maryland.
+19 #CSM wouldn't have done me like this.
+20 @WillowLeedy @camelovidov @Ch2KTUU #UAAmazing @emilyjanaewood update: I paid  6 for a 2/3 full cup of soy milk.
+21 #
+22 UAAmazing UAA, where you have to drive around the lot for twenty minutes just to find a goddamn parking spot.
+23 #
+24 uaamazing
+25 No damage has been reported to the @UAAParking structures- if you notice a problem, report it right away, #UAAmazing .
+26 I feel like everyday is pick on the freshman day here.
+27 #
+28 UAAmazing Make lots of money.
+29 #BeAnEngineer #UAAmazing
+30 I swear this nigga behind me getting topped off in class.
+31 #UAAmazing UAA Snaps confirms my belief that there is no hope in the future for most of my peers.
+32 #VapeLyfe #BACgoingup #GPAgoingdown #UAAmazing @AKEPSCoR @UAFGI dude's a beast!
+33 #uaamazing #Alaska #mountains #sunrise #uaamazing @uaaphotos (at UAA Administration Building) .
+34 It's so frustrating to not be able to get parking because everyone parks like they've never driven a car before.
+35 #UAAmazing  @crazy808lexi #UAAmazing #uaamazing love these high quality machines.
+36 Special Announcement: New Hours of Operation- #UAASHCC #UAAmazing .
+37 Make a plan to see this compelling film.
+38 Jan 20th, Gorsuch Commons, Jan 21st in the SU Den.
+39 #UAASHCC #UAAmazing
+40 Last day of Lean Six Sigma training!
+41 #uaamazing @uaaphotos (at UAA - University Center)
+42 I'm glad you said "hola" walking into class because otherwise I would not have known whether Spanish meets in 143A or 143B. #UAAmazing Lol  150 to rent one book.
+43 Not gonna happen.
+44 #UAAmazing UAA: Where textbook reservations turn into textbook IOUs right before your innocent eyes.
+45 #
+46 UAAmazing
+47 And we are sold out!
+48 Thank you, Anchorage for caring about civil discourse!
+49 #arguingalaska #uaamazing
+50 Took a semester off, glad to see that the puddle of piss and pubes called the "men's bathroom" in the SSB is still there.
+51 #
+52 UAAmazing
+53 I mean, it'd be nice if someone would put down icemelt for the first day off classes.. #uaamazing #ouch College textbooks priced like they're all leaked copies of the next Game of Thrones book.
+54 #
+55 UAAmazing When the UAA bookstore didn't pull your preordered books off the shelf. #
+56 UAAmazing
+57 According to blackboard, I have one class this semester instead of 5.
+58 #UAAmazing @JensenElijah #funfact #uaamazing is the 2nd cheapest school in America!
+59 Got Health Insurance?
+60 No?
+61 Help is arriving at #UAA on January 13th, in the SU. 10-2pm.
+62 #UAASHCC #UAAmazing 22% Graduation rate at UAA. #UAAmazing
+63 I love the new black board update.
+64 #
+65 uaamazing So happy I have another week off before school starts again.
+66 #
+67 uaamazing Mr. A is one of the most genuine people I've had the privilige of meeting.
+68 Truly inspiring.
+69 #
+70 UAAmazing My textbooks for this semester are going to cost more than what I even pay out of pocket for tuition.
+71 #uaamazing #butreally Education alumnus Adam Ahonen discusses his career helming Service High Schools special ed program http://ow.ly/Wcipb .
+72 #UAAmazing #2 Johanna and JT broke 33rd at the World Universities Debating Championship in Thessaloniki!!!
+73 They're going to elim rounds!
+74 #uaamazing #wudc
+75 Going into round 6, JT and Johanna are sitting on 10 points.
+76 They drew OG against Monash x2 and LSE. Waiting for results.
+77 #wudc #uaa Dont forget!
+78 You can still donate and save @UAA_Bookstore until the 24th.
+79 #SeasonOfSavings #Uaamazing Holiday Special Hours of Operation.
+80 #UAASHCC #UAAmazing #uaamazing should b added to that last tweet Bruh...same #uaamazing Gonfalon for @uaanchorage College of Arts & Sciences 2015 Fall Commencement!
+81 Congrats Grads!
+82 #uaamazing  Congratulations to the Class of 2015!!
+83 #UAAGrad #UAAmazing Commencement speaker Ruddy Abam offering her congratulations to #UAAGrad Fall 2015.
+84 #uaamazing https://www.instagram.com/p/_P9ygmtYRn/
+85 #commencement graduation #volunteer #uaamazing (@ Alaska Airlines Center in Anchorage, AK).
+86 https://www.swarmapp.com/c/e2TmdxpgD43
+87 Hats off to all our #UAAmazing Fall 2015 gaduates!
+88 When you had an A in English all semester and the day after your last class he decides to enter participation and fuck you over.
+89 #
+90 uaamazing
+91 Like seriously come on!
+92 Bump my overall 89% to an A. #uaamazing Off to represent UAA: University of Alaska Anchorage students at the Board of Regents meeting at UAF!
+93 #uaamazing...
+94 http://fb.me/751hfv8rn
+95 bye UAA thanks for the 3 semesters lol.
+96 #
+97 UAAmazing
+98 My professor literally made a phone call in the middle of our final, using a student's phone, because she lost her own...
+99 #UAAmazing We cant even load a TV SHOW on residence wifi.
+100 #
+101 uaamazing
+102 I just discovered that I have a view of #Denali from my office window.
+103 #JustTheTip #ItCounts #uaamazing #Alaska  JT and Johanna WIN the #seattleiv. #UAAmazing @sklauder9 I'm gonna take a swing at the dean of students too.
+104 #
+105 uaamazing When blackboard is down for scheduled maintenance the day before finals week starts.... #uaamazing UAAs wifi is forever shitty.
+106 #
+107 uaamazing Twas the week before finals#uaamazing (at UAA: University of Alaska Anchorage)
+108 Rocky research: #UAA geology student Ian Minnock takes extracurricular to a whole new level.
+109 http://ow.ly/V5iy0 #UAAmazing #IAMUAA Photobombed by Jim!
+110 Having a blast at the @GCIAK Great #Alaska Shootout!
+111 #seawolfselfie #uaamazing he Seawolves are up by 1 at the half of the GCI Great Alaska Shootout!
+112 It's 32-31.
+113 #GreatAKShootout #WKU #uaamazing #seawolfnation #seawolfselfie #Uaamazing "Where "drink until she's pretty" is the school motto." - University of Alaska Anchorage final marketing presentation!!!
+114 #studentlife #uaamazing #student #bathroomselfie #shofie #bluecrew https://instagram.com/p/-VIhkUABt5/  #UAA alumna Rachel Wintz AK Hometown Hero for work with Girls on the Run AK. #UAAmazing http://ow.ly/UTVbz  Lunch at the Varsity Sports Grill at the @AlaskaAir Arena is #uaamazing.
+115 Go Seawolves!
+116 #alaska Huge congratulations Glenna Muncy!
+117 Way to represent the green and gold.
+118 We always knew you were #UAAmazing!
+119 Collaborative meeting this morning to discuss Spring events!
+120 #
+121 uaamazing UAA:
+122 @HilaryCorna at @uaanchorage.
+123 #dareyourself #uaamazing #uaaphotos Finding things to do to beat the winter blues, on my dorm roof chillin w a J. #uaamazing Finally finishing an essay that has been stressing you out for the past 2 weeks is one of the best feelings.
+124 #
+125 uaamazing Me tryna finish this 5 page essay, and 5 pages isn't even a lot in college.
+126 #uaamazing #collegelife @demrys killing it.
+127 #
+128 UAAmazing @seawolfdebate @uaaphotos (at UAA/APU Consortium Library)s Full house!
+129 120 people and they keep coming in.
+130 #UAAmazing Live stream is up!
+131 Join us for a public debate at 7 PM. #uaamazing http://m.ustream.tv/channel/exhibition-debates 
+132 Regram from the @akaircenter.
+133 Stunning sunset.
+134 #UAAmazing #campusview #ohwhataview https://instagram.com/p/-AdkZzNYW-/
+135 I finished my only college application and it took me like 20 minutes.
+136 #UAAmazing #Bless  Not looking forward to the 3 night classes I have next semester from 5:30-9:30.
+137 #uaamazing hands down Prof.
+138 Trotter is my favorite prof right now!
+139 boom #100.
+140 #uaamazing #studentlife
+141 When you spill all the daphnia in your bio lab.
+142 #
+143 uaamazing
+144 Well...it took me about 20 mins but I managed to get an almost halfway decent parking spot at the UAA library.
+145 #
+146 UAAmazing Read about #UAA student Kyle Worl's Second Bridge project in Chevak, AK.
+147 http://ow.ly/UrHyA
+148 #UAAmazing APD: Closes roads.
+149 ASD: Cancels school.
+150 APU: Cancels campus classes.
+151 UAA: Lol.
+152 You be aiight.
+153 Put on a hat and get over here.
+154 #
+155 uaamazing When ASD and APU cancel their classes for today but UAA doesn't.
+156 #uaamazing  Service High seniors at the UAA Preview Day event today.
+157 #DAB #UAAmazing #907 #ServiceHighSchool #ClassOf2016

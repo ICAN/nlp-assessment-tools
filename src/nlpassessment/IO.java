@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -17,9 +16,12 @@ import java.util.Scanner;
  * @author Neal
  */
 public class IO {
-        public static String readFileAsString(String fileName) {
-        return concatenateAll(readFileAsLines(fileName));
+    
+    
+    public static ArrayList<Token> readFileAsTokens(String fileName) {
+        return linesToTokens(readFileAsLines(fileName));
     }
+    
 
     public static String concatenateAll(ArrayList<String> lines) {
         String condensed = "";
@@ -29,7 +31,9 @@ public class IO {
         return condensed;
     }
 
-    //Reads a file and returns its lines in an arraylist
+    /*
+    Reads a file and returns its lines in an arraylist
+    */
     public static ArrayList<String> readFileAsLines(String fileName) {
         ArrayList<String> lines = new ArrayList<>();
         Scanner inFile = null;
@@ -49,7 +53,37 @@ public class IO {
         return lines;
     }
     
-    //OUTPUT METHOD
+    public static ArrayList<Token> linesToTokens(ArrayList<String> lines) {
+        
+        ArrayList<Token> tokens = new ArrayList<>();
+        
+        for(String line : lines) {
+            String[] split = line.split("\\s");
+            if(split.length == 2) {
+                tokens.add((new Token(split[0], split[1])));
+            } else {
+                System.out.println("Invalid line: " + line);
+            }
+        }
+        return tokens;
+    }
+            
+            
+    public static ArrayList<String> tokensToLines(ArrayList<Token> tokens) {
+        ArrayList<String> lines = new ArrayList<>();
+        
+        for(Token token : tokens) {
+            lines.add(token.token + "\t " + token.tag);
+        }
+        
+        return lines;
+    }
+    
+    
+    
+    /*
+        General file output method
+    */
     public static void writeFile(ArrayList<String> lines, String fileName) {
 
         try {
@@ -69,6 +103,5 @@ public class IO {
         }
 
     }
-    
-    
+
 }
