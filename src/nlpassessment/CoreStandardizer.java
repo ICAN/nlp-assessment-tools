@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2016 Neal.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package nlpassessment;
 
@@ -14,7 +32,7 @@ import java.util.Scanner;
  *
  * @author Neal
  */
-public class StanfordCoreStandardizer implements Standardizer {
+public class CoreStandardizer implements Standardizer {
 
     //PUBLIC METHODS
     public void standardizePOS(String inputFile, String outputFile) {
@@ -24,21 +42,18 @@ public class StanfordCoreStandardizer implements Standardizer {
         simplifyPOSTags(tokens);
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
-    
+
     //TODO: Write this
     public void standardizeNER(String inputFile, String outputFile) {
-        
+
     }
-    
+
     //TODO: Write this
     public void standardizeSentenceSplits(String inputFile, String outputFile) {
-        
+
     }
-    
-    
-    
+
     //PRIVATE METHODS
-    
     /*
     
      */
@@ -53,9 +68,8 @@ public class StanfordCoreStandardizer implements Standardizer {
             return false;
         }
     }
-    
+
     //TODO: eliminate 's tokens
-    
     public static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
@@ -65,17 +79,16 @@ public class StanfordCoreStandardizer implements Standardizer {
                 String[] split = line.split("\\s+");
                 String token = split[1];
                 String tag = split[3];
-                System.out.println(token + " " + tag);
-
-                taggedTokens.add(new Token(token, tag));
-
+//                System.out.println("Tokenized as: " + token + "\t" + tag);
+                if(!token.matches("'s")) {
+                    taggedTokens.add(new Token(token, tag));
+                }
             }
         }
 
         return taggedTokens;
 
     }
-
 
     public static void simplifyPOSTags(ArrayList<Token> tokens) {
 

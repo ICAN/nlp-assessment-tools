@@ -15,8 +15,13 @@ public class Token {
     public String tag;
     
     public Token (String token, String tag) {
-        this.token = token;
-        this.tag = tag;
+        this.token = token.trim();
+        this.tag = tag.trim();
+    }
+    
+    
+    public String toString() {
+        return token + ": " + tag;
     }
     
 }

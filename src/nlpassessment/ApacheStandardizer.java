@@ -23,10 +23,40 @@
  */
 package nlpassessment;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author Neal
  */
-public class ApacheStandardizer {
+public class ApacheStandardizer implements Standardizer {
+
+    //PUBLIC METHODS
+    
+    //TODO: FIX
+    public void standardizePOS(String inputFile, String outputFile) {
+//        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+//        ArrayList<Token> tokens = tokenizeRawPOS(raw);
+//        simplifyPOSTags(tokens);
+//        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+    }
+
+    //TODO: Write this
+    public void standardizeNER(String inputFile, String outputFile) {
+
+    }
+
+    //TODO: Write this
+    public void standardizeSentenceSplits(String inputFile, String outputFile) {
+
+    }
+
+    
+    
+    
+    
+    
+    
     
 }
