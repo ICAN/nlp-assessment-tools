@@ -34,32 +34,53 @@ import java.util.ArrayList;
  * @author Neal
  */
 public class Main {
-
+    
+    
     public static boolean DEBUG = false;
     
     
+    public static void standardizeAllPOS(String inputPath, String outputPath) {
+        
+        CoreNLP.standardizePOS(inputPath + "core pos output.txt", outputPath + "core pos std.txt");
+        OpenNLP.standardizePOS(inputPath + "open pos output.txt", outputPath + "open pos std.txt");
+//        NLTK.standardizePOS(inputPath + "nltk pos output.txt", outputPath + "nltk pos std.txt");
+        Spacy.standardizePOS(inputPath + "spacy pos output.txt", outputPath + "spacy pos std.txt");
+        
+    }
     
     
+    public static void standardizeAllSplits(String inputPath, String outputPath) {
+        
+        CoreNLP.standardizePOS(inputPath + "core split output.txt", outputPath + "core split std.txt");
+        OpenNLP.standardizePOS(inputPath + "open split output.txt", outputPath + "open split std.txt");
+        NLTK.standardizePOS(inputPath + "nltk split output.txt", outputPath + "nltk split std.txt");
+        Spacy.standardizePOS(inputPath + "spacy split output.txt", outputPath + "spacy split std.txt");
+        
+    }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Standardizer core = new CoreStandardizer();
-        Standardizer nltk = new NLTKStandardizer();
-        Standardizer spacey = new SpaceyStandardizer();
+ 
         
         
-//        core.standardizePOS("stanford pos raw.txt", "stanford pos std.txt");
-//        nltk.standardizePOS("nltk pos raw.txt", "nltk pos std.txt");
         
-        spacey.standardizePOS("spacey pos raw.txt", "spacey pos std.txt");
         
-//        ComparisonTool.compareResults(
-//                IO.readFileAsTokens("stanford pos std.txt"), 
-//                IO.readFileAsTokens("nltk pos std.txt"), 
-//                "JJ");
+//        CoreNLP.standardizePOS("stanford pos raw.txt", "stanford pos std.txt");
+       
+//        NLTK.standardizePOS("nltk pos raw.txt", "nltk pos std.txt");
+        
+//        Spacy.standardizePOS("spacy pos output.txt", "spacy pos std.txt");
+
+//        standardizeAllPOS("","");
+
+        
+        
+            Comparator.skipCatchupRobustCompareTags(
+                IO.readFileAsTokens("core pos std.txt"), 
+                IO.readFileAsTokens("open pos std.txt"), 
+                "JJ");
     }
     
 }

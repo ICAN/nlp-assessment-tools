@@ -24,38 +24,36 @@
 package nlpassessment;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
 
 /**
  *
  * @author Neal
  */
-public class ApacheStandardizer implements Standardizer {
-
-    //PUBLIC METHODS
+public class Combinator {
     
-    //TODO: FIX
-    public void standardizePOS(String inputFile, String outputFile) {
-//        ArrayList<String> raw = IO.readFileAsLines(inputFile);
-//        ArrayList<Token> tokens = tokenizeRawPOS(raw);
-//        simplifyPOSTags(tokens);
-//        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+    
+    
+    public static void filterPOS(String inputPath, String[] inputFiles, String outputPath) {
+        
+        HashSet<Integer> omittedSentences = new HashSet<>();
+        
+        ArrayList<ArrayList<StdSentence>> standardizedFiles = new ArrayList<>();
+        for(String file : inputFiles) {
+            standardizedFiles.add
+                    (IO.standardTokensToSentences(
+                    IO.standardLinesToTokens(
+                    IO.readFileAsLines(inputPath + file))));
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
-
-    //TODO: Write this
-    public void standardizeNER(String inputFile, String outputFile) {
-
-    }
-
-    //TODO: Write this
-    public void standardizeSentenceSplits(String inputFile, String outputFile) {
-
-    }
-
-    
-    
-    
-    
     
     
     

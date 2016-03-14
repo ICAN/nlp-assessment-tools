@@ -29,11 +29,10 @@ import java.util.ArrayList;
  *
  * @author Neal
  */
-public class SpaceyStandardizer implements Standardizer {
+public class Spacy {
 
     //TODO: Fix tokenizer
-    @Override
-    public void standardizePOS(String inputFile, String outputFile) {
+    public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
@@ -41,14 +40,17 @@ public class SpaceyStandardizer implements Standardizer {
     }
 
     //TODO: Write this
-    @Override
-    public void standardizeNER(String inputFile, String outputFile) {
+    public static void standardizeSplits(String inputFile, String outputFile) {
 
     }
 
     //TODO: Write this
-    @Override
-    public void standardizeSentenceSplits(String inputFile, String outputFile) {
+    public static void standardizeNER(String inputFile, String outputFile) {
+
+    }
+
+    //TODO: Write this
+    public static void standardizeLemmas(String inputFile, String outputFile) {
 
     }
 
@@ -58,17 +60,24 @@ public class SpaceyStandardizer implements Standardizer {
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
-
+        
+        int tokenCount = 0;
         for (String line : lines) {
 
             String[] split = line.split("\\s+");
-
-            if (split.length == 4) {
-                taggedTokens.add(new Token(split[1], split[3]));
+            
+            if(!validateLine(line)) {
+                
+            } else if (split.length == 4) {
+                System.out.println("Length 4 split: " + line);
+                tokenCount++;
+                taggedTokens.add(new Token(tokenCount, 0, split[1], split[3]));
             } else if (split.length == 3) {
-                taggedTokens.add(new Token(split[1], split[2]));
-            } else if (split.length == 2) {
-                    //Ignore these, looks like they're always spaces
+                tokenCount++;
+                taggedTokens.add(new Token(tokenCount, 0, split[1], split[2]));
+            } else if (split.length == 2 
+                    && split[split.length-1].equalsIgnoreCase("SPACE")) {
+                //Ignore these, looks like they're always spaces
                 //Weirdly, they are sometimes tagged "SPACE" and others "PUNCT"
             } else {
                 System.out.println("Invalid line (incorrect split) " + line);
@@ -80,6 +89,19 @@ public class SpaceyStandardizer implements Standardizer {
 
     }
 
+    private static boolean validateLine(String line) {
+        String[] split = line.split("\\s+");
+        
+        if(split.length < 3) {
+            return false;
+        } else if (split[1].equalsIgnoreCase("'s")){
+            return false;
+        }
+        
+        
+        return true;
+    }
+    
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
             token.tag = simplifyPOSTag(token.tag);

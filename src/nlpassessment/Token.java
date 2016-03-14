@@ -10,18 +10,20 @@ package nlpassessment;
  * @author Neal
  */
 public class Token {
-    
+    public int tokenInText;
+    public int tokenInSentence;
     public String token;
     public String tag;
     
-    public Token (String token, String tag) {
+    public Token (int tokenInText, int tokenInSentence, String token, String tag) {
+        this.tokenInText = tokenInText;
+        this.tokenInSentence = tokenInSentence;
         this.token = token.trim();
         this.tag = tag.trim();
     }
     
-    
     public String toString() {
-        return token + ": " + tag;
+        return tokenInText + "\t " + tokenInSentence + "\t " + token + "\t " + tag;
     }
     
 }

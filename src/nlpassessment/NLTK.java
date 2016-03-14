@@ -29,10 +29,10 @@ import java.util.ArrayList;
  *
  * @author Neal
  */
-public class NLTKStandardizer implements Standardizer {
+public class NLTK  {
 
     //PUBLIC METHODS
-    public void standardizePOS(String inputFile, String outputFile) {
+    public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
@@ -40,13 +40,21 @@ public class NLTKStandardizer implements Standardizer {
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
     
-    //TODO: Write this
-    public void standardizeNER(String inputFile, String outputFile) {
+    //FUNCTION NOT SUPPORTED
+    //TODO: Double-check
+    public static void standardizeNER(String inputFile, String outputFile) {
+        
         
     }
     
     //TODO: Write this
-    public void standardizeSentenceSplits(String inputFile, String outputFile) {
+    public static void standardizeSplits(String inputFile, String outputFile) {
+        
+        
+    }
+    
+    //TODO: Write this
+    public static void standardizeLemmas(String inputFile, String outputFile) {
         
     }
     
@@ -58,8 +66,10 @@ public class NLTKStandardizer implements Standardizer {
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
 
         //Tokenize
+        int textTokenCount = 0;
         for (String line : lines) {
             String[] split = line.split("\\s+");
+            
             if (split.length == 3) {
                 //NLTK token has form (u'token',  or  (u"token",   this handles both cases
                 //Stripping additional characters to leave token
@@ -69,7 +79,8 @@ public class NLTKStandardizer implements Standardizer {
                 
                 //Validate line and add
                 if ((split[1] + " " + split[2]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
-                    taggedTokens.add(new Token(split[1], split[2]));
+                    textTokenCount++;
+                    taggedTokens.add(new Token(textTokenCount, 0, split[1], split[2]));
                 } else {
                     System.out.println("Failed to validate line " + " " + split[1] + " " + split[2]);
                 }

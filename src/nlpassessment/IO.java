@@ -37,7 +37,7 @@ public class IO {
     
     
     public static ArrayList<Token> readFileAsTokens(String fileName) {
-        return linesToTokens(readFileAsLines(fileName));
+        return standardLinesToTokens(readFileAsLines(fileName));
     }
     
 
@@ -71,32 +71,50 @@ public class IO {
         return lines;
     }
     
-    public static ArrayList<Token> linesToTokens(ArrayList<String> lines) {
+    
+    public static ArrayList<Token> standardLinesToTokens(ArrayList<String> lines) {
         
         ArrayList<Token> tokens = new ArrayList<>();
-        
         for(String line : lines) {
-            String[] split = line.split(" +");
-            if(split.length == 2) {
-                tokens.add((new Token(split[0], split[1])));
+            String[] split = line.split("\\s+");
+            if(split.length == 4) {
+                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
             } else {
                 System.out.println("Invalid line: " + line + " has " + line.length() + " tokens.");
             }
         }
         return tokens;
     }
-            
+    
+    //Also sets "tokenInSentence" variable in Tokens
+    public static ArrayList<StdSentence> standardTokensToSentences(ArrayList<Token> tokens) {
+        ArrayList<StdSentence> sentences = new ArrayList<>();
+
+        int tokenInSentence = 0;
+        ArrayList<Token> currentSentence = new ArrayList<>();
+        for (Token token : tokens) {
+            tokenInSentence++;
+            if (token.tag.equalsIgnoreCase("[.?!]+")) {
+                token.tokenInSentence = tokenInSentence;
+                currentSentence.add(token);
+                sentences.add(new StdSentence(currentSentence));
+                currentSentence = new ArrayList<>();
+                tokenInSentence = 0;
+            } else {
+                currentSentence.add(token);
+            }
+
+        }
+        return sentences;
+    }
             
     public static ArrayList<String> tokensToLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
-        
         for(Token token : tokens) {
-            lines.add(token.token + "\t " + token.tag);
+            lines.add(token.toString());
         }
-        
         return lines;
     }
-    
     
     
     /*

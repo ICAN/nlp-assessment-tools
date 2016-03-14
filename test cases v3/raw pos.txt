@@ -1,0 +1,101 @@
+<DOCUMENT 1 TITLE>
+Heart of Darkness - Joseph Conrad
+
+<DOCUMENT 1 NO ANNOTATIONS>
+Between us there was, as I have already said somewhere, the bond of the sea. Besides holding our hearts together through long periods of separation, it had the effect of making us tolerant of each other's yarns--and even convictions. The Lawyer--the best of old fellows--had, because of his many years and many virtues, the only cushion on deck, and was lying on the only rug. The Accountant had brought out already a box of dominoes, and was toying architecturally with the bones. Marlow sat cross-legged right aft, leaning against the mizzen-mast. He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect, and, with his arms dropped, the palms of hands outwards, resembled an idol. The director, satisfied the anchor had good hold, made his way aft and sat down amongst us. We exchanged a few words lazily. Afterwards there was silence on board the yacht. For some reason or other we did not begin that game of dominoes. We felt meditative, and fit for nothing but placid staring. The day was ending in a serenity of still and exquisite brilliance. The water shone pacifically; the sky, without a speck, was a benign immensity of unstained light; the very mist on the Essex marsh was like a gauzy and radiant fabric, hung from the wooded rises inland, and draping the low shores in diaphanous folds. Only the gloom to the west, brooding over the upper reaches, became more sombre every minute, as if angered by the approach of the sun.
+
+ And at last, in its curved and imperceptible fall, the sun sank low, and from glowing white changed to a dull red without rays and without heat, as if about to go out suddenly, stricken to death by the touch of that gloom brooding over a crowd of men.
+
+<DOCUMENT 2 TITLE>
+Youth - Isaac Asimov
+
+<DOCUMENT 2 NO ANNOTATIONS>
+The swaying had come to a halt and it was dark. The Explorer was not comfortable in the alien air. It felt as thick as soup and he had to breathe shallowly. Even so—
+
+He reached out in a sudden need for company. The Merchant was warm to the touch. His breathing was rough, he moved in an occasional spasm, and was obviously asleep. The Explorer hesitated and decided not to wake him. It would serve no real purpose.
+
+There would be no rescue, of course. That was the penalty paid for the high profits which unrestrained competition could lead to. The Merchant who opened a new planet could have a ten year monopoly of its trade, which he might hug to himself or, more likely, rent out to all comers at a stiff price. It followed that planets were searched for in secrecy and, preferably, away from the usual trade routes. In a case such as theirs, then, there was little or no chance that another ship would come within range of their subetherics except for the most improbable of coincidences. Even if they were in their ship, that is, rather than in this—this—cage.
+
+The Explorer grasped the thick bars. Even if they blasted those away, as they could, they would be stuck too high in open air for leaping.
+
+It was too bad. They had landed twice before in the scout-ship. They had established contact with the natives who were grotesquely huge, but mild and unaggressive. It was obvious that they had once owned a flourishing technology, but hadn't faced up to the consequences of such a technology. It would have been a wonderful market.
+
+And it was a tremendous world. The Merchant, especially, had been taken aback. He had known the figures that expressed the planet's diameter, but from a distance of two light-seconds, he had stood at the visi-plate and muttered, "Unbelievable!"
+
+<DOCUMENT 3 TITLE>
+A risk management approach to capital allocation - V. Maume-Deschamps, D. Rulliére, and K. Said
+
+<DOCUMENT 3 NO ANNOTATIONS>
+Several allocation methods in the literature are based on a choice of a univariate risk measure and an allocation principle. Others are based on optimizing a multivariate ruin probability or some multivariate risk indicators. In this paper, we focus on the allocation technique by minimizing some risk indicators.
+
+The literature on the subject of capital allocation methods is very rich. Several principles have been proposed over the last twenty years. The most important and most studied are the Shapley method, the Aumann-Shapley method and the Euler’s method. 
+The Shapley method is based on cooperative game theory. It is described in detail in Denault’s paper (2001) [10].  Denault proved that this method, originally used to allocate the total cost between players in coalitional games context, can be easily adapted to solve the problem of the overall risk allocation between segments.
+
+Tasche devoted two papers [21] and [22] to describe Euler’s method. Euler’s method is also found in the literature under the name of gradient method. It is based on the idea of allocating capital according to the infinitesimal marginal impact of each risk. This impact corresponds to the increase obtained on the overall risk, yielding an infinitely small increment in a marginal risk.  
+
+<DOCUMENT 4 TITLE>
+UC Santa Cruz Lecturers Mark Expiration of Contract with "St. Precaria's Picnic" - Alex Darocy @ alexdarocy.com
+
+<DOCUMENT 4 NO ANNOTATIONS>
+
+The majority of Lecturers are hired year-by-year or quarter-by-quarter as "temp" workers, which leaves them with no job security. Additionally, a full-time Lecturer's workload is typically twice that of a tenure track professor, yet they are paid significantly less.
+
+Many of the picket signs displayed at the picnic communicated around the theme of precarity. One such message, "A Precarious Faculty = A Precarious University," was emblazoned on a gold flag along with the stencil of a fist holding a pencil.
+
+Precarity has been defined as a condition of instability in the workforce created in postindustrial societies when management seeks to increase its own strength by limiting job opportunities to temporary and or part-time work.
+
+In February, organizers of the National Adjunct Day of Action adopted "Saint Precaria" as their "icon saint" and individuals at UC Santa Cruz continue to develop themes surrounding precarity.
+
+"All these movements that we are building together are really interconnected, all the student movements and the union movements that we have been working on for many years together," explained Josh Brahinsky at a mid-day rally held at the picnic. Brahinsky teaches courses at both UC Santa Cruz and San Jose State University.
+
+"We're all facing a certain kind of neo-liberal budget where they play with it, and mess with the money," he said. "They don't spend the money on undergraduate education, which is what we are all here to make happen."
+
+<DOCUMENT 5 TITLE>
+Logical Inference by DNA Strand Algebra - Kumar S. Ray, Mandrita Mondal
+
+<DOCUMENT 5 NO ANNOTATIONS>
+
+In this paper we have performed logical reasoning by modus ponens using DNA  strand algebra, which can be defined as a branch of process algebra. The operations of DNA strands in present model are based on the mechanism of DNA strand displacement. Process algebras are widely used for defining the formal semantics of concurrent communicating processes. Process calculi provide a tool for the high-level description of interactions, communications, and synchronizations between a collection of independent agents or processes. They also provide algebraic laws that allow process descriptions to be manipulated and analyzed, and permit  formal reasoning about equivalences between processes. The main components of DNA strand algebra are DNA strands, DNA gates, and their interactions.
+
+Before going in detail description of DNA strand algebra we first have to know  what is syntax and semantics. 
+
+In mathematics, computer science and linguistics, a formal language is a set of strings of symbols that may be constrained by rules that are specific to it.
+
+In computer science, the process algebras [Baeten, 2004] are mathematically rigorous languages with well defined semantics that permit describing and verifying properties of concurrent communicating systems. Process calculi provide a tool for the high-level description of interactions, communications, and synchronizations between a collection of independent agents or processes. They also provide algebraic laws that allow process descriptions to be manipulated and analyzed, and permit formal reasoning about equivalences between processes.
+
+<DOCUMENT 6 NO ANNOTATIONS>
+
+Let me hurry up & finish this HW..tonight @BreeNewsome will be doing a public lecture in Art 150 at 7pm. #UAAmazing #UAA
+@BreeNewsome @uaanchorage MLK Student Appreciation Brunch. #UAAmazing #BlackLivesMatter https://www.instagram.com/p/BBLgb8wM5oX/ 
+Just had the pleasure of meeting @BreeNewsome @uaanchorage MLK Student Appreciation Brunch. #UAAmazing
+Paying less than  100 for a semester of college. :) #uaamazing
+UAA is having a Star Wars night at the Commons. But guys. The gravy... #UAAmazing 
+when u have to pay  34.12 for a semester of college. :') #blessup #UAAmazing
+UAA: fucking me over since day 1 #UAAMAZING knew I should've stayed in Maryland. #CSM wouldn't have done me like this.
+@WillowLeedy @camelovidov @Ch2KTUU #UAAmazing
+@emilyjanaewood update: I paid  6 for a 2/3 full cup of soy milk. :) #UAAmazing
+UAA, where you have to drive around the lot for twenty minutes just to find a goddamn parking spot. #uaamazing
+No damage has been reported to the @UAAParking structures- if you notice a problem, report it right away, #UAAmazing
+I feel like everyday is pick on the freshman day here. #UAAmazing
+Make lots of money. #BeAnEngineer #UAAmazing
+I swear this nigga behind me getting topped off in class. #UAAmazing
+UAA Snaps confirms my belief that there is no hope in the future for most of my peers. #VapeLyfe #BACgoingup #GPAgoingdown #UAAmazing
+@AKEPSCoR @UAFGI dude's a beast! #uaamazing
+#Alaska #mountains #sunrise #uaamazing @uaaphotos (at UAA Administration Building) .
+It's so frustrating to not be able to get parking because everyone parks like they've never driven a car before. #UAAmazing 
+@crazy808lexi #UAAmazing
+#uaamazing love these high quality machines.
+Special Announcement: New Hours of Operation- #UAASHCC #UAAmazing .
+Make a plan to see this compelling film. Jan 20th, Gorsuch Commons, Jan 21st in the SU Den. #UAASHCC #UAAmazing
+Last day of Lean Six Sigma training! #uaamazing @uaaphotos (at UAA - University Center)
+I'm glad you said "hola" walking into class because otherwise I would not have known whether Spanish meets in 143A or 143B. #UAAmazing
+Lol  150 to rent one book. Not gonna happen. #UAAmazing
+UAA: Where textbook reservations turn into textbook IOUs right before your innocent eyes. #UAAmazing
+And we are sold out! Thank you, Anchorage for caring about civil discourse! #arguingalaska #uaamazing
+Took a semester off, glad to see that the puddle of piss and pubes called the "men's bathroom" in the SSB is still there. #UAAmazing
+I mean, it'd be nice if someone would put down icemelt for the first day off classes >:(.. #uaamazing #ouch
+College textbooks priced like they're all leaked copies of the next Game of Thrones book. #UAAmazing
+When the UAA bookstore didn't pull your preordered books off the shelf. #UAAmazing
+According to blackboard, I have one class this semester instead of 5. #UAAmazing
+@JensenElijah #funfact #uaamazing is the 2nd cheapest school in America!
+Got Health Insurance? No? Help is arriving at #UAA on January 13th, in the SU. 10-2pm. #UAASHCC #UAAmazing

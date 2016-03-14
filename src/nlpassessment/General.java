@@ -23,18 +23,15 @@
  */
 package nlpassessment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Neal
  */
-public interface Standardizer {
-    
-    
-    public abstract void standardizePOS(String inputFile, String outputFile);
+public class General {
 
-    public abstract void standardizeNER(String inputFile, String outputFile);
-    
-    public abstract void standardizeSentenceSplits(String inputFile, String outputFile);
-    
-    
+    public static final String END_OF_SENTENCE = "[!?.]+";
+        
+
 }

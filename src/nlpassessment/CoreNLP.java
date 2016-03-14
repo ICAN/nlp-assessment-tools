@@ -28,14 +28,10 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author Neal
- */
-public class CoreStandardizer implements Standardizer {
+public class CoreNLP {
 
     //PUBLIC METHODS
-    public void standardizePOS(String inputFile, String outputFile) {
+    public static void standardizePOS(String inputFile, String outputFile) {
         //Simplify NLTK POS
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
@@ -43,13 +39,19 @@ public class CoreStandardizer implements Standardizer {
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
-    //TODO: Write this
-    public void standardizeNER(String inputFile, String outputFile) {
+    //FUNCTION NOT SUPPORTED
+    //TODO: Double-check
+    public static void standardizeNER(String inputFile, String outputFile) {
 
     }
 
     //TODO: Write this
-    public void standardizeSentenceSplits(String inputFile, String outputFile) {
+    public static void standardizeSplits(String inputFile, String outputFile) {
+
+    }
+
+    //TODO: Write this
+    public static void standardizeLemmas(String inputFile, String outputFile) {
 
     }
 
@@ -58,31 +60,36 @@ public class CoreStandardizer implements Standardizer {
     
      */
     private static boolean validateLine(String string) {
-        if (string.matches("[\\S]+" //Token number in sentence
+        String[] split = string.split("\\s+");
+        if (split.length != 7) {
+            return false;
+        } else if (!string.matches("[\\S]+" //Token number in sentence
                 + "[\\s]+[\\S]+" //Token
                 + "[\\s]+_"
                 + "[\\s]+[\\S]+" //Tag
                 + "[\\s]+_.*")) {
-            return true;
-        } else {
+            return false;
+        } else if (split[1].matches("'s")) {
             return false;
         }
+
+        return true;
     }
 
     //TODO: eliminate 's tokens
-    public static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
+    private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
+        int tokenCount = 0;
 
         for (String line : lines) {
             if (validateLine(line)) {
+                tokenCount++;
                 String[] split = line.split("\\s+");
                 String token = split[1];
                 String tag = split[3];
+                taggedTokens.add(new Token(tokenCount, 0, token, tag));
 //                System.out.println("Tokenized as: " + token + "\t" + tag);
-                if(!token.matches("'s")) {
-                    taggedTokens.add(new Token(token, tag));
-                }
             }
         }
 
@@ -90,7 +97,7 @@ public class CoreStandardizer implements Standardizer {
 
     }
 
-    public static void simplifyPOSTags(ArrayList<Token> tokens) {
+    private static void simplifyPOSTags(ArrayList<Token> tokens) {
 
         for (Token token : tokens) {
 
@@ -99,7 +106,7 @@ public class CoreStandardizer implements Standardizer {
         }
     }
 
-    public static String simplifyPOSTag(String tag) {
+    private static String simplifyPOSTag(String tag) {
 
         if (tag.matches("NN.*")) {
             return "NN";
