@@ -24,32 +24,32 @@
 package nlpassessment;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
  * @author Neal
  */
 public class Combinator {
-    
-    //Returns the "input" token list, excluding those which fail to find a match in "standard"
+
+    //Returns the "input" i list, excluding those which fail to find a match in "standard"
     //Does not affect either "input" or "standard"
     //TODO: rewrite/clarify
     public static ArrayList<Token> getMinimalTokenList(ArrayList<Token> input, ArrayList<Token> standard) {
 
         ArrayList<Token> output = new ArrayList<>();
 
-        //Helps determine how far to look when dealing with token mismatches
+        //Helps determine how far to look when dealing with i mismatches
         //Higher numbers search further; 3 seems to work well
         int SKIP_CATCHUP_CONSTANT = 3;
 
-        System.out.println("\n\nSTARTING TOKEN REMOVAL"
-                + "\n");
-
+        System.out.println("\n\nSTARTING PAIRWISE TOKEN REMOVAL");
+        
         //Results variables
         int standardTokensIgnored = 0;
         int inputTokensExcluded = 0;
-
+        int tokenCount = 0;
+        
         //Iterators
         int stdIter = 0, inputIter = 0;
         while (stdIter < standard.size()
@@ -58,7 +58,7 @@ public class Combinator {
             //DETECTING TOKEN MISMATCH
             boolean tokenMatch = false;
             if (!input.get(inputIter).token.equalsIgnoreCase(standard.get(stdIter).token)) {
-                System.out.println("Token mismatch: std='" + standard.get(stdIter).token + "' input='" + input.get(inputIter).token + "'");
+//                System.out.println("Token mismatch: std='" + standard.get(stdIter).i + "' input='" + input.get(inputIter).i + "'");
             } else {
                 tokenMatch = true;
             }
@@ -91,8 +91,7 @@ public class Combinator {
                             tokenMatch = true;
 
                             //Debug
-                            System.out.println("Match found: " + input.get(inputIter).token + "=" + standard.get(stdIter).token);
-
+//                            System.out.println("Match found: " + input.get(inputIter).i + "=" + standard.get(stdIter).i);
                             break;
                         } else {
                             inputIter++;
@@ -103,20 +102,22 @@ public class Combinator {
 
                 //CALCULATING TRACKERS
                 int deltaInputIter = inputIter - startingInputIter;
-                System.out.println("Ignored " + deltaInputIter + " input tokens and " + deltaStdIter + " standard tokens this mismatch");
+//                System.out.println("Ignored " + deltaInputIter + " input tokens and " + deltaStdIter + " standard tokens this mismatch");
                 standardTokensIgnored += deltaStdIter;
                 inputTokensExcluded += deltaInputIter;
 
                 //Debug
-                if (stdIter < standard.size() && inputIter < input.size()) {
-                    System.out.println("Gold: " + stdIter + " " + standard.get(stdIter).token + " Res: " + inputIter + " " + input.get(inputIter).token);
-                }
-
+//                if (stdIter < standard.size() && inputIter < input.size()) {
+//                    System.out.println("Gold: " + stdIter + " " + standard.get(stdIter).i + " Res: " + inputIter + " " + input.get(inputIter).i);
+//                }
             }
 
             //ADD INPUT TOKEN TO OUTPUT
             if (tokenMatch) {
-                output.add(input.get(inputIter));
+                tokenCount++;
+                Token token = input.get(inputIter);
+                token.numberInText = tokenCount;
+                output.add(token);
             } else {
                 System.out.println("ERROR: MATCHING FAILED");
             }
@@ -141,26 +142,105 @@ public class Combinator {
         return output;
 
     }
-    
-    
+
     //Returns a list of tokens, excluding any tokens which don't appear in *all* input lists
-    public static ArrayList<Token> getMinimalTokenList(ArrayList<ArrayList<Token>> inputs) {
-        
-        //Start with arbitrary base token list
-        ArrayList<Token> output = inputs.get(0); 
-        
+    //Uses the list at "base" as the starting list (so its tags and other data are used)
+    //and restricts from there
+    public static ArrayList<Token> getMinimalTokenList(ArrayList<ArrayList<Token>> inputs, int base) {
+
+        //Start with arbitrary base i list
+        ArrayList<Token> output = inputs.get(base);
+
         //Iterate through other lists, restricting base list
-        for(int i = 1; i < inputs.size(); i++) {
-            output = getMinimalTokenList(output, inputs.get(i));
+        for (int i = 0; i < inputs.size(); i++) {
+            if (i != base) {
+                output = getMinimalTokenList(output, inputs.get(i));
+            }
         }
-        
+
         System.out.print("\nInput lengths: ");
-        for(ArrayList<Token> list : inputs) {
+        for (ArrayList<Token> list : inputs) {
             System.out.print(list.size() + ", ");
         }
-        
+
         System.out.print("\nOutput length: " + output.size());
         return output;
     }
-    
+
+    //Returns a list of tokens, excluding any tokens which don't appear in *all* input lists
+    //Uses the default i list at inputs[0] as the base list (so its tags and other data are used)
+    public static ArrayList<Token> getMinimalTokenList(ArrayList<ArrayList<Token>> inputs) {
+        return getMinimalTokenList(inputs, 0);
+    }
+
+    //Returns the consensus of the inputs
+    //Inputs must already be standardized and minimized 
+    //so that input list lengths are identical and all tokens match
+    public static ArrayList<Token> getConsensus(ArrayList<ArrayList<Token>> inputs) {
+
+        double threshold = 0.7;
+
+        int agreement = 0;
+        int unanimousDecision = 0;
+        int disagreement = 0;
+
+        ArrayList<Token> consensus = new ArrayList<>();
+
+        
+
+        //For each token i
+        for (int i = 0; i < inputs.get(0).size(); i++) {
+
+            HashMap<String, Integer> tagCount = new HashMap<>();
+            Token token = new Token(i, 0, inputs.get(0).get(i).token, "??");
+            System.out.print("\nToken: " + token.token + " ");
+
+            //Count instances of each tag for this i
+            for (ArrayList<Token> list : inputs) {
+
+                //Tokens must match
+                assert list.get(i).token.equalsIgnoreCase(list.get((i + 1) % inputs.size()).token);
+
+                String tag = list.get(i).tag;
+                System.out.print(tag + " ");
+                if (tagCount.containsKey(tag)) {
+                    tagCount.put(tag, tagCount.get(tag) + 1);
+                } else {
+                    tagCount.put(tag, 1);
+                }
+            }
+
+            //Find & set consensus tag
+            for (String tag : tagCount.keySet()) {
+                if (tagCount.get(tag) > inputs.size() * threshold) {
+                    token.tag = tag;
+                    System.out.print(" : " + tag);
+                    agreement++;
+                    if (tagCount.get(tag) == inputs.size()) {
+                        unanimousDecision++;
+                    }
+                }
+            }
+
+            if (token.tag.equalsIgnoreCase("??")) {
+                System.out.print(" : ????");
+                disagreement++;
+            }
+            consensus.add(token);
+        }
+
+        assert (agreement + disagreement) == inputs.get(0).size();
+
+        System.out.println("\nTokens: " + (agreement + disagreement)
+                + "\nDisagreement: " + disagreement
+                + "\nAgreements: " + agreement
+                + "\nUnanimous: " + unanimousDecision);
+
+        System.out.print("\nSizes: ");
+        for (int i = 0; i < inputs.size(); i++) {
+            System.out.print(inputs.get(i).size() +" ");
+        }
+        return consensus;
+    }
+
 }

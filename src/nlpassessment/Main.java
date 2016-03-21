@@ -28,6 +28,7 @@ package nlpassessment;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -35,31 +36,94 @@ import java.util.ArrayList;
  */
 public class Main {
     
-    
-    public static boolean DEBUG = false;
+ 
+    public static void producePOSConsensus(String inputPath, String outputPath) {
+        
+        ArrayList<ArrayList<Token>> tokenLists = new ArrayList<>();
+        
+        tokenLists.add(IO.readFileAsTokens("core-pos-restricted.txt"));
+//        tokenLists.add(IO.readFileAsTokens("open-pos-restricted.txt"));
+        tokenLists.add(IO.readFileAsTokens("nltk-pos-restricted.txt"));
+        tokenLists.add(IO.readFileAsTokens("spacy-pos-restricted.txt"));
+        
+        IO.writeFile(
+                IO.tokensToLines(Combinator.getConsensus(tokenLists)), 
+                "all-pos-consensus.txt");
+        
+    }
     
     
     public static void standardizeAllPOS(String inputPath, String outputPath) {
         
         CoreNLP.standardizePOS(inputPath + "core-pos-out.txt", outputPath + "core-pos-std.txt");
-        OpenNLP.standardizePOS(inputPath + "open-pos-out.txt", outputPath + "open-pos-std.txt");
+//        OpenNLP.standardizePOS(inputPath + "open-pos-out.txt", outputPath + "open-pos-std.txt");
         NLTK.standardizePOS(inputPath + "nltk-pos-out.txt", outputPath + "nltk-pos-std.txt");
         Spacy.standardizePOS(inputPath + "spacy-pos-out.txt", outputPath + "spacy-pos-std.txt");
         
     }
     
-    public static ArrayList<Token> getMinimalPOS() {
+    public static void produceMinimalPOS() {
         
-        ArrayList<ArrayList<Token>> tokenLists = new ArrayList<>();
+        HashMap<String, ArrayList<Token>> tokenLists = new HashMap<>();
         
-        tokenLists.add(IO.readFileAsTokens("core-pos-std.txt"));
-//        tokenLists.add(IO.readFileAsTokens("open-pos-std.txt"));
-        tokenLists.add(IO.readFileAsTokens("nltk-pos-std.txt"));
-        tokenLists.add(IO.readFileAsTokens("spacy-pos-std.txt"));
+        //Add lists
+        tokenLists.put("core", IO.readFileAsTokens("core-pos-std.txt"));
+//        tokenLists.put("open", IO.readFileAsTokens("open-pos-std.txt"));
+        tokenLists.put("nltk", IO.readFileAsTokens("nltk-pos-std.txt"));
+        tokenLists.put("spacy", IO.readFileAsTokens("spacy-pos-std.txt"));
         
-        return Combinator.getMinimalTokenList(tokenLists);
         
+        //Restrict lists iteratively
+        int iterations = 0;
+        while(true) {
+            iterations++;
+            int deltaSize = 0;
+            HashMap<String, ArrayList<Token>> restrictedLists = new HashMap<>();
+            ArrayList<ArrayList<Token>> currentLists;
+            
+            for(String baseListName : tokenLists.keySet()) {
+                currentLists = new ArrayList<>();
+                currentLists.add(tokenLists.get(baseListName)); //Put the baseList baseListName at index 0
+                
+                //Add the rest of the lists, order immaterial
+                for(String otherList : tokenLists.keySet()) {
+                    if(!otherList.equalsIgnoreCase(baseListName)) {
+                        currentLists.add(tokenLists.get(otherList));
+                    }
+                }
+                
+                int baseLength = tokenLists.get(baseListName).size();
+                
+                //Minimize the current base list
+                ArrayList<Token> baseList = Combinator.getMinimalTokenList(currentLists, 0);
+                restrictedLists.put(baseListName, baseList);
+                
+                
+            }
+            
+            for(String listName : tokenLists.keySet()) {
+                deltaSize += (tokenLists.get(listName).size() - restrictedLists.get(listName).size());
+            }
+            
+            tokenLists = restrictedLists;
+            
+            if(deltaSize == 0) {
+                System.out.println("Completed producing all minimized POS results after " + iterations + " iterations.");
+                break;
+            } else {
+                System.out.println("Iteration " + iterations + ": eliminated " + deltaSize + " tokens.");
+            }
+            
+        }
+        
+        
+        //Write all output files
+        for(String listName : tokenLists.keySet()) {
+            IO.writeFile(IO.tokensToLines(tokenLists.get(listName)), listName + "-pos-restricted.txt");
+        }
     }
+    
+
     
     
     public static void standardizeAllSplits(String inputPath, String outputPath) {
@@ -75,11 +139,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         
 //        standardizeAllPOS("","");
         
-        
+//        Spacy.standardizePOS("spacy-pos-out.txt", "spacy-pos-std.txt");
         
         
             //(Tested, Gold)
@@ -88,11 +151,18 @@ public class Main {
 //                IO.readFileAsTokens("core-pos-std.txt"), 
 //                "RB");        
         
+//        produceMinimalPOS();
 
-        ArrayList<Token> filtered = getMinimalPOS();
-        System.out.println("Filtered size: " + filtered.size());
-        IO.writeFile(
-                IO.tokensToLines(filtered), "pos-filtered");
+  
+        
+//        ArrayList<Token> filtered = produceMinimalPOS();
+//        System.out.println("\nFiltered size: " + filtered.size());
+//        IO.writeFile(
+//                IO.tokensToLinesSimplified(filtered), "pos-filtered.txt");
+        
+        producePOSConsensus("","");
+  
+        
     }
     
 }

@@ -61,12 +61,41 @@ public class Spacy {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
         
+        int tokenCount = 1;
+        for (String line : lines) {
+
+            String[] split = line.split("\\s+");
+            
+            
+            if (split.length == 2) {
+                if(!split[0].trim().equalsIgnoreCase("")) {
+                    taggedTokens.add(new Token(tokenCount, 0, split[0], split[1]));
+                    tokenCount++;
+                }
+            } else {
+                //Lots of "SPACE" tokens unfortunately
+                System.out.println("Invalid line (incorrect split) " + line);
+            }
+
+        }
+
+        return taggedTokens;
+
+    }
+
+    //PRIVATE METHODS
+    //POS-TAGGING
+    //TODO: Write this
+    private static ArrayList<Token> tokenizeRawPOSV3(ArrayList<String> lines) {
+
+        ArrayList<Token> taggedTokens = new ArrayList<Token>();
+        
         int tokenCount = 0;
         for (String line : lines) {
 
             String[] split = line.split("\\s+");
             
-            if(!validateLine(line)) {
+            if(!validateLineV3(line)) {
                 
             } else if (split.length == 4) {
                 System.out.println("Length 4 split: " + line);
@@ -88,8 +117,9 @@ public class Spacy {
         return taggedTokens;
 
     }
-
-    private static boolean validateLine(String line) {
+    
+    
+    private static boolean validateLineV3(String line) {
         String[] split = line.split("\\s+");
         
         if(split.length < 3) {

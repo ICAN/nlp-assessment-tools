@@ -80,7 +80,7 @@ public class IO {
             if(split.length == 4) {
                 tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
             } else {
-                System.out.println("Invalid line: " + line + " has " + line.length() + " tokens.");
+                System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
         }
         return tokens;
@@ -107,11 +107,21 @@ public class IO {
         }
         return sentences;
     }
-            
+      
+    //Uses Token.toString()
     public static ArrayList<String> tokensToLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
         for(Token token : tokens) {
             lines.add(token.toString());
+        }
+        return lines;
+    }
+    
+    //Includes only Token.token and Token.tag in each line
+    public static ArrayList<String> tokensToLinesSimplified(ArrayList<Token> tokens) {
+        ArrayList<String> lines = new ArrayList<>();
+        for(Token token : tokens) {
+            lines.add(token.token + "\t" + token.tag);
         }
         return lines;
     }
