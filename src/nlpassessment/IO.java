@@ -86,7 +86,7 @@ public class IO {
         return tokens;
     }
     
-    //Also sets "tokenInSentence" variable in Tokens
+    //Also sets "numberInSentence" variable in Tokens
     public static ArrayList<StdSentence> standardTokensToSentences(ArrayList<Token> tokens) {
         ArrayList<StdSentence> sentences = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class IO {
         for (Token token : tokens) {
             tokenInSentence++;
             if (token.tag.equalsIgnoreCase("[.?!]+")) {
-                token.tokenInSentence = tokenInSentence;
+                token.numberInSentence = tokenInSentence;
                 currentSentence.add(token);
                 sentences.add(new StdSentence(currentSentence));
                 currentSentence = new ArrayList<>();

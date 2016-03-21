@@ -25,10 +25,7 @@ package nlpassessment;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Neal
- */
+
 public class NLTK  {
 
     //PUBLIC METHODS
@@ -36,13 +33,13 @@ public class NLTK  {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        filterPOSTokens(tokens);
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
     
     //FUNCTION NOT SUPPORTED
     //TODO: Double-check
     public static void standardizeNER(String inputFile, String outputFile) {
+        
         
         
     }
@@ -70,20 +67,18 @@ public class NLTK  {
         for (String line : lines) {
             String[] split = line.split("\\s+");
             
-            if (split.length == 3) {
-                //NLTK token has form (u'token',  or  (u"token",   this handles both cases
-                //Stripping additional characters to leave token
-                split[1] = split[1].substring(3, split[1].length() - 2);
-                //Stripping additional characters to leave tag
-                split[2] = split[2].substring(1, split[2].length() - 1);
+            if (split.length == 2) {
                 
                 //Validate line and add
-                if ((split[1] + " " + split[2]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
+                if ((split[0] + " " + split[1]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
                     textTokenCount++;
-                    taggedTokens.add(new Token(textTokenCount, 0, split[1], split[2]));
+                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1]));
                 } else {
-                    System.out.println("Failed to validate line " + " " + split[1] + " " + split[2]);
+                    System.out.println("Failed to validate line " + " " + split[0] + " " + split[1]);
                 }
+                
+                
+                
             } else {
                 System.out.println("Failed to convert " + line);
             }
@@ -114,46 +109,47 @@ public class NLTK  {
         }
     }
     
-    private static ArrayList<Token> filterPOSTokens (ArrayList<Token> taggedTokens) {
-        
-        ArrayList<Token> filteredTokens = new ArrayList<Token>();
-
-        //Collapse hastags to next token to match standard tokenization scheme
-        boolean hashtag = false;
-        for (Token token : taggedTokens) {
-            if (token.token.equals("#")) {
-                hashtag = true; //Produce hashtag flag
-            } else if (hashtag) {
-                token.token = "#" + token.token; //Consume hashtag flag
-                filteredTokens.add(token); //Hashtagged token added
-                hashtag = false;
-            } else {
-                filteredTokens.add(token); //Other
-            }
-
-        }
-        taggedTokens = filteredTokens;
-        
-        filteredTokens = new ArrayList<Token>();
-        for(Token token : taggedTokens) {
-            if(!token.token.matches("'s")) {
-                if(token.token.endsWith("'s")) {
-                    System.out.print("\nReduced " + token.token); 
-                    token.token = token.token.substring(0, token.token.length() - 2);
-                    System.out.print(" to " + token.token +"\n");
-                }
-                
-                filteredTokens.add(token);
-                
-            } else {
-                System.out.println("Removed " + token.toString());
-            }
-        }
-        taggedTokens = filteredTokens;
-        
-        
-        return taggedTokens;
-    }
+    //Unnecessary
+//    private static ArrayList<Token> filterPOSTokens (ArrayList<Token> taggedTokens) {
+//        
+//        ArrayList<Token> filteredTokens = new ArrayList<Token>();
+//
+//        //Collapse hastags to next token to match standard tokenization scheme
+//        boolean hashtag = false;
+//        for (Token token : taggedTokens) {
+//            if (token.token.equals("#")) {
+//                hashtag = true; //Produce hashtag flag
+//            } else if (hashtag) {
+//                token.token = "#" + token.token; //Consume hashtag flag
+//                filteredTokens.add(token); //Hashtagged token added
+//                hashtag = false;
+//            } else {
+//                filteredTokens.add(token); //Other
+//            }
+//
+//        }
+//        taggedTokens = filteredTokens;
+//        
+//        filteredTokens = new ArrayList<Token>();
+//        for(Token token : taggedTokens) {
+//            if(!token.token.matches("'s")) {
+//                if(token.token.endsWith("'s")) {
+//                    System.out.print("\nReduced " + token.token); 
+//                    token.token = token.token.substring(0, token.token.length() - 2);
+//                    System.out.print(" to " + token.token +"\n");
+//                }
+//                
+//                filteredTokens.add(token);
+//                
+//            } else {
+//                System.out.println("Removed " + token.toString());
+//            }
+//        }
+//        taggedTokens = filteredTokens;
+//        
+//        
+//        return taggedTokens;
+//    }
 
     
 

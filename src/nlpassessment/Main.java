@@ -41,20 +41,33 @@ public class Main {
     
     public static void standardizeAllPOS(String inputPath, String outputPath) {
         
-        CoreNLP.standardizePOS(inputPath + "core pos output.txt", outputPath + "core pos std.txt");
-        OpenNLP.standardizePOS(inputPath + "open pos output.txt", outputPath + "open pos std.txt");
-//        NLTK.standardizePOS(inputPath + "nltk pos output.txt", outputPath + "nltk pos std.txt");
-        Spacy.standardizePOS(inputPath + "spacy pos output.txt", outputPath + "spacy pos std.txt");
+        CoreNLP.standardizePOS(inputPath + "core-pos-out.txt", outputPath + "core-pos-std.txt");
+        OpenNLP.standardizePOS(inputPath + "open-pos-out.txt", outputPath + "open-pos-std.txt");
+        NLTK.standardizePOS(inputPath + "nltk-pos-out.txt", outputPath + "nltk-pos-std.txt");
+        Spacy.standardizePOS(inputPath + "spacy-pos-out.txt", outputPath + "spacy-pos-std.txt");
+        
+    }
+    
+    public static ArrayList<Token> getMinimalPOS() {
+        
+        ArrayList<ArrayList<Token>> tokenLists = new ArrayList<>();
+        
+        tokenLists.add(IO.readFileAsTokens("core-pos-std.txt"));
+//        tokenLists.add(IO.readFileAsTokens("open-pos-std.txt"));
+        tokenLists.add(IO.readFileAsTokens("nltk-pos-std.txt"));
+        tokenLists.add(IO.readFileAsTokens("spacy-pos-std.txt"));
+        
+        return Combinator.getMinimalTokenList(tokenLists);
         
     }
     
     
     public static void standardizeAllSplits(String inputPath, String outputPath) {
         
-        CoreNLP.standardizePOS(inputPath + "core split output.txt", outputPath + "core split std.txt");
-        OpenNLP.standardizePOS(inputPath + "open split output.txt", outputPath + "open split std.txt");
-        NLTK.standardizePOS(inputPath + "nltk split output.txt", outputPath + "nltk split std.txt");
-        Spacy.standardizePOS(inputPath + "spacy split output.txt", outputPath + "spacy split std.txt");
+        CoreNLP.standardizePOS(inputPath + "core-split-out.txt", outputPath + "core-split-std.txt");
+        OpenNLP.standardizePOS(inputPath + "open-split-out.txt", outputPath + "open-split-std.txt");
+        NLTK.standardizePOS(inputPath + "nltk-split-out.txt", outputPath + "nltk-split-std.txt");
+        Spacy.standardizePOS(inputPath + "spacy-split-out.txt", outputPath + "spacy-split-std.txt");
         
     }
     
@@ -62,25 +75,24 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
- 
-        
-        
-        
-        
-//        CoreNLP.standardizePOS("stanford pos raw.txt", "stanford pos std.txt");
-       
-//        NLTK.standardizePOS("nltk pos raw.txt", "nltk pos std.txt");
-        
-//        Spacy.standardizePOS("spacy pos output.txt", "spacy pos std.txt");
 
+        
 //        standardizeAllPOS("","");
+        
+        
+        
+        
+            //(Tested, Gold)
+//            Comparator.robustlyCompareTags(
+//                IO.readFileAsTokens("nltk-pos-std.txt"), 
+//                IO.readFileAsTokens("core-pos-std.txt"), 
+//                "RB");        
+        
 
-        
-        
-            Comparator.skipCatchupRobustCompareTags(
-                IO.readFileAsTokens("core pos std.txt"), 
-                IO.readFileAsTokens("open pos std.txt"), 
-                "JJ");
+        ArrayList<Token> filtered = getMinimalPOS();
+        System.out.println("Filtered size: " + filtered.size());
+        IO.writeFile(
+                IO.tokensToLines(filtered), "pos-filtered");
     }
     
 }

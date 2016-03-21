@@ -69,9 +69,7 @@ public class CoreNLP {
                 + "[\\s]+[\\S]+" //Tag
                 + "[\\s]+_.*")) {
             return false;
-        } else if (split[1].matches("'s")) {
-            return false;
-        }
+        } 
 
         return true;
     }

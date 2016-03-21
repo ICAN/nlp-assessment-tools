@@ -66,10 +66,10 @@ public class OpenNLP {
                 String token = split[1];
                 String tag = split[2];
 //                System.out.println("Tokenized as: " + token + "\t" + tag);
-                if (!token.matches("'s")) {
+               
                     tokenCount++;
                     taggedTokens.add(new Token(tokenCount, 0, token, tag));
-                }
+              
             }
         }
         return taggedTokens;
@@ -82,10 +82,7 @@ public class OpenNLP {
             return false;
         } else if(!split[0].matches("[0-9]+")) {
             return false;
-        } else if (split[1].equalsIgnoreCase("'s")) {
-            return false;
-        }
-        
+        }        
 
         return true;
     }
