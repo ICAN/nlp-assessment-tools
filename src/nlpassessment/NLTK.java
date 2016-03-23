@@ -25,37 +25,35 @@ package nlpassessment;
 
 import java.util.ArrayList;
 
-
-public class NLTK  {
+public class NLTK {
 
     //PUBLIC METHODS
+    //
     public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
-    
+
     //FUNCTION NOT SUPPORTED
-    //TODO: Double-check
+    //TODO: Write
     public static void standardizeNER(String inputFile, String outputFile) {
-        
-        
-        
+
     }
-    
-    //TODO: Write this
+
+    //Looks good
     public static void standardizeSplits(String inputFile, String outputFile) {
-        
-        
+        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<Token> tokens = tokenizeRawSplits(raw);
+        IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
-    
+
     //TODO: Write this
     public static void standardizeLemmas(String inputFile, String outputFile) {
-        
+
     }
-    
-    
+
     //PRIVATE METHODS
     //POS-TAGGING
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
@@ -66,32 +64,30 @@ public class NLTK  {
         int textTokenCount = 0;
         for (String line : lines) {
             String[] split = line.split("\\s+");
-            
+
             if (split.length == 2) {
-                
+
                 //Validate line and add
                 if ((split[0] + " " + split[1]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
                     textTokenCount++;
-                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1]));
+                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1], true));
                 } else {
                     System.out.println("Failed to validate line " + " " + split[0] + " " + split[1]);
                 }
-                
-                
-                
+
             } else {
                 System.out.println("Failed to convert " + line);
             }
         }
         return taggedTokens;
     }
-    
+
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tag = simplifyPOSTag(token.tag); 
+            token.tag = simplifyPOSTag(token.tag);
         }
     }
-    
+
     private static String simplifyPOSTag(String tag) {
 
         if (tag.matches("NN.*")) {
@@ -108,61 +104,37 @@ public class NLTK  {
             return "Other";
         }
     }
-    
-    //Unnecessary
-//    private static ArrayList<Token> filterPOSTokens (ArrayList<Token> taggedTokens) {
-//        
-//        ArrayList<Token> filteredTokens = new ArrayList<Token>();
-//
-//        //Collapse hastags to next token to match standard tokenization scheme
-//        boolean hashtag = false;
-//        for (Token token : taggedTokens) {
-//            if (token.token.equals("#")) {
-//                hashtag = true; //Produce hashtag flag
-//            } else if (hashtag) {
-//                token.token = "#" + token.token; //Consume hashtag flag
-//                filteredTokens.add(token); //Hashtagged token added
-//                hashtag = false;
-//            } else {
-//                filteredTokens.add(token); //Other
-//            }
-//
-//        }
-//        taggedTokens = filteredTokens;
-//        
-//        filteredTokens = new ArrayList<Token>();
-//        for(Token token : taggedTokens) {
-//            if(!token.token.matches("'s")) {
-//                if(token.token.endsWith("'s")) {
-//                    System.out.print("\nReduced " + token.token); 
-//                    token.token = token.token.substring(0, token.token.length() - 2);
-//                    System.out.print(" to " + token.token +"\n");
-//                }
-//                
-//                filteredTokens.add(token);
-//                
-//            } else {
-//                System.out.println("Removed " + token.toString());
-//            }
-//        }
-//        taggedTokens = filteredTokens;
-//        
-//        
-//        return taggedTokens;
-//    }
 
-    
-
-    //NER-TAGGING
+    //NAMED ENTITY RECOGNITION - NER
     
     
     
     
     //SENTENCE SPLITTING
-    
-    
-    
-    
-    
-    
+    //Tokenizes by character, excluding all whitespace, numbering the characters
+    //in each sentence
+    private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
+        ArrayList<Token> output = new ArrayList<>();
+
+        int tokenCount = 1;
+        for (String line : lines) {
+            String[] split = line.split("\\s+");
+            String combined = "";
+
+            //Ignore first token for NLTK
+            for (int i = 1; i < split.length; i++) {
+                combined += split[i];
+            }
+
+            for (int i = 0; i < combined.length(); i++) {
+              
+                 output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
+                    tokenCount++;
+             
+            }
+        }
+
+        return output;
+    }
+
 }

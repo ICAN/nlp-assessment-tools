@@ -45,9 +45,11 @@ public class CoreNLP {
 
     }
 
-    //TODO: Write this
+    //TODO: Test
     public static void standardizeSplits(String inputFile, String outputFile) {
-
+        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<Token> tokens = tokenizeRawSplits(raw);
+        IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -69,11 +71,12 @@ public class CoreNLP {
                 + "[\\s]+[\\S]+" //Tag
                 + "[\\s]+_.*")) {
             return false;
-        } 
+        }
 
         return true;
     }
 
+    //PARTS OF SPEECH TAGGING - POS
     //TODO: eliminate 's tokens
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
@@ -86,7 +89,7 @@ public class CoreNLP {
                 String[] split = line.split("\\s+");
                 String token = split[1];
                 String tag = split[3];
-                taggedTokens.add(new Token(tokenCount, 0, token, tag));
+                taggedTokens.add(new Token(tokenCount, 0, token, tag, true));
 //                System.out.println("Tokenized as: " + token + "\t" + tag);
             }
         }
@@ -121,4 +124,40 @@ public class CoreNLP {
         }
     }
 
+    //NAMED ENTITY RECOGNITION - NER
+    //SENTENCE SPLITTING
+    //Tokenizes by whitespace; number tokens according to place in sentence
+    //TODO: Finish/test
+    private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
+        ArrayList<Token> output = new ArrayList<>();
+
+        int tokenCount = 1;
+        int sentenceCount = 0;
+        for (String line : lines) {
+
+            if (line.matches("Sentence #[0-9]+.*")) {
+                sentenceCount++;
+            } else if (line.matches("\\[Text=.*")) {
+                //Nothing for now...
+            } else {
+                String[] split = line.split("\\s+");
+
+                String combined = "";
+
+                for (int i = 0; i < split.length; i++) {
+                    combined += split[i];
+                }
+
+                for (int i = 0; i < combined.length(); i++) {
+                        output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
+                        tokenCount++;
+
+                }
+            }
+        }
+
+        return output;
+    }
+
+    
 }

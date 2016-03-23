@@ -78,7 +78,7 @@ public class IO {
         for(String line : lines) {
             String[] split = line.split("\\s+");
             if(split.length == 4) {
-                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
+                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3], true)));
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
@@ -86,7 +86,7 @@ public class IO {
         return tokens;
     }
     
-    //Also sets "numberInSentence" variable in Tokens
+    //Also sets "indexInSentence" variable in Tokens
     public static ArrayList<StdSentence> standardTokensToSentences(ArrayList<Token> tokens) {
         ArrayList<StdSentence> sentences = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class IO {
         for (Token token : tokens) {
             tokenInSentence++;
             if (token.tag.equalsIgnoreCase("[.?!]+")) {
-                token.numberInSentence = tokenInSentence;
+                token.indexInSentence = tokenInSentence;
                 currentSentence.add(token);
                 sentences.add(new StdSentence(currentSentence));
                 currentSentence = new ArrayList<>();

@@ -29,9 +29,10 @@ import java.util.ArrayList;
  *
  * @author Neal
  */
-public class Spacy {
+public class MBSP {
 
-    //Good
+    //PUBLIC METHODS
+
     public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
@@ -39,16 +40,17 @@ public class Spacy {
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
-    //Looks good
+    //FUNCTION NOT SUPPORTED
+    //TODO: Double-check
+    public static void standardizeNER(String inputFile, String outputFile) {
+
+    }
+
+    //TODO: Write this
     public static void standardizeSplits(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
-    }
-
-    //TODO: Write this
-    public static void standardizeNER(String inputFile, String outputFile) {
-
     }
 
     //TODO: Write this
@@ -58,113 +60,58 @@ public class Spacy {
 
     //PRIVATE METHODS
     //POS-TAGGING
-    //Assumed to have only semantic tokens in text
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
-        
-        int tokenCount = 1;
-        for (String line : lines) {
 
+        //Tokenize
+        int textTokenCount = 0;
+        for (String line : lines) {
             String[] split = line.split("\\s+");
-            
+
             if (split.length == 2) {
-                if(!split[0].trim().equalsIgnoreCase("")) {
-                    taggedTokens.add(new Token(tokenCount, 0, split[0], split[1], true));
-                    tokenCount++;
+
+                //Validate line and add
+                if ((split[0] + " " + split[1]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
+                    textTokenCount++;
+                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1], true));
+                } else {
+                    System.out.println("Failed to validate line " + " " + split[0] + " " + split[1]);
                 }
+
             } else {
-                //Lots of "SPACE" tokens unfortunately
-                System.out.println("Invalid line (incorrect split) " + line);
+                System.out.println("Failed to convert " + line);
             }
-
         }
-
         return taggedTokens;
-
     }
 
-    //PRIVATE METHODS
-    //POS-TAGGING
-    //TODO: Write this
-    private static ArrayList<Token> tokenizeRawPOSV3(ArrayList<String> lines) {
-
-        ArrayList<Token> taggedTokens = new ArrayList<Token>();
-        
-        int tokenCount = 0;
-        for (String line : lines) {
-
-            String[] split = line.split("\\s+");
-            
-            if(!validateLineV3(line)) {
-                
-            } else if (split.length == 4) {
-                System.out.println("Length 4 split: " + line);
-                tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[3], true));
-            } else if (split.length == 3) {
-                tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[2], true));
-            } else if (split.length == 2 
-                    && split[split.length-1].equalsIgnoreCase("SPACE")) {
-                //Ignore these, looks like they're always spaces
-                //Weirdly, they are sometimes tagged "SPACE" and others "PUNCT"
-            } else {
-                System.out.println("Invalid line (incorrect split) " + line);
-            }
-
-        }
-
-        return taggedTokens;
-
-    }
-    
-    
-    private static boolean validateLineV3(String line) {
-        String[] split = line.split("\\s+");
-        
-        if(split.length < 3) {
-            return false;
-        } else if (split[1].equalsIgnoreCase("'s")){
-            return false;
-        }
-        
-        
-        return true;
-    }
-    
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
             token.tag = simplifyPOSTag(token.tag);
         }
     }
 
-    //TODO: Check
     private static String simplifyPOSTag(String tag) {
 
-        if (tag.matches("NOUN")) {
+        if (tag.matches("NN.*")) {
             return "NN";
-        } else if (tag.matches("ADJ")) {
+        } else if (tag.matches("JJ.*")) {
             return "JJ";
-        } else if (tag.matches("VERB")) {
+        } else if (tag.matches("V.*")) {
             return "VB";
-        } else if (tag.matches("ADV")) {
+        } else if (tag.matches("RB.*")) {
             return "RB";
+        } else if (tag.matches("PR.*")) {
+            return "PR";
         } else {
             return "Other";
         }
     }
 
-    
-    //NAMED ENTITY RECOGNITION - NER
-    
-    
-    
-    
-    
-    
+    //NAMED ENTITY RECOGNITION
     //SENTENCE SPLITTING
-//Tokenizes by character, excluding all whitespace, numbering the characters
+    //Tokenizes by character, excluding all whitespace, numbering the characters
     //in each sentence
     private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
         ArrayList<Token> output = new ArrayList<>();
@@ -173,21 +120,19 @@ public class Spacy {
         for (String line : lines) {
             String[] split = line.split("\\s+");
             String combined = "";
-
+            
             for (int i = 0; i < split.length; i++) {
-                combined += split[i];
+                combined+=split[i];
             }
-
-            for (int i = 0; i < combined.length(); i++) {
-               
+            
+            for(int i = 0; i < combined.length(); i++) {
+             
                     output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
                     tokenCount++;
-    
-            }
+            
+            }    
         }
         return output;
     }
-    
-    
-    
+
 }

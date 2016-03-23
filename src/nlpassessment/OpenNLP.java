@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class OpenNLP {
 
     //PUBLIC METHODS
-    //TODO: FIX
+    //Works as of V5
     public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
@@ -40,14 +40,19 @@ public class OpenNLP {
         IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
-    //TODO: Write this
+    //TODO: Finish components
     public static void standardizeNER(String inputFile, String outputFile) {
-
+        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<Token> tokens = tokenizeRawNER(raw);
+        simplifyNERTags(tokens);
+        IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
-    //TODO: Write this
+    //Looks good
     public static void standardizeSplits(String inputFile, String outputFile) {
-
+        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<Token> tokens = tokenizeRawSplits(raw);
+        IO.writeFile(IO.tokensToLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -55,36 +60,25 @@ public class OpenNLP {
 
     }
 
-    //TODO: eliminate 's tokens
+    //PARTS OF SPEECH TAGGER - POS
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
-        ArrayList<Token> taggedTokens = new ArrayList<Token>();
+        ArrayList<Token> taggedTokens = new ArrayList<>();
         int tokenCount = 0;
         for (String line : lines) {
-            if (validateLinePOS(line)) {
-                String[] split = line.split("[\\s_]+");
-                String token = split[1];
-                String tag = split[2];
-//                System.out.println("Tokenized as: " + token + "\t" + tag);
-               
-                    tokenCount++;
-                    taggedTokens.add(new Token(tokenCount, 0, token, tag));
-              
+            //Tokens and tags are separated by an underscore
+            String[] split = line.split("_+");
+
+            if (split.length == 2) {
+                tokenCount++;
+                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim(), true));
+//                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
+            } else {
+//                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
             }
+
         }
         return taggedTokens;
-    }
-
-    private static boolean validateLinePOS(String line) {
-
-        String[] split = line.split("[\\s_]+");
-        if (split.length != 3) {
-            return false;
-        } else if(!split[0].matches("[0-9]+")) {
-            return false;
-        }        
-
-        return true;
     }
 
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
@@ -108,6 +102,70 @@ public class OpenNLP {
         } else {
             return "Other";
         }
+    }
+
+    //NAMED-ENTITY RECOGNITION - NER
+    //TODO: Finish
+    private static ArrayList<Token> tokenizeRawNER(ArrayList<String> lines) {
+
+        ArrayList<Token> taggedTokens = new ArrayList<>();
+        int tokenCount = 0;
+        for (String line : lines) {
+            //Tokens and tags are separated by an underscore
+            String[] split = line.split("_+");
+
+            if (split.length == 2) {
+                tokenCount++;
+                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim(), true));
+//                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
+            } else {
+//                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
+            }
+
+        }
+        return taggedTokens;
+    }
+
+    private static void simplifyNERTags(ArrayList<Token> tokens) {
+        for (Token token : tokens) {
+            token.tag = simplifyPOSTag(token.tag);
+        }
+    }
+
+    //TODO: Write
+    private static String simplifyNERTag(String tag) {
+
+        if (tag.matches("")) {
+            return "None";
+        } else {
+            return "NE";
+        }
+
+    }
+
+    //SENTENCE-SPLITTING
+//Tokenizes by character, excluding all whitespace, numbering the characters
+    //in each sentence
+    private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
+        ArrayList<Token> output = new ArrayList<>();
+
+        int tokenCount = 1;
+        for (String line : lines) {
+            String[] split = line.split("\\s+");
+            String combined = "";
+
+            for (int i = 0; i < split.length; i++) {
+                combined += split[i];
+            }
+
+            for (int i = 0; i < combined.length(); i++) {
+               
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
+                    tokenCount++;
+            
+            }
+        }
+        return output;
     }
 
 }

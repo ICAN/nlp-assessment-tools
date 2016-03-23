@@ -109,7 +109,7 @@ public class Comparator {
     //Handles minor differences in tokenization
     //by ignoring mismatches using an improvement over the skip/catchup
     //method detail below
-    //TODO: rewrite
+    //Note: DEPRECATED in favor of the similar restriction method
     public static void robustlyCompareTags(ArrayList<Token> results, ArrayList<Token> gold, String targetTag) {
 
         //Helps determine how far to look when dealing with token mismatches

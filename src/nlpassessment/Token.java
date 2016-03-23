@@ -29,20 +29,22 @@ package nlpassessment;
  * 
  */
 public class Token {
-    public int numberInText;
-    public int numberInSentence;
+    public int indexInText;
+    public int indexInSentence;
     public String token;
     public String tag;
+    public boolean semantic;
     
-    public Token (int tokenInText, int tokenInSentence, String token, String tag) {
-        this.numberInText = tokenInText;
-        this.numberInSentence = tokenInSentence;
+    public Token (int tokenInText, int tokenInSentence, String token, String tag, boolean semantic) {
+        this.indexInText = tokenInText;
+        this.indexInSentence = tokenInSentence;
         this.token = token.trim();
         this.tag = tag.trim();
+        this.semantic = semantic;
     }
     
     public String toString() {
-        return numberInText + "\t " + numberInSentence + "\t " + token + "\t " + tag;
+        return indexInText + "\t " + indexInSentence + "\t " + token + "\t " + tag;
     }
     
 }
