@@ -35,9 +35,25 @@ import java.util.Scanner;
  */
 public class IO {
     
+    public static int countNonemptyLines(String fileName) {
+        ArrayList<String> lines = readFileAsLines(fileName);
+        int lineCount = 0;
+        for(String line : lines) {
+            if(!line.trim().isEmpty()) {
+                lineCount++;
+            }   
+        }
+        System.out.println("Non-empty lines in " + fileName + ": " + lineCount);
+        
+        return lineCount;
+    }
     
-    public static ArrayList<Token> readFileAsTokens(String fileName) {
+    public static ArrayList<Token> readFileAsStandardTokens(String fileName) {
         return standardLinesToTokens(readFileAsLines(fileName));
+    }
+    
+    public static ArrayList<Token> readFileAsShortTokens(String fileName, int lineLength) {
+        return shortLinesToTokens(readFileAsLines(fileName), lineLength);
     }
     
 
@@ -71,7 +87,9 @@ public class IO {
         return lines;
     }
     
-    
+    //Input: Any standardized set of lines (one token per line, 4 fields per token)
+    //Returns a list of tokens corresponding to the tokens on those lines
+    //Assumes all tokens are semantic
     public static ArrayList<Token> standardLinesToTokens(ArrayList<String> lines) {
         
         ArrayList<Token> tokens = new ArrayList<>();
@@ -86,30 +104,30 @@ public class IO {
         return tokens;
     }
     
-    //Also sets "indexInSentence" variable in Tokens
-    public static ArrayList<StdSentence> standardTokensToSentences(ArrayList<Token> tokens) {
-        ArrayList<StdSentence> sentences = new ArrayList<>();
-
-        int tokenInSentence = 0;
-        ArrayList<Token> currentSentence = new ArrayList<>();
-        for (Token token : tokens) {
-            tokenInSentence++;
-            if (token.tag.equalsIgnoreCase("[.?!]+")) {
-                token.indexInSentence = tokenInSentence;
-                currentSentence.add(token);
-                sentences.add(new StdSentence(currentSentence));
-                currentSentence = new ArrayList<>();
-                tokenInSentence = 0;
+    //Input: Lines in token-whitepace-tag format
+    //Output: Token list with indexInText set, indexInSentence default to 0, and semantic defaulted to true
+    public static ArrayList<Token> shortLinesToTokens(ArrayList<String> lines, int lineLength) {
+        ArrayList<Token> tokens = new ArrayList<>();
+        int tokenCount = 0;
+        for(String line : lines) {
+            String[] split = line.split("\\s+");
+            if(split.length == 3
+                    && lineLength == 3){
+                tokenCount++;
+                tokens.add((new Token(tokenCount, 0, split[0], split[1], true)));
+            } else if (split.length == 2
+                    && lineLength == 2) {
+                tokenCount++;
+                tokens.add((new Token(tokenCount, 0, split[0], split[1], true)));
             } else {
-                currentSentence.add(token);
+                System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
-
         }
-        return sentences;
+        return tokens;
     }
       
     //Uses Token.toString()
-    public static ArrayList<String> tokensToLines(ArrayList<Token> tokens) {
+    public static ArrayList<String> tokensToStandardLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
         for(Token token : tokens) {
             lines.add(token.toString());
@@ -118,14 +136,28 @@ public class IO {
     }
     
     //Includes only Token.token and Token.tag in each line
-    public static ArrayList<String> tokensToLinesSimplified(ArrayList<Token> tokens) {
+    public static ArrayList<String> tokensToShortLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
         for(Token token : tokens) {
-            lines.add(token.token + "\t" + token.tag);
+            lines.add(token.indexInText + "\t" + token.token + "\t" + token.tag);
         }
         return lines;
     }
     
+    
+    public static void writeFile(String contents, String fileName) {
+        try {
+            File file = new File(fileName);
+            FileWriter writer = null;
+            writer = new FileWriter(file);
+            writer.write(contents);
+            writer.close();
+
+        } catch (Exception e) {
+            System.out.println("Failed to complete output file. Exiting.");
+            System.exit(-1);
+        }
+    }
     
     /*
         General file output method

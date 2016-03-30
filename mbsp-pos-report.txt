@@ -1,0 +1,50 @@
+MBSP REPORT
+
+VB
+SampleSize = 2136
+TruePos = 318
+FalseNeg = 23
+FalsePos = 6
+Sensitivity = 0.9325513196480938
+Specificity = 0.9966573816155989
+
+RB
+SampleSize = 2136
+TruePos = 101
+FalseNeg = 14
+FalsePos = 5
+Sensitivity = 0.8782608695652174
+Specificity = 0.9975259772389906
+
+NN
+SampleSize = 2136
+TruePos = 464
+FalseNeg = 12
+FalsePos = 20
+Sensitivity = 0.9747899159663865
+Specificity = 0.9879518072289156
+
+JJ
+SampleSize = 2136
+TruePos = 141
+FalseNeg = 19
+FalsePos = 19
+Sensitivity = 0.88125
+Specificity = 0.9903846153846154
+
+PR
+SampleSize = 2136
+TruePos = 133
+FalseNeg = 18
+FalsePos = 0
+Sensitivity = 0.8807947019867549
+Specificity = 1.0
+
+Other
+SampleSize = 2136
+TruePos = 886
+FalseNeg = 6
+FalsePos = 43
+Sensitivity = 0.9932735426008968
+Specificity = 0.9654340836012861
+

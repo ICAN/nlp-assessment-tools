@@ -24,6 +24,7 @@
 package nlpassessment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -31,28 +32,35 @@ import java.util.ArrayList;
  */
 public class OpenNLP {
 
+    
+    
+    
     //PUBLIC METHODS
     //Works as of V5
     public static void standardizePOS(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+        correctSpecialTokens(tokens);
+        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
-
+    
+    
     //TODO: Finish components
     public static void standardizeNER(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawNER(raw);
         simplifyNERTags(tokens);
-        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+        correctSpecialTokens(tokens);
+        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
     //Looks good
     public static void standardizeSplits(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
-        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+        correctSpecialTokens(tokens);
+        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -60,6 +68,27 @@ public class OpenNLP {
 
     }
 
+    //GENERAL INPUT STUFF
+    private static void correctSpecialTokens(ArrayList<Token> tokens) {
+        
+        HashMap<String, String> mapping = new HashMap<>();
+        
+        
+        mapping.put("-LRB-", "(");
+        mapping.put("-RRB-", ")");
+        mapping.put("-LSB-", "[");
+        mapping.put("-RSB-", "]");
+        
+        int replacedTokens = 0;
+        for(Token token : tokens) {
+            if(mapping.containsKey(token.token)) {
+                token.token = mapping.get(token.token);
+                replacedTokens++;
+            }
+        }        
+    }
+    
+    
     //PARTS OF SPEECH TAGGER - POS
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
@@ -142,6 +171,7 @@ public class OpenNLP {
         }
 
     }
+    
 
     //SENTENCE-SPLITTING
 //Tokenizes by character, excluding all whitespace, numbering the characters
@@ -160,7 +190,7 @@ public class OpenNLP {
 
             for (int i = 0; i < combined.length(); i++) {
                
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_", true));
                     tokenCount++;
             
             }

@@ -1,0 +1,50 @@
+SPACY REPORT
+
+VB
+SampleSize = 2136
+TruePos = 333
+FalseNeg = 8
+FalsePos = 21
+Sensitivity = 0.9765395894428153
+Specificity = 0.9883008356545961
+
+RB
+SampleSize = 2136
+TruePos = 105
+FalseNeg = 10
+FalsePos = 22
+Sensitivity = 0.9130434782608695
+Specificity = 0.9891142998515586
+
+NN
+SampleSize = 2136
+TruePos = 468
+FalseNeg = 8
+FalsePos = 118
+Sensitivity = 0.9831932773109243
+Specificity = 0.9289156626506024
+
+JJ
+SampleSize = 2136
+TruePos = 146
+FalseNeg = 14
+FalsePos = 68
+Sensitivity = 0.9125
+Specificity = 0.9655870445344129
+
+PR
+SampleSize = 2136
+TruePos = 0
+FalseNeg = 151
+FalsePos = 0
+Sensitivity = 0.0
+Specificity = 1.0
+
+Other
+SampleSize = 2136
+TruePos = 844
+FalseNeg = 48
+FalsePos = 11
+Sensitivity = 0.9461883408071748
+Specificity = 0.9911575562700965
+

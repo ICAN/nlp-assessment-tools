@@ -24,6 +24,7 @@
 package nlpassessment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -31,11 +32,34 @@ import java.util.ArrayList;
  */
 public class Comparator {
 
+    public static HashMap<String,Integer> getTagCounts(ArrayList<Token> tokens) {
+        
+        HashMap<String, Integer> tagCounts = new HashMap<>();
+        
+        for(Token token : tokens) {
+            if(tagCounts.keySet().contains(token.tag)) {
+                tagCounts.put(token.tag, tagCounts.get(token.tag) + 1);
+            } else {
+                tagCounts.put(token.tag, 1);
+            }
+        }
+        return tagCounts;
+    }
+    
+        public static int getSemanticTokenCount(ArrayList<Token> tokens) {
+        int count = 0;
+        for (Token token : tokens) {
+            if (token.semantic) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    
     public static void reportResults(String key, int truePositives, int falseNegatives, int falsePositives, int totalTokens) {
         System.out.println("Tagged " + key + "\nTrue Positives: " + truePositives + "\nFalse Negatives: " + falseNegatives 
-                + "\nFalse Positives: " + falsePositives + "\nTotal Tokens: " + totalTokens
-                + "\nSensitivity: " + (double) truePositives / ((double) falseNegatives + (double) truePositives)
-                + "\nSpecificity: " + (double) (totalTokens - falsePositives) / (double) totalTokens);
+                + "\nFalse Positives: " + falsePositives + "\nTotal Tokens: " + totalTokens);
     }
 
     public static void countTags(ArrayList<Token> tokens) {
@@ -59,7 +83,7 @@ public class Comparator {
 
     //Compares tags of two standardized token lists
     //NOTE: list lengths and all contained tokens MUST match
-    public static void compareTags(ArrayList<Token> results, ArrayList<Token> goldStandard, String key) {
+    public static String compareTags(ArrayList<Token> results, ArrayList<Token> goldStandard, String key) {
 
         if (results.size() != goldStandard.size()) {
             System.out.println("Tokens list lengths differ");
@@ -68,6 +92,7 @@ public class Comparator {
         System.out.println("\n\n\nSTARTING COMPARISON"
                 + "\n");
 
+        int trueNegatives = 0;
         int falseNegatives = 0;
         int truePositives = 0;
         int falsePositives = 0;
@@ -97,12 +122,29 @@ public class Comparator {
             } else if (results.get(i).tag.equalsIgnoreCase(key)
                     && !goldStandard.get(i).tag.equalsIgnoreCase(key)) {
                 falsePositives++;
+                
+            } else {
+                trueNegatives++;
             }
 
         }
+        
+        assert results.size() == (trueNegatives + truePositives + falseNegatives + falsePositives);
+        
+        
+        double sensitivity = (double) truePositives / (double) (falseNegatives + truePositives);
+        double specificity = (double) trueNegatives / (double) (falsePositives + trueNegatives);
+        
+        String report = key;
+        report += "\nSampleSize = " + results.size();
+        report += "\nTruePos = "+truePositives;
+        report += "\nFalseNeg = "+falseNegatives;
+        report += "\nFalsePos = "+falsePositives;
+        report += "\nSensitivity = " + sensitivity;
+        report += "\nSpecificity = " + specificity;
 
-        reportResults(key, truePositives, falseNegatives, falsePositives, results.size());
-
+        return report;
+        
     }
 
     //Compares tagger results to a gold standard

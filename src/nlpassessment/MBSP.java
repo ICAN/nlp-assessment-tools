@@ -37,7 +37,7 @@ public class MBSP {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
     //FUNCTION NOT SUPPORTED
@@ -50,7 +50,7 @@ public class MBSP {
     public static void standardizeSplits(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
-        IO.writeFile(IO.tokensToLines(tokens), outputFile);
+        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -127,7 +127,7 @@ public class MBSP {
             
             for(int i = 0; i < combined.length(); i++) {
              
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "C", true));
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_", true));
                     tokenCount++;
             
             }    
