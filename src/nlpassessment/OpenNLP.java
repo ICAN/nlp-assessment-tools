@@ -32,9 +32,6 @@ import java.util.HashMap;
  */
 public class OpenNLP {
 
-    
-    
-    
     //PUBLIC METHODS
     //Works as of V5
     public static void standardizePOS(String inputFile, String outputFile) {
@@ -44,8 +41,7 @@ public class OpenNLP {
         correctSpecialTokens(tokens);
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
-    
-    
+
     //TODO: Finish components
     public static void standardizeNER(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
@@ -70,25 +66,23 @@ public class OpenNLP {
 
     //GENERAL INPUT STUFF
     private static void correctSpecialTokens(ArrayList<Token> tokens) {
-        
+
         HashMap<String, String> mapping = new HashMap<>();
-        
-        
+
         mapping.put("-LRB-", "(");
         mapping.put("-RRB-", ")");
         mapping.put("-LSB-", "[");
         mapping.put("-RSB-", "]");
-        
+
         int replacedTokens = 0;
-        for(Token token : tokens) {
-            if(mapping.containsKey(token.token)) {
+        for (Token token : tokens) {
+            if (mapping.containsKey(token.token)) {
                 token.token = mapping.get(token.token);
                 replacedTokens++;
             }
-        }        
+        }
     }
-    
-    
+
     //PARTS OF SPEECH TAGGER - POS
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
@@ -118,19 +112,20 @@ public class OpenNLP {
 
     private static String simplifyPOSTag(String tag) {
 
-        if (tag.matches("NN.*")) {
+        if (tag.matches("NN.*")
+                || tag.equals("PRP")
+                || tag.equals("WP")) {
             return "NN";
-        } else if (tag.matches("JJ.*")) {
+        } else if (tag.matches("JJ.*")
+                || tag.equals("WP$")
+                || tag.equals("PRP$")) {
             return "JJ";
         } else if (tag.matches("V.*")
-                || tag.matches("MD")) {
+                || tag.equals("MD")) {
             return "VB";
         } else if (tag.matches("RB.*")
-                || tag.matches("WRB")){
+                || tag.equals("WRB")) {
             return "RB";
-        } else if (tag.matches("PR.*")
-                ||tag.matches("WP*")) {
-            return "PR";
         } else {
             return "Other";
         }
@@ -174,7 +169,6 @@ public class OpenNLP {
         }
 
     }
-    
 
     //SENTENCE-SPLITTING
 //Tokenizes by character, excluding all whitespace, numbering the characters
@@ -192,10 +186,10 @@ public class OpenNLP {
             }
 
             for (int i = 0; i < combined.length(); i++) {
-               
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
-                    tokenCount++;
-            
+
+                output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
+                tokenCount++;
+
             }
         }
         return output;

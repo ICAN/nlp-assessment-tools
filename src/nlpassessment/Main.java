@@ -37,10 +37,10 @@ public class Main {
                 IO.readFileAsStandardTokens(fileName));
 
         System.out.println("\nTags in " + fileName);
-        for(String tag : tagCounts.keySet()) {
+        for (String tag : tagCounts.keySet()) {
             System.out.println(tag + "\t" + tagCounts.get(tag));
         }
-        
+
     }
 
     //First step in producing/comparing POS texts
@@ -64,7 +64,7 @@ public class Main {
         NLTK.standardizePOS(inputPath + "nltk-pos-out.txt", outputPath + "nltk-pos-std.txt");
         Spacy.standardizePOS(inputPath + "spacy-pos-out.txt", outputPath + "spacy-pos-std.txt");
     }
-    
+
     //Second step in producing/comparing most texts
     //Inputs: A set of POS-tagger outputs in standarized format "-std"
     //Outputs: A corresponding set of POS-tagger outputs "-restricted", excluding any tokens
@@ -123,36 +123,34 @@ public class Main {
         for (String listName : tokenLists.keySet()) {
             IO.writeFile(IO.tokensToStandardLines(tokenLists.get(listName)), listName + "-" + tagger + "-restricted.txt");
         }
-    }  
-    
-    
+    }
+
     //Takes a set of -restricted files and a -gold file
     //Produces sensitivity and specificity measurements for each specified tag
     //for each standardized, restricted output file as compared to the gold standard
     //and outputs these results to a a set of text files or something
-    public static void testAllPOS() {
-        
+    public static void testAllPOS(String goldStd) {
+
         //get tests
-        String[] tests = { "core", "spacy", "nltk", "mbsp", "open" };
-        
+        String[] tests = {"core", "spacy", "nltk", "mbsp", "open"};
+
         HashMap<String, ArrayList<Token>> outputs = new HashMap<>();
-        
-        for(String test : tests) {
+
+        for (String test : tests) {
             outputs.put(test, IO.readFileAsStandardTokens(test + "-pos-restricted.txt"));
         }
-        
+
         //get gold std
-        ArrayList<Token> gold = IO.readFileAsStandardTokens("pos-gold-v5.txt");
-        
-        
-        String[] keys = { "VB", "RB", "NN", "JJ", "PR", "Other" };
-        
+        ArrayList<Token> gold = IO.readFileAsStandardTokens(goldStd);
+
+        String[] keys = {"VB", "RB", "NN", "JJ", "Other"};
+
         //For each tool
-        for(String test : outputs.keySet()) {
+        for (String test : outputs.keySet()) {
             //Start a report
             String report = test.toUpperCase() + " REPORT\n\n";
             //For each key, 
-            for(String key : keys) {
+            for (String key : keys) {
                 //add the tool- and key-specific report
                 report += Comparator.compareTags(outputs.get(test), gold, key);
                 report += "\n\n";
@@ -161,11 +159,9 @@ public class Main {
 
             IO.writeFile(report, test + "-pos-report.txt");
         }
-        
-        
+
     }
-    
-    
+
     //Takes standardized, restricted text and produces a machine consensus
     public static void producePOSConsensus(String inputPath, String outputPath, double threshold) {
 
@@ -197,6 +193,16 @@ public class Main {
                 "all-split-consensus.txt");
     }
 
+    //Takes all tagged-stage sentence splitter outputs and condenses them
+    public static void produceSplitCondensed() {
+        Splitting.condenseSentences("core-split-tagged.txt", "core-split-condensed.txt");
+        Splitting.condenseSentences("nltk-split-tagged.txt", "nltk-split-condensed.txt");
+        Splitting.condenseSentences("open-split-tagged.txt", "open-split-condensed.txt");
+        Splitting.condenseSentences("mbsp-split-tagged.txt", "mbsp-split-condensed.txt");
+        Splitting.condenseSentences("spacy-split-tagged.txt", "spacy-split-condensed.txt");
+        Splitting.condenseSentences("all-split-consensus.txt", "all-split-consensus-condensed.txt");
+    }
+    
     public static void tagAllSplits(String inputPath, String outputPath) {
         Splitting.tagFinalCharacters("mbsp-split-restricted.txt", "mbsp-split-tagged.txt");
         Splitting.tagFinalCharacters("open-split-restricted.txt", "open-split-tagged.txt");
@@ -209,43 +215,68 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        //POS-TAGGING STUFF
 //        standardizeAllPOS("","");
-//        OpenNLP.standardizePOS("open-pos-out.txt", "open-pos-std.txt");
-//        Spacy.standardizePOS("spacy-pos-out.txt", "spacy-pos-std.txt");
-        //(Tested, Gold)
-//            Comparator.robustlyCompareTags(
-//                IO.readFileAsStandardTokens("nltk-pos-std.txt"), 
-//                IO.readFileAsStandardTokens("core-pos-std.txt"), 
-//                "RB");        
-        //Produce minimal common token lists for all POS-taggers
-//        produceMinimalCommonTokenLists("pos");
-//        ArrayList<Token> filtered = produceMinimalCommonTokenLists();
-//        System.out.println("\nFiltered size: " + filtered.size());
-//        IO.writeFile(
-//                IO.tokensToShortLines(filtered), "pos-filtered.txt");
-//        producePOSConsensus("","",0.55);
-//        standardizeAllSplits("","");
-//        produceMinimalCommonTokenLists("split", 8);
-//        tagAllSplits("", "");
-//        produceSplitConsensus("", "", .85);
+//        produceMinimalCommonTokenLists("pos", 3);
+//        producePOSConsensus("","",0.85);
+//        testAllPOS("pos-gold-5b.txt");
+
+        //SENTENCE-SPLITTING STUFF
+        standardizeAllSplits("", "");
+        produceMinimalCommonTokenLists("split", 8);
+        tagAllSplits("", "");
+        produceSplitConsensus("", "", .55);
+        produceSplitCondensed();
         
-//        printTagCounts("all-split-consensus.txt");
-//        printTagCounts("mbsp-split-tagged.txt");
-//        printTagCounts("open-split-tagged.txt");
-//        printTagCounts("nltk-split-tagged.txt");
+        //CORE SENT SPLITTING DEBUGGING
+//        CoreNLP.cleanSplits("core-split-out.txt", "core-split-clean.txt");
+//        CoreNLP.standardizeSplits("core-split-out.txt", "core-split-std.txt");
+//        Splitting.tagFinalCharacters("core-split-std.txt", "core-split-tagged.txt");
+//        Splitting.condenseSentences("core-split-tagged.txt", "core-split-condensed.txt");
 //        printTagCounts("core-split-tagged.txt");
+        
+        //NLTK SENT SPLITTING DEBUGGING
+//        NLTK.standardizeSplits("nltk-split-out.txt", "nltk-split-std.txt");
+//        Splitting.tagFinalCharacters("nltk-split-std.txt", "nltk-split-tagged.txt");
+//        Splitting.condenseSentences("nltk-split-tagged.txt", "nltk-split-condensed.txt");
+//        printTagCounts("nltk-split-tagged.txt");
+
+        //MBSP SENT SPLITTING DEBUGGING
+//        System.out.print("Non-empty lines" + IO.countNonemptyLines("mbsp-split-out.txt"));
+//        MBSP.standardizeSplits("mbsp-split-out.txt", "mbsp-split-std.txt");
+//        Splitting.tagFinalCharacters("mbsp-split-std.txt", "mbsp-split-tagged.txt");
+//        Splitting.condenseSentences("mbsp-split-tagged.txt", "mbsp-split-condensed.txt");
+//        printTagCounts("mbsp-split-tagged.txt");
+        
+        //SPACY SENT SPLITTING DEBUGGING
+//        System.out.print("Non-empty lines" + IO.countNonemptyLines("spacy-split-out.txt"));
+//        Spacy.standardizeSplits("spacy-split-out.txt", "spacy-split-std.txt");
+//        Splitting.tagFinalCharacters("spacy-split-std.txt", "spacy-split-tagged.txt");
+//        Splitting.condenseSentences("spacy-split-tagged.txt", "spacy-split-condensed.txt");
 //        printTagCounts("spacy-split-tagged.txt");
         
-        testAllPOS();
+        //OPENNLP SENT SPLITTING DEBUGGING
+//        System.out.print("Non-empty lines" + IO.countNonemptyLines("open-split-out.txt"));
+//        OpenNLP.standardizeSplits("open-split-out.txt", "open-split-std.txt");
+//        Splitting.tagFinalCharacters("open-split-std.txt", "open-split-tagged.txt");
+//        Splitting.condenseSentences("open-split-tagged.txt", "open-split-condensed.txt");
+//        printTagCounts("open-split-tagged.txt");
         
         
-//        Splitting.condenseSentences("all-split-consensus.txt", "all-split-consensus-condensed.txt");
+        
+        
+        
+        printTagCounts("mbsp-split-tagged.txt");
+        printTagCounts("open-split-tagged.txt");
+        printTagCounts("nltk-split-tagged.txt");
+        printTagCounts("core-split-tagged.txt");
+        printTagCounts("spacy-split-tagged.txt");
+        printTagCounts("all-split-consensus.txt");
+
+
+
 //        IO.countNonemptyLines("all-split-consensus-condensed.txt");
 //        IO.countNonemptyLines("open-split-out.txt");
-        
-        
-        
     }
 
 }

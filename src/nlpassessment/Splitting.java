@@ -40,7 +40,7 @@ public class Splitting {
         int splits = 0;
         for(int i = 0; i < tokens.size()-1; i++) {
             //If the next token is earlier in its sentence than the current token:
-            if(tokens.get(i+1).indexInSentence < tokens.get(i).indexInSentence) {
+            if(tokens.get(i+1).indexInSentence <= tokens.get(i).indexInSentence) {
                 splits++;
                 //Tag the current token
                 tokens.get(i).tagset = "SPLIT";
@@ -59,14 +59,21 @@ public class Splitting {
         
         ArrayList<Token> output = new ArrayList<>();
         
-        String combined = "";
-        int sentenceCount = 0;
+        String combined = "\n<SENTENCE 1>\t";
+        int sentenceCount = 1;
+        int runningToken = 0;
         for(Token token : input) {
             combined+= token.token;
+            runningToken++;
+            if(runningToken > 40) {
+                combined += "\n<>\t\t";
+                runningToken = 0;
+            }
+            
             if(token.tagset.equalsIgnoreCase("SPLIT")) {
                 sentenceCount++;
-                output.add(new Token(sentenceCount, 0, combined, "_"));
-                combined = "";
+                output.add(new Token(sentenceCount, 0, combined, ""));
+                combined = "\n<SENTENCE " + sentenceCount + ">\t";
             }
         }
         IO.writeFile(IO.tokensToShortLines(output), outputFile);

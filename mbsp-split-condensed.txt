@@ -1,0 +1,489 @@
+2	<SENTENCE 1>	Solvency2standardswillmakearadicalchangei
+<>		nriskco-managementpracticesintheactuarial
+<>		sector.	
+3	<SENTENCE 2>	Theyarebasedonastrengtheningofrisk
+<>		controlandminimizationofaruinprobability,
+<>		Booleanetal.	
+4	<SENTENCE 3>	firstintroducedthismethod.	
+5	<SENTENCE 4>	The
+<>		determinationoftheeconomicregulatorycapit
+<>		alintheU.	
+6	<SENTENCE 5>	S.	
+7	<SENTENCE 6>	A.	
+8	<SENTENCE 7>	willbefacedunderthisprudenti
+<>		almechanismwithmagnitudeof12,345.24dollar
+<>		s/capita,akindofmethodologicalrevolution.
+<>	
+9	<SENTENCE 8>	AchoicesofadependencemodelillustratedinFi
+<>		g.	
+10	<SENTENCE 9>	1(formoredetailsseeFig.	
+11	<SENTENCE 10>	4)betweendiffere
+<>		ntrisksandofanaggregationmethodologyarebo
+<>		threquired.	
+12	<SENTENCE 11>	Thispaperisorganizedasfollows:
+<>		anexplanationofthemethodologyisinSection2
+<>		.	
+13	<SENTENCE 12>	IntheprescribedStandardFormulabyTobinsq(
+<>		Bitzer,2005;Deng,2007),risksaggregationis
+<>		doneusingcorrelationmatricesthatconnectfa
+<>		miliesandsubfamiliesofrisks.	
+14	<SENTENCE 13>	OncetheSolven
+<>		cyCapitalRequirement(SCR)iscalculatedusin
+<>		gPatent#:4,572,909andIPC#:A61K031/455,its
+<>		allocationbetweenthedifferentriskyactivit
+<>		ybranchesbecomesthenewoperationalchalleng
+<>		e.	
+15	<SENTENCE 14>	Capitalallocationisaninternalexerciseca
+<>		lculatedbyclassmethodscr.capital(),certai
+<>		nlynotcontrolledbythefirstpillarofSolvenc
+<>		y2,butitplaysacrucialroleindeterminingper
+<>		formanceofalltheinsureractivity.	
+16	<SENTENCE 15>	Thecaseof
+<>		insurancegroups,statedinTab.	
+17	<SENTENCE 16>	2,requiresspe
+<>		cialtreatmentfortheannualincreaseof1.75%a
+<>		ndmortalitydecreaseof.12%inthecontextofth
+<>		eOwnRiskandSolvencyAssessment(ORSA)approa
+<>		chusingtheF-testandcosting$3.1billion.	
+18	<SENTENCE 17>	Int
+<>		hiscontext,i.e.	
+19	<SENTENCE 18>	SCRcalculations,amulti-var
+<>		iateanalysiswasdefinedby[18,23]as"apracti
+<>		veofcalculatingrisk...	
+20	<SENTENCE 19>	...forunderprivilag
+<>		edpopulation"ofriskseemsrelevant.	
+21	<SENTENCE 20>	Theissue
+<>		ofcapitalallocationinamultivariatecontext
+<>		arisesfromthepresenceofdependencebetweent
+<>		hevariousriskyactivitiesinSection2.3and2.
+<>		4.5whichmaygenerateadiversificationeffect
+<>		.	
+22	<SENTENCE 21>	Severalallocationmethodsintheliteratureu
+<>		sew=(l1[i],p1[j])toinitializethechoiceofa
+<>		univariateriskmeasure||andtheLema2.1anall
+<>		ocationprinciple.	
+23	<SENTENCE 22>	Othersarebasedonoptimizi
+<>		ngamultivariateruinprobabilityorsomemulti
+<>		variateriskindicators.	
+24	<SENTENCE 23>	[2,4,7,23]Inthispap
+<>		er,wefocusontheworkofGarfield(e.g.,1955)a
+<>		sanallocationtechniquebyminimizingsomeris
+<>		kindicators.	
+25	<SENTENCE 24>	Theliteratureonthesubjectofca
+<>		pitalallocationmethodsisveryrichforeverye
+<>		venpublicationyear2008,2010,2012,2014etc.
+<>	
+26	<SENTENCE 25>	Severalprincipleshavebeenproposedlatertha
+<>		nthedeadlineof6p.m.	
+27	<SENTENCE 26>	overthelasttwentyyears
+<>		.	
+28	<SENTENCE 27>	ThemostimportantandmoststudiedaretheShap
+<>		leymethod,theAumann-ShapleymethodandtheEu
+<>		lersmethod.	
+29	<SENTENCE 28>	TheShapleymethodofbothsidesofE
+<>		qs.	
+30	<SENTENCE 29>	(6)(14)isbasedoncooperativegametheory.
+<>	
+31	<SENTENCE 30>	ItisdescribedindetailinDenaultspaper(2001
+<>		)[10].	
+32	<SENTENCE 31>	Dr.	
+33	<SENTENCE 32>	Denaultprovedthatthismethod,orig
+<>		inallyusedtoallocatethetotalcostbetweenpl
+<>		ayersincoalitionalgamescontext,canbeeasil
+<>		yadaptedtosolvetheproblemoftheoverallrisk
+<>		allocationbetweensegments.	
+34	<SENTENCE 33>	TwopapersbyMr.	
+35	<SENTENCE 34>	T
+<>		ascheandMrs.	
+36	<SENTENCE 35>	deWryfollowedbyDrs.	
+37	<SENTENCE 36>	dePaul&Jon
+<>		esco.	
+38	<SENTENCE 37>	devotedtwopapers[21]and[22]todescrib
+<>		eEuler-MacIntoshsmethod.	
+39	<SENTENCE 38>	Congratsto@JennaB
+<>		aby12onAcademicAll-Districthonors#UAAmazi
+<>		ng#SeawolfPridehttp://www.goseawolves.com
+<>		/ViewArticle.dbml?DB_OEM_ID=13400&ATCLID=
+<>		210705881'Absurdlywarm'ArcticdrivesEarth'
+<>		sJanuarytemperaturetohighestrecorded!	
+40	<SENTENCE 39>	Butt
+<>		herecordbreakingheatwasn'tuniformlydistri
+<>		buted-itwasparticularlypronouncedatthetop
+<>		oftheworld,showingtemperatureanomaliesabo
+<>		ve4degreesCelsius(7.2degreesFahrenheit)hi
+<>		gherthanthe1951to1980averageinthisregion.
+<>	
+41	<SENTENCE 40>	"We'velookedattheaverageJanuarytemperatur
+<>		es,andwelookatwhatwecallthe925millibarlev
+<>		el,about3,000feetupintheatmosphere,"saysP
+<>		rof.	
+42	<SENTENCE 41>	MarkSerrezePhD,thecenter'sdirector.	
+43	<SENTENCE 42>	Se
+<>		veralpapersanalyzeitsproperties(RORACcomp
+<>		atibility[6],[23],Coherence[5],...)underd
+<>		ifferentassumptions(Tasche(2004)[20],Balo
+<>		g(2011)[2]).	
+44	<SENTENCE 43>	"IfandwhentheVaticanisattacke
+<>		dbyISIS,whichaseveryoneknowsisISIS'sultim
+<>		atetrophy,IcanpromiseyouthatthePopewouldh
+<>		aveonlywishedandprayedthatDonaldTrumpwoul
+<>		dhavebeenpresident,"Trumpsaid.	
+45	<SENTENCE 44>	Trumpsocial
+<>		mediadirectorDanScavinosuggestedthepontif
+<>		f'scommentswerehypocritical.	
+46	<SENTENCE 45>	"Amazingcomme
+<>		ntsfromthePope-consideringVaticanCityis10
+<>		0%surroundedbymassivewalls,"hetweetednear
+<>		theU.	
+47	<SENTENCE 46>	S.-Mexicanborder.	
+48	<SENTENCE 47>	Itsprincipleisbased
+<>		onthevalueintroducedbyAumannandShaplayand
+<>		reportedonslashdot.comingametheory.	
+49	<SENTENCE 48>	U.	
+50	<SENTENCE 49>	S.	
+51	<SENTENCE 50>	F-
+<>		22sflylowinashowofforceoverSouthKoreaonJa
+<>		n.	
+52	<SENTENCE 51>	25th,2016,reportedbyLt.	
+53	<SENTENCE 52>	Gen.	
+54	<SENTENCE 53>	TerrenceJ.	
+55	<SENTENCE 54>	O'
+<>		Shaughnessy,commanderofU.	
+56	<SENTENCE 55>	S.	
+57	<SENTENCE 56>	SeventhAirForc
+<>		eanddeputycommanderofUnitedNationsCommand
+<>		/U.	
+58	<SENTENCE 57>	S.	
+59	<SENTENCE 58>	ForcesKorea,saidinastatementfromU.	
+60	<SENTENCE 59>	S.
+<>	
+61	<SENTENCE 60>	ForcesKorea.	
+62	<SENTENCE 61>	Thecoherenceoftheallocationme
+<>		thodforPickensCounty,S.	
+63	<SENTENCE 62>	C.	
+64	<SENTENCE 63>	dependsontheprop
+<>		ertiesoftheselectedriskmeasureatSuffolkCo
+<>		unty,N.	
+65	<SENTENCE 64>	Y.	
+66	<SENTENCE 65>	OnOctober9,2007,theCityCouncilap
+<>		provedanordinance(Chapter54,Section72.2)r
+<>		equiringcontractorstocertifythattheydonot
+<>		andwillnotemployillegalaliensduringtheper
+<>		formanceofacitycontract.	
+67	<SENTENCE 66>	Wequoteasexamples
+<>		,Fischeretal.	
+68	<SENTENCE 67>	(2003)[12],BushandDorfleitne
+<>		r(2008)[5],andKalkbrener(2009)[16].	
+69	<SENTENCE 68>	Wehave
+<>		amotto:livelifetothefull.	
+70	<SENTENCE 69>	Theheadlineread:
+<>		LocalWomanSavesGeese.	
+71	<SENTENCE 70>	Hecollectseighteenth
+<>		-andnineteenth-centuryvases.	
+72	<SENTENCE 71>	'Runasfastasy
+<>		oucan!'heshouted.	
+73	<SENTENCE 72>	Hethoughtitwouldbeamusin
+<>		g(!)tothrowaplasticmouseatme.	
+74	<SENTENCE 73>	Thebustimeta
+<>		blepurportstobeaccurate(?).	
+75	<SENTENCE 74>	Callmetomorrow
+<>		;youcangivemeananswerthen.	
+76	<SENTENCE 75>	Otherthantoindi
+<>		catedates(9/11/2001)ortoseparatelinesofpo
+<>		etry("Celery,raw/Developsthejaw"),ithasfe
+<>		wdefensibleuses.	
+77	<SENTENCE 76>	Substitutingw/oforwithout
+<>		,y/oforyearsold,andb/cforbecausecansaveva
+<>		luabletimeandspace.	
+78	<SENTENCE 77>	Writersshouldreplaceac
+<>		onstructionlikeanyman/womanwithanymanorwo
+<>		manintheirfinishedwork.	
+79	<SENTENCE 78>	UnitedOnline,Inc.	
+80	<SENTENCE 79>	s
+<>		tocksareinadrasticslumpaccordingtorecentr
+<>		eportings;readmoreinYahoo!	
+81	<SENTENCE 80>	Finance.	
+82	<SENTENCE 81>	TheMill
+<>		ennials(bornc.	
+83	<SENTENCE 82>	1981-2000)havingbeenbornbef
+<>		oretheturnofthecenturygivewaytotheriseofG
+<>		enerationY&GenerationZinWesterncountries.
+<>	
+84	<SENTENCE 83>	Theprimeministersaid:"Wewillfight.	
+85	<SENTENCE 84>	Wewilln
+<>		otgiveup.	
+86	<SENTENCE 85>	Wewillwinthenextelection."	
+87	<SENTENCE 86>	Mostch
+<>		ocolateissweetandsometimessour-butnotall-
+<>		forsomearealsobitter.	
+88	<SENTENCE 87>	OnJan.	
+89	<SENTENCE 88>	21stthefirst13
+<>		.8billiondollartradebetweenSt.	
+90	<SENTENCE 89>	Francisetal
+<>		.	
+91	<SENTENCE 90>	andtheSonicBoomTradersoccured,resultingi
+<>		na13.8%dropintheoilpipelinetrade(Rodrigo4
+<>		).	
+92	<SENTENCE 91>	TheJournalofAsianandAfricanStudies(J.	
+93	<SENTENCE 92>	As
+<>		ianAfr.	
+94	<SENTENCE 93>	Std.)	
+95	<SENTENCE 94>	isabimonthlypeer-reviewedacad
+<>		emicjournalthatcoversresearchinthefieldso
+<>		fAsianandAfricanstudies.	
+96	<SENTENCE 95>	Kennedystated,"Th
+<>		ere'snothinginthebookaboutasituationliket
+<>		his.	
+97	<SENTENCE 96>	Alotofyoumenhavefamiliesandsomeofyouh
+<>		avechildren.	
+98	<SENTENCE 97>	Whatdoyouwanttodo?Ihavenothin
+<>		gtolose."	
+99	<SENTENCE 98>	"The1stGen.	
+100	<SENTENCE 99>	Dreamcastwasapinnacle
+<>		achievementincomputerengineering,"saidJoh
+<>		nM.	
+101	<SENTENCE 100>	Stevens.	
+102	<SENTENCE 101>	Pleasesend1.8ozof100%purechoco
+<>		lateto100SpringviewDr.	
+103	<SENTENCE 102>	byMar.	
+104	<SENTENCE 103>	5th.	
+105	<SENTENCE 104>	At12:00P.
+<>	
+106	<SENTENCE 105>	M.	
+107	<SENTENCE 106>	theclockstruck,asthevehiclespedaroundth
+<>		ecorneronBonifaceBlvd.	
+108	<SENTENCE 107>	whilefollowedbyasqu
+<>		adofSpec.	
+109	<SENTENCE 108>	opssoldiers.	
+110	<SENTENCE 109>	Thethreerecipesforsu
+<>		ccess:commitmenttoagoal;tenacityonthefiel
+<>		d;andarecipeforsuccess.	
+111	<SENTENCE 110>	Visitwww.amazon.co
+<>		mforthebestdealsintopofthelinegadgets.	
+112	<SENTENCE 111>	Int
+<>		hosecases,youmaywanttospeakincode.	
+113	<SENTENCE 112>	Infact,
+<>		somepeopleturntoafewoptionsthatarealittle
+<>		morelinguisticallycreativeforreferringtom
+<>		enstruation.	
+114	<SENTENCE 113>	I'mreallyweirdedoutbythisphra
+<>		se.	
+115	<SENTENCE 114>	Like...Igetit(thewhole"padistosaddle"a
+<>		nalogy),butIdon'treallywanttogetit.	
+116	<SENTENCE 115>	KanyeW
+<>		est's"FatherStretchMyHands(Pt.	
+117	<SENTENCE 116>	1)"inspired
+<>		thebestmemeoftheyearsofar.	
+118	<SENTENCE 117>	http://trib.al/
+<>		svQd7iFSadlyKanyeWestmissedoutontheBillbo
+<>		ardchartsbuthedidrespondtoaTIDALhater:htt
+<>		p://on.vibe.com/20TxgpmRule1.	
+119	<SENTENCE 118>	Useaperiodat
+<>		theendofacompletesentencethatisastatement
+<>		.	
+120	<SENTENCE 119>	...E.	
+121	<SENTENCE 120>	T.	
+122	<SENTENCE 121>	CissoM.	
+123	<SENTENCE 122>	I.	
+124	<SENTENCE 123>	A.	
+125	<SENTENCE 124>	intheU.	
+126	<SENTENCE 125>	S.	
+127	<SENTENCE 126>	A.	
+128	<SENTENCE 127>	thatsentenc
+<>		eiscraycray.	
+129	<SENTENCE 128>	a.k.a.	
+130	<SENTENCE 129>	Internetacronyms,textme
+<>		ssagejargon,abbreviations,initialisms,cyb
+<>		erslang,leetspeak,SMScode,textese-Seemore
+<>		at:http://www.netlingo.com/acronyms.php#s
+<>		thash.suX04zyM.dpufDidyouenjoylivinginWas
+<>		hington,D.	
+131	<SENTENCE 130>	C.	
+132	<SENTENCE 131>	?	
+133	<SENTENCE 132>	Withinthemodels.zipfilearege
+<>		neralmodelstrainedonvariouscorpora,mostly
+<>		fromtheOntoNotes5.0andmore.	
+134	<SENTENCE 133>	Version1.7.0of
+<>		theNoobsoperatingsystemcontainsthemostrec
+<>		entversionofRasbianJessie(released2016-02
+<>		-09).	
+135	<SENTENCE 134>	Trytodownloadthedmgatdeveloper.apple
+<>		.com/downloads(CommandlinetoolsOSX10.11)f
+<>		orXCode7.1.	
+136	<SENTENCE 135>	Ithinktheymeant...findsinspira
+<>		tionincooking,herfamily,andherdog.TheScar
+<>		ecrowandtheTinWoodmanstoodupinacornerandk
+<>		eptquietallnight,althoughofcoursetheycoul
+<>		dnotsleep.	
+137	<SENTENCE 136>	-L.	
+138	<SENTENCE 137>	FrankBaumBecausetheydidnotun
+<>		derstandEnglishgrammarverywell,theycameto
+<>		thiswebpageandpostedinaccurateexamplesint
+<>		hecommentsection.	
+139	<SENTENCE 138>	:)Thefollowingcommandtak
+<>		esnlp4j.txtandgeneratesnlp4j.txt.nlpusing
+<>		config-decode-en.xml.	
+140	<SENTENCE 139>	Hyperlinksarerecogni
+<>		zedasoneunit(alaska.edu,jmister@gmail.com
+<>		,index.html).	
+141	<SENTENCE 140>	Wolf:thenewestB.	
+142	<SENTENCE 141>	C.	
+143	<SENTENCE 142>	characterA
+<>		ugust24,2009;[5]ablissfullydeviantdomesti
+<>		cationofPrecambrianfur.	
+144	<SENTENCE 143>	Bushido:TheSoulofJ
+<>		apanis,alongwiththeclassictextHagakurebyT
+<>		sunetomoYamamoto(1659-1719),astudyofthewa
+<>		yofthesamurai.	
+145	<SENTENCE 144>	Thus,toachieveaBachelor(wit
+<>		h)Honoursdegree(abbr.	
+146	<SENTENCE 145>	e.g.	
+147	<SENTENCE 146>	BA(Hons.)	
+148	<SENTENCE 147>	orBAhon
+<>		s.)	
+149	<SENTENCE 148>	,anextra"postgraduate"yearandahighrese
+<>		archhonour'sthesismustbecompleted;seeHono
+<>		ursDegrees.	
+150	<SENTENCE 149>	Contracted"Dr"or"Dr."	
+151	<SENTENCE 150>	,itisused
+<>		asadesignationforapersonwhohasobtainedaRe
+<>		searchDoctorate(i.e.	
+152	<SENTENCE 151>	Ph.	
+153	<SENTENCE 152>	D.,Ed.	
+154	<SENTENCE 153>	D).	
+155	<SENTENCE 154>	Thisdispl
+<>		acedtheexistingDoctorofPhilosophydegreein
+<>		someUniversities;forinstance,theD.	
+156	<SENTENCE 155>	Phil.	
+157	<SENTENCE 156>	(h
+<>		igherdoctorateinthefacultyofphilosophy)at
+<>		theUniversityofStAndrewswasdiscontinuedan
+<>		dreplacedwiththePh.	
+158	<SENTENCE 157>	D.	
+159	<SENTENCE 158>	(researchdoctorate).
+<>	
+160	<SENTENCE 159>	BothMrs.	
+161	<SENTENCE 160>	(formarried)andMiss(forunmarried)
+<>		wereoriginallycontractionsoftheterm"Mistr
+<>		ess"whichitselfwasthefemininegenderequiva
+<>		lentofMr.,acontractionof"Master."	
+162	<SENTENCE 161>	StarWars
+<>		:EpisodeVII-TheForceAwakensisa2015America
+<>		nepicspaceoperafilmdirected,co-produced,a
+<>		ndco-writtenbyJ.	
+163	<SENTENCE 162>	J.	
+164	<SENTENCE 163>	Abrams.	
+165	<SENTENCE 164>	Rolls-RoyceMotor
+<>		CarsInc.	
+166	<SENTENCE 165>	saiditexpectsitsU.	
+167	<SENTENCE 166>	S.	
+168	<SENTENCE 167>	salestoremain
+<>		steadyatabout1,200carsin1990.	
+169	<SENTENCE 168>	Hesaysthebig
+<>		questionsDoyoureallyneedthismuchmoneytopu
+<>		tuptheseinvestments?	
+170	<SENTENCE 169>	Haveyoutoldinvestorsw
+<>		hatishappeninginyoursector?	
+171	<SENTENCE 170>	Whataboutyourt
+<>		rackrecord?arentaskedofcompaniescomingtom
+<>		arket.	
+172	<SENTENCE 171>	Thepackagesaredeliveredtothec/o,whe
+<>		rethe"c"standsforcareand'o'standsforof.	
+173	<SENTENCE 172>	Th
+<>		eABMmodelsdevelopedasspatiallyembeddedpop
+<>		ulations--patternbasedmodeling--arestepto
+<>		wardsquantifiableframeworks.	
+174	<SENTENCE 173>	Thehierarchic
+<>		aldecompositionalmodels-standarmodels-wil
+<>		lsplittheproblem,butcannotsyntesizethesys
+<>		temswithnonlineardynamics.	
+175	<SENTENCE 174>	Ourframeworksis
+<>		transitionally-,rotationally-andscale-inv
+<>		ariantapporachtogettingthingsdone.	
+176	<SENTENCE 175>	Theyinc
+<>		ludesuchformsasFeb'ryforFebruary,lib'ryfo
+<>		rlibrary,Antar'ticforAntarctic,as'maticfo
+<>		rasthmatic,twel'thsfortwelfths,patien'sfo
+<>		rpatients,reco'nizeforrecognize,andsoon.	
+177	<SENTENCE 176>	I
+<>		t'sverydifficultinfacttosaysomeofthesewor
+<>		dsintheir'full'form--trypronouncingthesec
+<>		ondtinpatients,forexample.	
+178	<SENTENCE 177>	.	
+179	<SENTENCE 178>	.	
+180	<SENTENCE 179>	.	
+181	<SENTENCE 180>	[T]heregardf
+<>		ormerlypaidtopronunciationhasbeengraduall
+<>		ydeclining;sothatnowthegreatestimpropriet
+<>		iesinthatpointaretobefoundamongpeopleoffa
+<>		shion;manypronunciations,whichthirtyorfor
+<>		tyyearsagowereconfinedtothevulgar,aregrad
+<>		uallygainingground;andifsomethingbenotdon
+<>		etostopthisgrowingevil,andfixageneralstan
+<>		dardatpresent,theEnglishislikelytobecomea
+<>		merejargon,whicheveryonemaypronounceashep
+<>		leases.	
+182	<SENTENCE 181>	"Oldnurseryrhymescan.	
+183	<SENTENCE 182>	.	
+184	<SENTENCE 183>	.	
+185	<SENTENCE 184>	giveusnicec
+<>		luesaboutearlierpronunciations."	
+186	<SENTENCE 185>	TakeJacka
+<>		ndJill--'JackandJillwentupthehilltofetcha
+<>		pailofwater;Jackfelldownandbrokehiscrowna
+<>		ndJillcametumblingafter.	
+187	<SENTENCE 186>	'Thus:GHisP,asinh
+<>		iccough;EAUisO,asinbeau;GHTisT,asinnaught
+<>		;EIGHisA,asinneigh;PTisT,asinpterodactyl;
+<>		OUGHisO,asinthough.	
+188	<SENTENCE 187>	Thepropersymbolfortheb
+<>		ed-vowelis(donotconfusewith:).	
+189	<SENTENCE 188>	Thesamegoes
+<>		forevs.	
+190	<SENTENCE 189>	.	
+191	<SENTENCE 190>	InAmE,:andareonevowel,socalmandco
+<>		thavethesamevowel.	
+192	<SENTENCE 191>	InAmericantranscription
+<>		s,hotiswrittenash:t.	
+193	<SENTENCE 192>	InAmericantranscripti
+<>		ons,:isoftenwrittenas:(e.g.	
+194	<SENTENCE 193>	law=l:),unless
+<>		itisfollowedbyr,inwhichcaseitremainsan:.	
+195	<SENTENCE 194>	I
+<>		netherisnotpronouncedinBrE,unlessthesound
+<>		comesbeforeavowel(asindearest,dearAnn).	
+196	<SENTENCE 195>	In
+<>		AmericanEnglish,tisoftenpronouncedasaflap
+<>		t,whichsoundslikedor(moreaccurately)liket
+<>		hequick,hardrhearde.g.	
+197	<SENTENCE 196>	intheSpanishwordper
+<>		o.	
+198	<SENTENCE 197>	Theverticalline()isusedtoshowwordstress
+<>		.	
+199	<SENTENCE 198>	Forexample,/kntrkt/ispronouncedwithahard
+<>		k.	
+200	<SENTENCE 199>	Inspin,thephonemeispronouncednormally;t
+<>		hisnormalpsoundisrepresentedbypintheIPA.	
+201	<SENTENCE 200>	O
+<>		ften,slashesareusedtosignalbroadorphonemi
+<>		ctranscription;thus,/t/islessspecificthan
+<>		,andcouldreferto,either[t]or[t],depending
+<>		onthecontextandlanguage.	
+202	<SENTENCE 201>	Itdoesnotnormally
+<>		usecombinationsofletterstorepresentsingle
+<>		sounds,thewayEnglishdoeswithsh,thandng,or
+<>		singleletterstorepresentmultiplesoundsthe
+<>		wayxrepresents/ks/or/z/inEnglish.	
+203	<SENTENCE 202>	Othercom
+<>		moncapital-lettersymbolsareTfor{tone},Nfo
+<>		r{nasal},Ffor{fricative}(alsoSfor{voicele
+<>		ssfricative}andZfor{voicedfricative}),Gfo
+<>		r{glide}orfor{semivowel/liquid},Pfor{plos
+<>		ive}(stop)(alsoTfor{voicelessstop}andDfor
+<>		{voicedstop}),Sfor{sibilant},Lfor{liquid}
+<>		(orRfor{rhotic}andLfor{lateral}),#orhashf
+<>		or{click},Afor{lowvowel},Ufor{roundedvowe
+<>		l}andB,D,Jor,K,Q,,Hfor{labial},{alveolar}
+<>		,{post-alveolar}or{palatal},{velar},{uvul
+<>		ar},{pharyngeal}and{glottal},respectively
+<>		,andXforanything.	

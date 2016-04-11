@@ -90,19 +90,20 @@ public class NLTK {
 
     private static String simplifyPOSTag(String tag) {
 
-        if (tag.matches("NN.*")) {
+        if (tag.matches("NN.*")
+                || tag.equals("PRP")
+                || tag.equals("WP")) {
             return "NN";
-        } else if (tag.matches("JJ.*")) {
+        } else if (tag.matches("JJ.*")
+                || tag.equals("WP$")
+                || tag.equals("PRP$")) {
             return "JJ";
         } else if (tag.matches("V.*")
-                || tag.matches("MD")) {
+                || tag.equals("MD")) {
             return "VB";
         } else if (tag.matches("RB.*")
-                || tag.matches("WRB")){
+                || tag.equals("WRB")) {
             return "RB";
-        } else if (tag.matches("PR.*")
-                ||tag.matches("WP*")) {
-            return "PR";
         } else {
             return "Other";
         }

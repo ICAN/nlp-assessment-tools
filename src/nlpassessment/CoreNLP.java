@@ -34,7 +34,7 @@ public class CoreNLP {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        renormalizeBrackets(tokens);
+        renormalizeAllBrackets(tokens);
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
@@ -43,15 +43,30 @@ public class CoreNLP {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawNER(raw);
         simplifyNERTags(tokens);
-        renormalizeBrackets(tokens);
+        renormalizeAllBrackets(tokens);
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Test
     public static void standardizeSplits(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
-        ArrayList<Token> tokens = tokenizeRawSplits(raw);
+        ArrayList<String> clean = cleanRawSplits(raw);
+//        IO.writeFile(clean, outputFile);
+        ArrayList<Token> tokens = cleanSplitLinesToCharacters(clean);
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+    }
+
+    public static void cleanSplits(String inputFile, String outputFile) {
+        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> clean = cleanRawSplits(raw);
+        ArrayList<String> spaced = new ArrayList<>();
+        int sentenceNumber = 1;
+        for (String string : clean) {
+            spaced.add("<SENTENCE " + sentenceNumber + ">\t" + string);
+            spaced.add("<>");
+            sentenceNumber++;
+        }
+        IO.writeFile(spaced, outputFile);
     }
 
     //TODO: Write this
@@ -61,11 +76,10 @@ public class CoreNLP {
 
     //PRIVATE METHODS
     //GENERAL CORENLP METHODS
-    
     /*
-        Confirms that the string is a valid line
+     Confirms that the string is a valid line
      */
-    private static boolean validateLine(String string) {
+    private static boolean validatePOSLine(String string) {
         String[] split = string.split("\\s+");
         if (split.length != 7) {
             return false;
@@ -79,28 +93,37 @@ public class CoreNLP {
 
         return true;
     }
-    
+
     /*
-        Converts Penn-standardized brackets to their correct single-character forms
-    */
-    private static void renormalizeBrackets(ArrayList<Token> tokens) {
-        
-        HashMap<String, String> mapping = new HashMap<>();
-        mapping.put("-LRB-", "(");
-        mapping.put("-RRB-", ")");
-        mapping.put("-LCB-", "{");
-        mapping.put("-RCB-", "}");
-        mapping.put("-LSB-", "[");
-        mapping.put("-RSB-", "]");
-        
-        for(Token token : tokens) {
-            if(mapping.containsKey(token.token)) {
-                token.token = mapping.get(token.token);
-            }
+     Converts Penn-standardized brackets to their correct single-character forms
+     */
+    private static void renormalizeAllBrackets(ArrayList<Token> tokens) {
+
+        HashMap<String, String> map = getBracketMap();
+
+        for (Token token : tokens) {
+            token.token = renormalizeBracket(token.token, map);
         }
     }
-    
-    
+
+    private static String renormalizeBracket(String token, HashMap<String, String> map) {
+        if (map.containsKey(token)) {
+            token = map.get(token);
+        }
+        return token;
+    }
+
+    private static HashMap<String, String> getBracketMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("-LRB-", "(");
+        map.put("-RRB-", ")");
+        map.put("-LCB-", "{");
+        map.put("-RCB-", "}");
+        map.put("-LSB-", "[");
+        map.put("-RSB-", "]");
+        return map;
+    }
+
     //PARTS OF SPEECH TAGGING - POS
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
@@ -108,7 +131,7 @@ public class CoreNLP {
         int tokenCount = 0;
 
         for (String line : lines) {
-            if (validateLine(line)) {
+            if (validatePOSLine(line)) {
                 tokenCount++;
                 String[] split = line.split("\\s+");
                 String token = split[1];
@@ -130,19 +153,20 @@ public class CoreNLP {
 
     private static String simplifyPOSTag(String tag) {
 
-        if (tag.matches("NN.*")) {
+        if (tag.matches("NN.*")
+                || tag.equals("PRP")
+                || tag.equals("WP")) {
             return "NN";
-        } else if (tag.matches("JJ.*")) {
+        } else if (tag.matches("JJ.*")
+                || tag.equals("WP$")
+                || tag.equals("PRP$")) {
             return "JJ";
         } else if (tag.matches("V.*")
-                || tag.matches("MD")) {
+                || tag.equals("MD")) {
             return "VB";
         } else if (tag.matches("RB.*")
-                || tag.matches("WRB")){
+                || tag.equals("WRB")) {
             return "RB";
-        } else if (tag.matches("PR.*")
-                ||tag.matches("WP*")) {
-            return "PR";
         } else {
             return "Other";
         }
@@ -151,12 +175,12 @@ public class CoreNLP {
     //NAMED ENTITY RECOGNITION - NER
     //TODO: Test/Confirm
     private static ArrayList<Token> tokenizeRawNER(ArrayList<String> lines) {
-        
+
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
         int tokenCount = 0;
 
         for (String line : lines) {
-            if (validateLine(line)) {
+            if (validatePOSLine(line)) {
                 tokenCount++;
                 String[] split = line.split("\\s+");
                 String token = split[2];
@@ -167,14 +191,14 @@ public class CoreNLP {
 
         return taggedTokens;
     }
-    
+
     //TODO: write
     private static void simplifyNERTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
             token.tagset = simplifyNERTag(token.tagset);
         }
     }
-    
+
     //TODO: Write
     private static String simplifyNERTag(String tag) {
 
@@ -183,37 +207,67 @@ public class CoreNLP {
         } else if (tag.equalsIgnoreCase("LOCATION")) {
             return "LOC";
         } else if (tag.equalsIgnoreCase("")) {
-            
+
         } else {
             System.out.println("Error simplifying CoreNLP NER tags");
             return "--ERROR--";
         }
-        
+
         return "";
     }
-    
-    
-    
-    
-
-
 
     //SENTENCE SPLITTING
+    private static ArrayList<String> cleanRawSplits(ArrayList<String> lines) {
+        ArrayList<String> intermediate = new ArrayList<>();
+
+        //Filtering empty and token-detail lines
+        for (String line : lines) {
+            if (!line.matches("\\[Text=.*\\]")
+                    && !line.trim().equalsIgnoreCase("")) {
+                intermediate.add(line);
+            }
+        }
+
+        //Combining multi-line sentences 
+        ArrayList<String> output = new ArrayList<>();
+        String combined = "";
+        for (String line : intermediate) {
+            if (line.matches("Sentence #[0-9]+.*")) {
+                if (!combined.equals("")) {
+                    output.add(combined);
+                    combined = "";
+                }
+            } else {
+                combined += line;
+            }
+        }
+        if (!combined.equals("")) {
+            output.add(combined);
+        }
+        return output;
+    }
+
     //Tokenizes by whitespace; number tokens according to place in sentence
     //TODO: Finish/test
-    private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
+    private static ArrayList<Token> cleanSplitLinesToCharacters(ArrayList<String> lines) {
+        HashMap<String, String> map = getBracketMap();
         ArrayList<Token> output = new ArrayList<>();
-
         int tokenCount = 1;
         int sentenceCount = 0;
+
         for (String line : lines) {
 
             if (line.matches("Sentence #[0-9]+.*")) {
-                sentenceCount++;
+                System.out.println("ERROR: CLEAN FIRST sent:" + line);
             } else if (line.matches("\\[Text=.*")) {
-                //Nothing for now...
+                System.out.println("ERROR: CLEAN FIRST tok: " + line);
             } else {
+                sentenceCount++;
                 String[] split = line.split("\\s+");
+
+                for (int i = 0; i < split.length; i++) {
+                    split[i] = renormalizeBracket(split[i], map);
+                }
 
                 String combined = "";
 
@@ -222,9 +276,8 @@ public class CoreNLP {
                 }
 
                 for (int i = 0; i < combined.length(); i++) {
-                        output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
-                        tokenCount++;
-
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
+                    tokenCount++;
                 }
             }
         }
@@ -232,10 +285,4 @@ public class CoreNLP {
         return output;
     }
 
-    
-    
-    
-    
-    
-    
 }
