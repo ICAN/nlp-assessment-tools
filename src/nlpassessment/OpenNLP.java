@@ -100,7 +100,7 @@ public class OpenNLP {
 
             if (split.length == 2) {
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim(), true));
+                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim()));
 //                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
             } else {
 //                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
@@ -112,7 +112,7 @@ public class OpenNLP {
 
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tag = simplifyPOSTag(token.tag);
+            token.tagset = simplifyPOSTag(token.tagset);
         }
     }
 
@@ -122,11 +122,14 @@ public class OpenNLP {
             return "NN";
         } else if (tag.matches("JJ.*")) {
             return "JJ";
-        } else if (tag.matches("V.*")) {
+        } else if (tag.matches("V.*")
+                || tag.matches("MD")) {
             return "VB";
-        } else if (tag.matches("RB.*")) {
+        } else if (tag.matches("RB.*")
+                || tag.matches("WRB")){
             return "RB";
-        } else if (tag.matches("PR.*")) {
+        } else if (tag.matches("PR.*")
+                ||tag.matches("WP*")) {
             return "PR";
         } else {
             return "Other";
@@ -145,7 +148,7 @@ public class OpenNLP {
 
             if (split.length == 2) {
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim(), true));
+                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim()));
 //                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
             } else {
 //                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
@@ -157,7 +160,7 @@ public class OpenNLP {
 
     private static void simplifyNERTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tag = simplifyPOSTag(token.tag);
+            token.tagset = simplifyPOSTag(token.tagset);
         }
     }
 
@@ -190,7 +193,7 @@ public class OpenNLP {
 
             for (int i = 0; i < combined.length(); i++) {
                
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_", true));
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
                     tokenCount++;
             
             }

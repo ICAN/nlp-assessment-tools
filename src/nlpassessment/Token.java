@@ -23,28 +23,41 @@
  */
 package nlpassessment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Neal Logan
  * 
  */
 public class Token {
-    public int indexInText;
-    public int indexInSentence;
-    public String token;
-    public String tag;
-    public boolean semantic;
+    public int indexInText = -1;
+    public int indexInSentence = -1;
+    public String token = "";
+    public String tagset = "";
+    public boolean semantic = true;
+    public boolean multitag = false;
     
-    public Token (int tokenInText, int tokenInSentence, String token, String tag, boolean semantic) {
+    public String[] getTaglist() {
+        return tagset.split("\\t");
+    }
+    
+    public Token(String token, String tag) {
+        this.token = token;
+        this.tagset = tag;
+    }
+    
+    
+    public Token (int tokenInText, int tokenInSentence, String token, String tag) {
         this.indexInText = tokenInText;
         this.indexInSentence = tokenInSentence;
         this.token = token.trim();
-        this.tag = tag.trim();
+        this.tagset = tag.trim();
         this.semantic = semantic;
     }
     
     public String toString() {
-        return indexInText + "\t " + indexInSentence + "\t " + token + "\t " + tag;
+        return indexInText + "\t " + indexInSentence + "\t " + token + "\t " + tagset;
     }
     
 }

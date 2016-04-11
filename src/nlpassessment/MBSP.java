@@ -74,7 +74,7 @@ public class MBSP {
                 //Validate line and add
                 if ((split[0] + " " + split[1]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
                     textTokenCount++;
-                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1], true));
+                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1]));
                 } else {
                     System.out.println("Failed to validate line " + " " + split[0] + " " + split[1]);
                 }
@@ -88,7 +88,7 @@ public class MBSP {
 
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tag = simplifyPOSTag(token.tag);
+            token.tagset = simplifyPOSTag(token.tagset);
         }
     }
 
@@ -98,11 +98,14 @@ public class MBSP {
             return "NN";
         } else if (tag.matches("JJ.*")) {
             return "JJ";
-        } else if (tag.matches("V.*")) {
+        } else if (tag.matches("V.*")
+                || tag.matches("MD")) {
             return "VB";
-        } else if (tag.matches("RB.*")) {
+        } else if (tag.matches("RB.*")
+                || tag.matches("WRB")){
             return "RB";
-        } else if (tag.matches("PR.*")) {
+        } else if (tag.matches("PR.*")
+                ||tag.matches("WP*")) {
             return "PR";
         } else {
             return "Other";
@@ -127,7 +130,7 @@ public class MBSP {
             
             for(int i = 0; i < combined.length(); i++) {
              
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_", true));
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
                     tokenCount++;
             
             }    

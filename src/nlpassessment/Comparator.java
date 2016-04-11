@@ -32,21 +32,21 @@ import java.util.HashMap;
  */
 public class Comparator {
 
-    public static HashMap<String,Integer> getTagCounts(ArrayList<Token> tokens) {
-        
+    public static HashMap<String, Integer> getTagCounts(ArrayList<Token> tokens) {
+
         HashMap<String, Integer> tagCounts = new HashMap<>();
-        
-        for(Token token : tokens) {
-            if(tagCounts.keySet().contains(token.tag)) {
-                tagCounts.put(token.tag, tagCounts.get(token.tag) + 1);
+
+        for (Token token : tokens) {
+            if (tagCounts.keySet().contains(token.tagset)) {
+                tagCounts.put(token.tagset, tagCounts.get(token.tagset) + 1);
             } else {
-                tagCounts.put(token.tag, 1);
+                tagCounts.put(token.tagset, 1);
             }
         }
         return tagCounts;
     }
-    
-        public static int getSemanticTokenCount(ArrayList<Token> tokens) {
+
+    public static int getSemanticTokenCount(ArrayList<Token> tokens) {
         int count = 0;
         for (Token token : tokens) {
             if (token.semantic) {
@@ -55,24 +55,18 @@ public class Comparator {
         }
         return count;
     }
-    
-    
-    public static void reportResults(String key, int truePositives, int falseNegatives, int falsePositives, int totalTokens) {
-        System.out.println("Tagged " + key + "\nTrue Positives: " + truePositives + "\nFalse Negatives: " + falseNegatives 
-                + "\nFalse Positives: " + falsePositives + "\nTotal Tokens: " + totalTokens);
-    }
 
     public static void countTags(ArrayList<Token> tokens) {
         int adj = 0, noun = 0, adv = 0, verb = 0, other = 0;
 
         for (Token token : tokens) {
-            if (token.tag.equalsIgnoreCase("NN")) {
+            if (token.tagset.equalsIgnoreCase("NN")) {
                 noun++;
-            } else if (token.tag.equalsIgnoreCase("JJ")) {
+            } else if (token.tagset.equalsIgnoreCase("JJ")) {
                 adj++;
-            } else if (token.tag.equalsIgnoreCase("RB")) {
+            } else if (token.tagset.equalsIgnoreCase("RB")) {
                 adv++;
-            } else if (token.tag.equalsIgnoreCase("VB")) {
+            } else if (token.tagset.equalsIgnoreCase("VB")) {
                 verb++;
             } else {
                 other++;
@@ -101,50 +95,49 @@ public class Comparator {
         //Detect mismatches on tokens which differ between results and standard
         //Unless both are tagged "other"
         for (int i = 0; i < results.size(); i++) {
-            if (!results.get(i).token.equalsIgnoreCase(goldStandard.get(i).token) //                    && !results.get(goldIter).tag.equalsIgnoreCase("Other")
-                    //                    && !goldStandard.get(goldIter).tag.equalsIgnoreCase("Other")
+            if (!results.get(i).token.equalsIgnoreCase(goldStandard.get(i).token) //                    && !results.get(goldIter).tagset.equalsIgnoreCase("Other")
+                    //                    && !goldStandard.get(goldIter).tagset.equalsIgnoreCase("Other")
                     ) {
                 tokenMismatches++;
                 System.out.println("Mismatch: " + results.get(i).toString() + " \t\t " + goldStandard.get(i).toString());
                 System.out.println("Warning: Results invalid due to " + tokenMismatches + " token mismatches");
             }
 
-            if (results.get(i).tag.equalsIgnoreCase(key)
-                    && goldStandard.get(i).tag.equalsIgnoreCase(key)) {
-                
+            if (results.get(i).tagset.equalsIgnoreCase(key)
+                    && goldStandard.get(i).tagset.equalsIgnoreCase(key)) {
+
                 truePositives++;
 
-            } else if (goldStandard.get(i).tag.equalsIgnoreCase(key)
-                    && !results.get(i).tag.equalsIgnoreCase(key)) {
+            } else if (goldStandard.get(i).tagset.equalsIgnoreCase(key)
+                    && !results.get(i).tagset.equalsIgnoreCase(key)) {
 
                 falseNegatives++;
 
-            } else if (results.get(i).tag.equalsIgnoreCase(key)
-                    && !goldStandard.get(i).tag.equalsIgnoreCase(key)) {
+            } else if (results.get(i).tagset.equalsIgnoreCase(key)
+                    && !goldStandard.get(i).tagset.equalsIgnoreCase(key)) {
                 falsePositives++;
-                
+
             } else {
                 trueNegatives++;
             }
 
         }
-        
+
         assert results.size() == (trueNegatives + truePositives + falseNegatives + falsePositives);
-        
-        
+
         double sensitivity = (double) truePositives / (double) (falseNegatives + truePositives);
         double specificity = (double) trueNegatives / (double) (falsePositives + trueNegatives);
-        
+
         String report = key;
         report += "\nSampleSize = " + results.size();
-        report += "\nTruePos = "+truePositives;
-        report += "\nFalseNeg = "+falseNegatives;
-        report += "\nFalsePos = "+falsePositives;
+        report += "\nTruePos = " + truePositives;
+        report += "\nFalseNeg = " + falseNegatives;
+        report += "\nFalsePos = " + falsePositives;
         report += "\nSensitivity = " + sensitivity;
         report += "\nSpecificity = " + specificity;
 
         return report;
-        
+
     }
 
     //Compares tagger results to a gold standard
@@ -152,11 +145,11 @@ public class Comparator {
     //by ignoring mismatches using an improvement over the skip/catchup
     //method detail below
     //Note: DEPRECATED in favor of the similar restriction method
-    public static void robustlyCompareTags(ArrayList<Token> results, ArrayList<Token> gold, String targetTag) {
+    public static String robustlyCompareTags(ArrayList<Token> results, ArrayList<Token> gold, String key) {
 
         //Helps determine how far to look when dealing with token mismatches
         int SKIP_CATCHUP_CONSTANT = 3;
-        
+
         if (results.size() != gold.size()) {
             System.out.println("Tokens list lengths differ");
         }
@@ -165,12 +158,12 @@ public class Comparator {
                 + "\n");
 
         //Results variables
-        int totalComparisons = 0;
+        int trueNegatives = 0;
         int falseNegatives = 0;
         int truePositives = 0;
         int falsePositives = 0;
         int totalGoldTokensIgnored = 0;
-        int totalResultsTokensIgnored = 0;        
+        int totalResultsTokensIgnored = 0;
 
         //Iterators
         int goldIter = 0, resIter = 0;
@@ -179,18 +172,14 @@ public class Comparator {
 
             //Debug
 //            System.out.println("Gold Iterator: " + goldIter + "  Results Iterator: " + resIter);
-
-            
-
             //DETECTING TOKEN MISMATCH
             boolean tokenMatch = false;
-            if(!results.get(resIter).token.equalsIgnoreCase(gold.get(goldIter).token)) {
+            if (!results.get(resIter).token.equalsIgnoreCase(gold.get(goldIter).token)) {
                 System.out.println("Token mismatch: gold = '" + gold.get(goldIter).token + "' res = '" + results.get(resIter).token + "'");
             } else {
                 tokenMatch = true;
             }
-            
-     
+
             //HANDLING TOKEN MISMATCH
             //Uses the gold iterator as an anchor, searches in increasingly wide regions
             //around the results iterator, but only forward of the starting point
@@ -199,91 +188,102 @@ public class Comparator {
             //since it can be assumed that immediately preceding tokens are properly matched
             if (!tokenMatch) {
                 int startingResIter = resIter;
-                
+
                 //corrections for ugly algorithm below
                 int deltaGoldIter = -1;
-                goldIter--; 
-                
+                goldIter--;
+
                 //ITERATING FORWARD IN GOLD STANDARD
-                while(!tokenMatch
-                        && goldIter < gold.size()-2) {
+                while (!tokenMatch
+                        && goldIter < gold.size() - 2) {
                     goldIter++;
                     deltaGoldIter++;
-                    
+
                     //SEARCHING INCREASINGLY WIDE IN RESULTS TO FIND MATCHING TOKEN
-                    resIter = startingResIter + Math.max(0, deltaGoldIter/2 - SKIP_CATCHUP_CONSTANT);
-                    while (resIter < startingResIter + deltaGoldIter*1.5 + SKIP_CATCHUP_CONSTANT
+                    resIter = startingResIter + Math.max(0, deltaGoldIter / 2 - SKIP_CATCHUP_CONSTANT);
+                    while (resIter < startingResIter + deltaGoldIter * 1.5 + SKIP_CATCHUP_CONSTANT
                             && resIter < results.size()) {
-                        if(results.get(resIter).token.equalsIgnoreCase(gold.get(goldIter).token)) {
+                        if (results.get(resIter).token.equalsIgnoreCase(gold.get(goldIter).token)) {
                             tokenMatch = true;
-                            
+
                             //Debug
                             System.out.println("Match found: " + results.get(resIter).token + "=" + gold.get(goldIter).token);
-                            
+
                             break;
                         } else {
                             resIter++;
-                        }               
+                        }
                     }
-                    
+
                 }
-                
+
                 //CALCULATING 
                 int deltaResultsIter = resIter - startingResIter;
                 System.out.println("Ignored " + deltaResultsIter + " results tokens and " + deltaGoldIter + " gold tokens ");
                 totalGoldTokensIgnored += deltaGoldIter;
                 totalResultsTokensIgnored += deltaResultsIter;
-                
+
                 //Debug
-                if(goldIter < gold.size() && resIter < results.size()) {
+                if (goldIter < gold.size() && resIter < results.size()) {
                     System.out.println("Gold: " + goldIter + " " + gold.get(goldIter).token + " Res: " + resIter + " " + results.get(resIter).token);
                 }
-                
+
             }
-            if(!tokenMatch) {
+            if (!tokenMatch) {
                 System.out.println("MATCH FAILED");
                 break;
             }
-            
+
             //Debug
-            if(goldIter >= gold.size()
+            if (goldIter >= gold.size()
                     || resIter >= results.size()) {
                 System.out.println("ITERATOR OUT OF BOUNDS");
-                System.out.println("Gold Iterator: " + goldIter + "/" + gold.size() + 
-                        "\n" + "Results Iterator: " + resIter + "/" + results.size());
+                System.out.println("Gold Iterator: " + goldIter + "/" + gold.size()
+                        + "\n" + "Results Iterator: " + resIter + "/" + results.size());
                 break;
             }
-            
-            
+
             //COMPARING TAGS
-            totalComparisons++;
-            if (results.get(resIter).tag.equalsIgnoreCase(targetTag)
-                    && gold.get(goldIter).tag.equalsIgnoreCase(targetTag)) {
-                
+            if (results.get(resIter).tagset.equalsIgnoreCase(key)
+                    && gold.get(goldIter).tagset.equalsIgnoreCase(key)) {
+
                 truePositives++;
 
-            } else if (gold.get(goldIter).tag.equalsIgnoreCase(targetTag)
-                    && !results.get(resIter).tag.equalsIgnoreCase(targetTag)) {
+            } else if (gold.get(goldIter).tagset.equalsIgnoreCase(key)
+                    && !results.get(resIter).tagset.equalsIgnoreCase(key)) {
 
                 falseNegatives++;
 
-            } else if (results.get(resIter).tag.equalsIgnoreCase(targetTag)
-                    && !gold.get(goldIter).tag.equalsIgnoreCase(targetTag)) {
-                
+            } else if (results.get(resIter).tagset.equalsIgnoreCase(key)
+                    && !gold.get(goldIter).tagset.equalsIgnoreCase(key)) {
+
                 falsePositives++;
-                
+
+            } else if (!results.get(resIter).tagset.equalsIgnoreCase(key)
+                    && !gold.get(goldIter).tagset.equalsIgnoreCase(key)) {
+
+                trueNegatives++;
+
             }
-            
             goldIter++;
             resIter++;
         }
 
-        
-        System.out.println("\n" + totalGoldTokensIgnored + "/" + gold.size() + " gold std tokens excluded "
-        + "\n" + totalResultsTokensIgnored + "/" + results.size() + " results tokens excluded");
-        reportResults(targetTag, truePositives, falseNegatives, falsePositives, totalComparisons);
-        
+        assert results.size() == (trueNegatives + truePositives + falseNegatives + falsePositives);
+
+        double sensitivity = (double) truePositives / (double) (falseNegatives + truePositives);
+        double specificity = (double) trueNegatives / (double) (falsePositives + trueNegatives);
+
+        String report = key;
+        report += "\nSampleSize = " + results.size();
+        report += "\nTruePos = " + truePositives;
+        report += "\nFalseNeg = " + falseNegatives;
+        report += "\nFalsePos = " + falsePositives;
+        report += "\nSensitivity = " + sensitivity;
+        report += "\nSpecificity = " + specificity;
+
+        return report;
+
     }
- 
-    
+
 }

@@ -96,7 +96,7 @@ public class IO {
         for(String line : lines) {
             String[] split = line.split("\\s+");
             if(split.length == 4) {
-                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3], true)));
+                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
@@ -104,7 +104,7 @@ public class IO {
         return tokens;
     }
     
-    //Input: Lines in token-whitepace-tag format
+    //Input: Lines in token-whitepace-tagset format
     //Output: Token list with indexInText set, indexInSentence default to 0, and semantic defaulted to true
     public static ArrayList<Token> shortLinesToTokens(ArrayList<String> lines, int lineLength) {
         ArrayList<Token> tokens = new ArrayList<>();
@@ -114,11 +114,11 @@ public class IO {
             if(split.length == 3
                     && lineLength == 3){
                 tokenCount++;
-                tokens.add((new Token(tokenCount, 0, split[0], split[1], true)));
+                tokens.add((new Token(tokenCount, 0, split[0], split[1])));
             } else if (split.length == 2
                     && lineLength == 2) {
                 tokenCount++;
-                tokens.add((new Token(tokenCount, 0, split[0], split[1], true)));
+                tokens.add((new Token(tokenCount, 0, split[0], split[1])));
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
@@ -135,11 +135,11 @@ public class IO {
         return lines;
     }
     
-    //Includes only Token.token and Token.tag in each line
+    //Includes only Token.token and Token.tagset in each line
     public static ArrayList<String> tokensToShortLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
         for(Token token : tokens) {
-            lines.add(token.indexInText + "\t" + token.token + "\t" + token.tag);
+            lines.add(token.indexInText + "\t" + token.token + "\t" + token.tagset);
         }
         return lines;
     }

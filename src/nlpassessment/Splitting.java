@@ -43,13 +43,13 @@ public class Splitting {
             if(tokens.get(i+1).indexInSentence < tokens.get(i).indexInSentence) {
                 splits++;
                 //Tag the current token
-                tokens.get(i).tag = "SPLIT";
+                tokens.get(i).tagset = "SPLIT";
                 
             }
         }
         //Assume a sentence split at the end
         splits++;
-        tokens.get(tokens.size()-1).tag = "SPLIT";
+        tokens.get(tokens.size()-1).tagset = "SPLIT";
         
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
@@ -63,9 +63,9 @@ public class Splitting {
         int sentenceCount = 0;
         for(Token token : input) {
             combined+= token.token;
-            if(token.tag.equalsIgnoreCase("SPLIT")) {
+            if(token.tagset.equalsIgnoreCase("SPLIT")) {
                 sentenceCount++;
-                output.add(new Token(sentenceCount, 0, combined, "_", false));
+                output.add(new Token(sentenceCount, 0, combined, "_"));
                 combined = "";
             }
         }

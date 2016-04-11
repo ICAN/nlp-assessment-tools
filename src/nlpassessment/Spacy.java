@@ -70,7 +70,7 @@ public class Spacy {
             
             if (split.length == 2) {
                 if(!split[0].trim().equalsIgnoreCase("")) {
-                    taggedTokens.add(new Token(tokenCount, 0, split[0], split[1], true));
+                    taggedTokens.add(new Token(tokenCount, 0, split[0], split[1]));
                     tokenCount++;
                 }
             } else {
@@ -101,10 +101,10 @@ public class Spacy {
             } else if (split.length == 4) {
                 System.out.println("Length 4 split: " + line);
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[3], true));
+                taggedTokens.add(new Token(tokenCount, 0, split[1], split[3]));
             } else if (split.length == 3) {
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[2], true));
+                taggedTokens.add(new Token(tokenCount, 0, split[1], split[2]));
             } else if (split.length == 2 
                     && split[split.length-1].equalsIgnoreCase("SPACE")) {
                 //Ignore these, looks like they're always spaces
@@ -135,7 +135,7 @@ public class Spacy {
     
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tag = simplifyPOSTag(token.tag);
+            token.tagset = simplifyPOSTag(token.tagset);
         }
     }
 
@@ -180,7 +180,7 @@ public class Spacy {
 
             for (int i = 0; i < combined.length(); i++) {
                
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_", true));
+                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
                     tokenCount++;
     
             }
