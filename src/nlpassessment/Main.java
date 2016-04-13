@@ -222,11 +222,11 @@ public class Main {
 //        testAllPOS("pos-gold-5b.txt");
 
         //SENTENCE-SPLITTING STUFF
-        standardizeAllSplits("", "");
-        produceMinimalCommonTokenLists("split", 8);
-        tagAllSplits("", "");
-        produceSplitConsensus("", "", .55);
-        produceSplitCondensed();
+//        standardizeAllSplits("", "");
+//        produceMinimalCommonTokenLists("split", 8);
+//        tagAllSplits("", "");
+//        produceSplitConsensus("", "", .55);
+//        produceSplitCondensed();
         
         //CORE SENT SPLITTING DEBUGGING
 //        CoreNLP.cleanSplits("core-split-out.txt", "core-split-clean.txt");
@@ -263,15 +263,16 @@ public class Main {
 //        printTagCounts("open-split-tagged.txt");
         
         
+//        Splitting.goldToRaw("gold-split-v6c.txt", "raw-split-v6c.txt");
         
         
         
-        printTagCounts("mbsp-split-tagged.txt");
-        printTagCounts("open-split-tagged.txt");
-        printTagCounts("nltk-split-tagged.txt");
-        printTagCounts("core-split-tagged.txt");
-        printTagCounts("spacy-split-tagged.txt");
-        printTagCounts("all-split-consensus.txt");
+//        printTagCounts("mbsp-split-tagged.txt");
+//        printTagCounts("open-split-tagged.txt");
+//        printTagCounts("nltk-split-tagged.txt");
+//        printTagCounts("core-split-tagged.txt");
+//        printTagCounts("spacy-split-tagged.txt");
+//        printTagCounts("all-split-consensus.txt");
 
 
 

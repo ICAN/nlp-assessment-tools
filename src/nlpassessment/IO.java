@@ -34,40 +34,46 @@ import java.util.Scanner;
  * @author Neal
  */
 public class IO {
-    
+
     public static int countNonemptyLines(String fileName) {
         ArrayList<String> lines = readFileAsLines(fileName);
         int lineCount = 0;
-        for(String line : lines) {
-            if(!line.trim().isEmpty()) {
+        for (String line : lines) {
+            if (!line.trim().isEmpty()) {
                 lineCount++;
-            }   
+            }
         }
         System.out.println("Non-empty lines in " + fileName + ": " + lineCount);
-        
+
         return lineCount;
     }
-    
+
     public static ArrayList<Token> readFileAsStandardTokens(String fileName) {
         return standardLinesToTokens(readFileAsLines(fileName));
     }
-    
+
     public static ArrayList<Token> readFileAsShortTokens(String fileName, int lineLength) {
         return shortLinesToTokens(readFileAsLines(fileName), lineLength);
     }
-    
 
-    public static String concatenateAll(ArrayList<String> lines) {
+    public static String listToString(ArrayList<String> lines, boolean insertLineBreaks) {
         String condensed = "";
-        for (String line : lines) {
-            condensed += ("\n" + line);
+        if (insertLineBreaks) {
+            for (String line : lines) {
+                condensed += ("\n" + line);
+            }
+        } else {
+            for (String line : lines) {
+                condensed += (line);
+            }
         }
+
         return condensed;
     }
 
     /*
-    Reads a file and returns its lines in an arraylist
-    */
+     Reads a file and returns its lines in an arraylist
+     */
     public static ArrayList<String> readFileAsLines(String fileName) {
         ArrayList<String> lines = new ArrayList<>();
         Scanner inFile = null;
@@ -86,16 +92,20 @@ public class IO {
         }
         return lines;
     }
-    
+
+    public static String readFileAsString(String fileName, boolean insertLineBreaks) {
+        return listToString(readFileAsLines(fileName), insertLineBreaks);
+    }
+
     //Input: Any standardized set of lines (one token per line, 4 fields per token)
     //Returns a list of tokens corresponding to the tokens on those lines
     //Assumes all tokens are semantic
     public static ArrayList<Token> standardLinesToTokens(ArrayList<String> lines) {
-        
+
         ArrayList<Token> tokens = new ArrayList<>();
-        for(String line : lines) {
+        for (String line : lines) {
             String[] split = line.split("\\s+");
-            if(split.length == 4) {
+            if (split.length == 4) {
                 tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
@@ -103,16 +113,16 @@ public class IO {
         }
         return tokens;
     }
-    
+
     //Input: Lines in token-whitepace-tagset format
     //Output: Token list with indexInText set, indexInSentence default to 0, and semantic defaulted to true
     public static ArrayList<Token> shortLinesToTokens(ArrayList<String> lines, int lineLength) {
         ArrayList<Token> tokens = new ArrayList<>();
         int tokenCount = 0;
-        for(String line : lines) {
+        for (String line : lines) {
             String[] split = line.split("\\s+");
-            if(split.length == 3
-                    && lineLength == 3){
+            if (split.length == 3
+                    && lineLength == 3) {
                 tokenCount++;
                 tokens.add((new Token(tokenCount, 0, split[0], split[1])));
             } else if (split.length == 2
@@ -125,26 +135,25 @@ public class IO {
         }
         return tokens;
     }
-      
+
     //Uses Token.toString()
     public static ArrayList<String> tokensToStandardLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
-        for(Token token : tokens) {
+        for (Token token : tokens) {
             lines.add(token.toString());
         }
         return lines;
     }
-    
+
     //Includes only Token.token and Token.tagset in each line
     public static ArrayList<String> tokensToShortLines(ArrayList<Token> tokens) {
         ArrayList<String> lines = new ArrayList<>();
-        for(Token token : tokens) {
+        for (Token token : tokens) {
             lines.add(token.indexInText + "\t" + token.token + "\t" + token.tagset);
         }
         return lines;
     }
-    
-    
+
     public static void writeFile(String contents, String fileName) {
         try {
             File file = new File(fileName);
@@ -158,10 +167,10 @@ public class IO {
             System.exit(-1);
         }
     }
-    
+
     /*
-        General file output method
-    */
+     General file output method
+     */
     public static void writeFile(ArrayList<String> lines, String fileName) {
 
         try {

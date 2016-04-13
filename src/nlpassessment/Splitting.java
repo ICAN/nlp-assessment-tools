@@ -31,6 +31,33 @@ import java.util.ArrayList;
  */
 public class Splitting {
     
+    public static void goldToRaw(String inputFile, String outputFile) {
+        
+        //Include newline characters
+        String gold = IO.readFileAsString(inputFile, true);
+        
+        String raw = gold.replaceAll("<>", "");
+        
+        IO.writeFile(raw, outputFile);
+        
+    }
+    
+    public static ArrayList<Token> getGoldAsCharacterTokens (String inputFile) {
+        
+        //Exclude newline characters, whitespace
+        String gold = IO.readFileAsString(inputFile, false).replaceAll("\\s", "");
+        
+        ArrayList<Token> goldTokens = new ArrayList<>();
+        
+        for(int i = 0; i < gold.length(); i++) {
+            
+        }
+        
+        
+        return goldTokens;
+    }
+    
+    
     
     //Takes standardized, common-token-restricted outputs 
     //Tags the last character in each sentence "SPLIT"
