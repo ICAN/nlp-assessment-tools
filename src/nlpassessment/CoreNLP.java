@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Neal.
+ * Copyright 2016 Neal Logan.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -220,13 +220,6 @@ public class CoreNLP {
     private static ArrayList<String> cleanRawSplits(ArrayList<String> lines) {
         ArrayList<String> intermediate = new ArrayList<>();
 
-        //Filtering empty and token-detail lines
-        for (String line : lines) {
-            if (!line.matches("\\[Text=.*\\]")
-                    && !line.trim().equalsIgnoreCase("")) {
-                intermediate.add(line);
-            }
-        }
 
         //Combining multi-line sentences 
         ArrayList<String> output = new ArrayList<>();
@@ -241,9 +234,11 @@ public class CoreNLP {
                 combined += line;
             }
         }
+        
         if (!combined.equals("")) {
             output.add(combined);
         }
+        
         return output;
     }
 
@@ -259,8 +254,6 @@ public class CoreNLP {
 
             if (line.matches("Sentence #[0-9]+.*")) {
                 System.out.println("ERROR: CLEAN FIRST sent:" + line);
-            } else if (line.matches("\\[Text=.*")) {
-                System.out.println("ERROR: CLEAN FIRST tok: " + line);
             } else {
                 sentenceCount++;
                 String[] split = line.split("\\s+");

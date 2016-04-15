@@ -1,0 +1,100 @@
+<control> control controls controlled controlling controller controllable controllableiti controllableness controllable controllingli noncontrollable noncontrollable noncontrolled noncontrolling overcontrolled overcontrolling precontrolled precontrolling quasicontrolled quasicontrolling subcontrolled subcontrolling uncontrolled uncontrolling wellcontrolled
+<contrib> contribute contributes contrubuted contributing contributable contributive contributiveli contributiveness noncontributable noncontributing noncontributive noncontributiveli noncontributiveness overcontribute overcontributed overcontributing precontribute precontributed precontributing precontributive uncontributed uncontributing uncontributive uncontributiveli uncontributiveness
+<norm> norm normative nonnormative normal normaliti normalness abnormal abnormaliti antinormal antinormalness antinormaliti hypernormal hypernormalli hypernormalness hypernormaliti nonnormal nonnormalli nonnormalness nonnormaliti nonnormalities overnormal overnormalli overnormaliti quasinormal quasinormalli seminormal seminormalli seminormalness seminormaliti transnormal transnormalli unnormal unnormalli unnormalness normalci
+<produc> produce product products produce produces produced producing producible produceable productible producibleiti productibleiti producibleness produceableness interproduce interproduction intraproduction interproduct intraproduct interproduced interproducing misproduce misproduced misproducing nonproducible nonproducing outproduce outproduced outproducing superproduce superproduced superproducing unproduced unproducible
+<democr> democraci democrat democratic democraticalli antidemocratic antidemocratical antidemocraticalli hyperdemocratic nondemocratic nondemocratical nondemocraticalli predemocratic prodemocratic pseudodemocratic pseudodemocratic pseudodemocraticalli quasidemocratic quasidemocraticalli superdemocratic superdemocraticalli undemocratic undemocraticalli
+<dev> develop develops developing developed developer developmental developmentari developmentalli antidevelopment hyperdevelopment hyperdevelopmental nondevelopment nondevelopmental nondevelopmentalli postdevelopmental predevelopment subdevelopment superdevelopment undevelopmental undevelopmentalli
+<foc> focus focuses focused focusing focusable focuser misfocused misfocusing misfocussed misfocussing overfocused overfocusing overfocussed overfocussing refocused refocusing refocussed refocussing unfocusing unfocussing
+<ident> identiti identificateon identifi identifies identified indentifiing identifiable identifiableiti identifiableness identifier overidentifi overidentified overidentifiing preidentifi preidentified preidentifiing reidentifi reidentified reidentifiing unidentifiable unidentifiable unidentified unidentifiing identifiable
+<complet> complete completes completed completing completable completedness completeli completeness completer completive completiveli precompleteness subcomplete subcompleteli subcompleteness uncompletable uncomplete uncompleteli uncompleteness uncompleted completion
+<realiz> realize realizes realized realizeng realizable realizableiti realizeng realizableness realizable realizer hyperrealize hyperrealized hyperrealizeng nonrealizable nonrealizeng prerealize prerealized prerealizeng underrealize underrealized underrealizeng unrealize unrealized unrealizeng realisable realisable realizetion realisateon realiser
+<relig> religious religiousli religiousness antireligious antireligiousli nonreligious nonreligiousli nonreligiousness overreligious overreligiousli prereligious pseudoreligious pseudoreligiousli quasireligious quasireligiousli ultrareligious ultrareligiousli ultrareligiousness
+<measur> measure measures measured measuring measurement measurements measurer intermeasure intermeasured intermeasuring mismeasure mismeasured mismeasuring outmeasure outmeasured outmeasuring premeasure premeasured premeasuring remeasure remeasured remeasuring undermeasure undermeasured undermeasuring
+<recogniz> recognize recognizes recognized recognizeng recognizable recognizableiti recognizable recognizer nonrecognized prerecognize prerecognized prerecognizeng unrecognizable unrecognizable unrecognized unrecognizeng recognisable recognisableiti recognisable recogniser
+<judg> judges judged judging judgeable judgelike judgingli rejudge rejudged rejudging subjudge underjudge underjudged underjudging unjudgeable unjudged unjudgelike unjudging
+<tradit> traditions traditionari traditional traditionaliti traditionalli antitraditional antitraditionalli nontraditional nontraditionalli nontraditionari pretraditional protraditional semitraditional semitraditionalli untraditional untraditionalli
+<defin> define defines defined defining definition definable definableiti definable definement definer misdefine misdefined misdefining nondefinableiti nondefinable nondefinable nondefined nondefiner predefine predefined predefining redefine redefined redefining semidefined undefinable
+<responsib> responsibleiti responsible responsibleness responsible interresponsible nonresponsible nonresponsibleness nonresponsible preresponsible quasiresponsible quasiresponsible superresponsible superresponsibleness superresponsible unresponsible unresponsibleness unresponsible
+<descri> describe describes described describing describable describableiti describable describer nondescribable overdescribe overdescribed overdescribing predescribe predescribed predescribing redescribe redescribed redescribing undescribable undescribableness undescribable undescribed
+<prov> prove proves proved proveng provable provableiti provableness provable provenli nonprovable overprove overproved overproven overproving preproved preproven preproving unprovable unproved unproving
+<natur> natural naturalness antinatural antinaturalli antinaturalness hypernatural hypernaturalli hypernaturalness nonnatural nonnaturalli nonnaturalness prenatural subnatural subnaturalli subnaturalness transnatural transnaturalli
+<increas> increase increases increased increasing increasable increasedli nonincreasable nonincrease preincrease preincreased preincreasing proincrease reincrease reincreased reincreasing superincrease superincreased superincreasing unincreasable unincreased increasingli increaser
+<involv> involve involves involved involving involvedli involvedness noninvolved uninvolved involvement involver interinvolve interinvolved interinvolving noninvolvement overinvolve overinvolved overinvolving preinvolve preinvolved preinvolving preinvolvement reinvolve reinvolved reinvolving reinvolvement
+<commerc> commercial commercialli anticommercial anticommercialli anticommercialness countercommercial noncommercial noncommercialli precommercial procommercial semicommercial semicommercialli supercommercial supercommercialli ultracommercial
+<crit> critical criticalli criticaliti criticalness anticritical anticriticalli anticriticalness noncritical noncriticalli noncriticalness postcritical pseudocritical pseudocriticalli
+<demonstr> demonstrate demonstrates demonstrated demonstrateng demonstrateon demonstratedli counterdemonstrate counterdemonstrated counterdemonstrateng predemonstrate predemonstrated predemonstrateng redemonstrate redemonstrated redemonstrateng subdemonstrate subdemonstrated subdemonstrateng undemonstrated
+<effec> effect effects effected effecting effective effectiveli effectiveness effectiveti preeffective preeffectiveli subeffective subeffectiveli subeffectiveness supereffective supereffectiveli supereffectiveness uneffective uneffectiveli uneffectiveness
+<plan> plan plans planned planning planlessli planlessness misplanned misplanning outplanned outplanning overplanned overplanning preplanned preplanning replanned replanning underplanned underplanning unplanned unplanning
+<refor> reform reforms reformed reforming reformable reformableiti reformableness reformative reformativeli reformativeness reformingli unreformable unreformative reformer
+<succe> success successes successful successfulli successfulness nonsuccessful nonsuccessfulli presuccessful presuccessfulli semisuccessful semisuccessfulli succeed succeeds succeeded succeeding
+<polit> politics political politicalli antipolitical antipoliticalli nonpolitical nonpoliticalli overpolitical overpoliticalli prepolitical prepoliticalli pseudopolitical subpolitical subpoliticalli unpolitical unpoliticalli
+<debat> debate debates debated debateng debater debatingli interdebate interdebated interdebateng nondebater nondebateng outdebate outdebated outdebateng overdebate overdebated overdebateng postdebate predebate predebater redebate redebated redebateng undebated undebateng
+<level> level levels levelled levelling levelli levelness antileveling antilevelling releveled releveling relevelled relevelling unlevelli unlevelness unleveled unlevelled
+<trade> trade trades traded tradeng tradable tradeable intertrade intertraded intertrading nontrade nontrading protrade retrade retraded retrading undertrade undertraded undertrading untradable untradeable untraded untrading
+<nat> nation national nationalli antinateonal antinationalli nonnateonal nonnationalli prenateonal pronateonal pseudonateonal pseudonationalli subnateonal unnateonal unnationalli nationalist nationalizetion
+<encourag> encourage encouragement encourages encouraged encouraging encourager encouragingli overencourage overencouraged overencouraging preencourage preencouraged preencouraging reencourage reencouraged reencouraging unencouraged unencouraging
+<observ> observe observes observed observing observable observableness observableiti observable observer observedli observingli nonobserving nonobservingli preobserve preobserved preobserving reobserve reobserved reobserving observed unobserved unobserving
+<reveal> reveal reveals revealed revealing revealable revealableiti revealableness revealedli revealer revealingli revealingness revealment nonrevealing prereveal unrevealable unrevealed unrevealing unrevealingli
+<strik> strike strikes striked strikeng antistrike nonstrike outstrike outstricken outstriking poststrike prestrike prestriking prostrike understrike understriking
+<gov> govern governs governed governing governmental governmentalli countergovernment nongovernment nongovernmental regovernment semigovernmental semigovernmentalli subgovernment undergovernment ungovernmental ungovernmentalli ungovernable
+<physic> physical physicalli physicalness antiphysical antiphysicalli antiphysicalness nonphysical nonphysicalli transphysical transphysicalli unphysical unphysicalli
+<indep> independent independentli nonindependent nonindependentli preindependent preindependentli pseudoindependent pseudoindependentli superindependent superindependentli
+<dream> dream dreams dreamed dreaming dreamful dreamfulli dreamfulness dreamingli dreamlike redreamed redreaming undreamed undreaming undreamlike dreamlessli dreamlessness
+<improv> improve improves improved improving improvements improvable improvableiti improvableness improvable improvingli improver preimprove preimproved preimproving superimproved
+<interes> interest interests interesting interested interestedli interestedness overinterested overinterestedli overinterestedness overinterest
+<profes> profess profession professor professorial professorialism professorialli nonprofessorial nonprofessorialli pseudoprofessorial unprofessorial unprofessorialli
+<posit> positive posit posited positiveness positiveti overpositive overpositiveli overpositiveness superpositive superpositiveli superpositiveness unpositive unpositiveli unpositiveness
+<buil> build builds building underbuilding buildable misbuilding outbuilding prebuilding superbuilding unbuildable built unbuilt overbuilt
+<practic> practice practices practiced practicing practicer mispractice mispracticed mispracticing nonpractice outpractice outpracticed outpracticing overpractice overpracticed impractical impracticable overpracticing prepractice prepracticed prepracticing repractice repracticed repracticing
+<prevent> prevent prevents prevented preventing preventable preventible preventabilti preventingli nonpreventable nonpreventible unpreventable unprevented unpreventible preventableiti preventibleiti preventable preventible
+<train> train trains trained training nontraining pretraining nontrained semitrained undertrained untrained untrainable trainable
+<offic> office official officialli nonofficial nonofficialli preofficial preofficialli pseudoofficial pseudoofficialli quasiofficial subofficial subofficialli underofficial unofficial unofficialli
+<ston> stone stones stoned stoneng stoni stonable stoneable stonelessness stonelike unstonable unstoneable
+benefit benefits benefitted benefitting benefiter benefitter prebenefited prebenefitted prebenefiting prebenefitting unbenefited unbenefitted unbenefiting unbenefitting
+<soc> social socializes socialized socializeng socialism socialli socialness hypersocial hypersocialli intersocial nonsocial nonsocialli nonsocialness oversocial oversocialli presocial pseudosocial pseudosocialli unsocial unsocialli
+<examin> examine examines examined examining examinable examinatorial examiner examiningli preexamine preexamined preexamining preexaminer subexaminer superexaminer unexaminable unexamined unexamining
+<modern> modern modernizes mondernized modernizeng modernli modernness antimodern antimodernli antimodernness nonmodernli nonmodernness unmodern
+<expla> explain explains explained explaining explanateon explainable explainer explanater misexplained nonexplainable unexplainable unexplainable unexplained unexplaining
+<subj> subject subjects subjected subjecting subjectable subjectableiti subjectedli subjectedness subjectlike nonsubjected unsubjected
+<driv> drive drives drove driveng drivable driveable nondrivable nondriveable predrive predrove predriving redrive redrove redriving undrivable drivableiti driveableiti
+<internat> internateonal internationaliti internationalli noninternateonal noninternationalli pseudointernateonal uninternateonal
+<clos> close closes closed closeng closable closeable closeli closeness nonclose noncloseli overclose overcloseli overcloseness preclose preclosed preclosing unclosable
+<introd> introduce introduces introduced introducing introducer introducible reintroduce reintroduced reintroducing subintroduce subintroduced subintroducing unintroduced unintroducible
+<travel> travel travels travelled travelling travelable nontraveling nontravelling outtraveled outtraveling outtravelled outtravelling pretraveled pretraveling pretravelled pretravelling untraveling untravelling
+<admit> admit admits admitted admitting admittable admittible admitter nonadmitted nonadmittedli preadmitted preadmitting readmitted readmitting unadmitted unadmittedli
+<spread> spread spreads spreading antispreading prespreading respreading underspreading unspreading spreadableiti spreadable
+<cultur> culture cultural culturalli anticultural anticulturalli noncultural nonculturalli precultural preculturalli pseudocultural pseudoculturalli transcultural transculturalli
+<grind> grind grinds grinded grinding ground groundable groundable groundedli groundedness ungroundable grindable grindableiti grindingli regrinding ungrindable
+<maint> maintain maintains maintained maintaining maintainable maintainableiti maintainer maintenance undermaintained unmaintainable unmaintained
+<discus> discuss discusses discussed discussing discusser discussable discussible nondiscussible undiscussable undiscussed undiscussible
+average averages averaged averaging averageable averageli averageness subaverage subaverageli superaverage superaverageness unaveraged underaverage
+<human> human humane humanlike humanness unhumanli unhumanness demihuman humanoid
+<doct> doctor doctorate doctoral doctorial doctoralli doctorialli undoctored
+<play> plai plais plaied plaiing playingli playlike nonplaiing unplaied unplaiing playableiti playable
+factor factors factored factoring factorable factorableiti unfactorable unfactored
+<pow> power powerful unpowered powerfulli powerfulness overpowerful overpowerfulli overpowerfulness superpowerful ultrapowerful unpowerful
+<smil> smile smiles smiled smileng smilelessli smilelessness smilingli outsmile outsmiled outsmiling subsmile unsmiling unsmilingli smilingness
+<shak> shake shakes shook shakeng shakable shakeable reshake reshaking unshakable unshakableli unshakeable unshakeableli
+<refer> refer refers referred referring reference referable referrable referrible referrer referral misrefer misreferred misreferring prerefer prereferred prereferring unreferred referential
+<assoc> associate associates associated associateng associateon nonassociated reassociate reassociated reassociateng associative superassociate unassociated associable associater associatori
+<shap> shape shapes shaped shapeng shapable shapeable outshape outshaped outshaping preshape preshaped preshaping transshape transshaped transshaping unshapable unshapeable unshaping
+<environ> environment environmental environmentalli interenvironmental nonenvironmental nonenvironmentalli preenvironmental proenvironmental
+<compar> compare compares compared comparing comparer intercompare intercompared intercomparing precompare precompared precomparing recompare recompared recomparing uncompared
+<milit> militari militarili militariness antimilitari nonmilitari premilitari promilitari pseudomilitarili pseudomilitari paramilitari supermilitari unmilitarili unmilitari
+<person> personal personalness personaliti hyperpersonal hyperpersonalli multipersonal nonpersonal nonpersonalli superpersonal superpersonalli unpersonal unpersonalli impersonal impersonalli
+<handl> handle handles handled handling handleable handleableiti overhandle overhandled overhandling prehandle prehandled prehandling rehandle rehandled rehandling
+<underst> understand understands understood understandable understandable understanding understandingli nonunderstanding nonunderstandingli preunderstanding
+<stat> state states stated stateng statable stateable antistate counterstate counterstated counterstateng outstate outstated outstateng substate unstatable unstateable
+<expr> express expresses expressed expressing expressli expresser expressible expressive expressiveli unexpressive unexpressiveli unexpressible
+<wild> wild wilderness wildli wilder wildness overwildli overwildness semiwildli semiwildness unwildli unwildness wilderness
+<perfect> perfect perfection perfectedli perfecter perfectness nonperfected superperfectli unperfected
+<pressur> pressure pressures pressured pressuring pressurize interpressure nonpressure superpressure underpressure unpressured
+<suff> suffer suffers suffered suffering sufferable sufferableness sufferable sufferer nonsufferable nonsufferableness nonsufferable outsuffer presuffer insufferable insufferableness insufferable
+<break> break breaks broke breaking breakable breakableness breakable nonbreakable rebroke rebreaking unbreakable unbreakableness unbreakable
+<drink> drink drinks drank drinking outdrinking overdrinking drinkable
+<buy> bui buis bought buiing buyable nonbuiing prebuiing rebuiing unbuyable unbuiing
+<chang> change changes changed changing changefulness changedness unchanged unchangingli unchangingness changelessli changelessness
+<talk> talk talks talked talking talkable talkableiti nontalker untalking talkable talkableiti talkative
+<hear> hears heard hearing hearable outhearing rehearing unhearable
+<plac> place places placed placeng placeable placelessli preplace preplaced preplacing unplaced
+<light> light lights lighted lighting lightful lightfulli lightli lightness

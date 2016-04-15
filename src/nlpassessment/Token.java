@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Neal.
+ * Copyright 2016 Neal Logan.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,6 @@ public class Token {
         this.token = token;
         this.tagset = tag;
     }
-    
     
     public Token (int tokenInText, int tokenInSentence, String token, String tag) {
         this.indexInText = tokenInText;

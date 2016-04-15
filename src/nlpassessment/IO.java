@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Neal.
+ * Copyright 2016 Neal Logan.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,10 +67,17 @@ public class IO {
                 condensed += (line);
             }
         }
-
         return condensed;
     }
 
+    public static String arrayToString(String[] tokens, boolean spacesBetweenTokens) {
+        String string = tokens[0];
+        for(int i = 1; i < tokens.length; i++) {
+            string += (" " + tokens[i]);
+        }
+        return string;
+    }
+    
     /*
      Reads a file and returns its lines in an arraylist
      */

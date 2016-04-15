@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Neal.
+ * Copyright 2016 Neal Logan.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,29 +31,51 @@ import java.util.ArrayList;
  */
 public class Splitting {
     
+    public static final String SPLIT_PATTERN = "<>";
+    public static final String SPLIT_TAG = "SPLIT";
+    
+    //Produces a raw test case from a gold standard using <> as sentence-end markers
     public static void goldToRaw(String inputFile, String outputFile) {
         
         //Include newline characters
         String gold = IO.readFileAsString(inputFile, true);
         
-        String raw = gold.replaceAll("<>", "");
+        String raw = gold.replaceAll(SPLIT_PATTERN, "");
         
         IO.writeFile(raw, outputFile);
         
     }
     
+    //
     public static ArrayList<Token> getGoldAsCharacterTokens (String inputFile) {
         
         //Exclude newline characters, whitespace
         String gold = IO.readFileAsString(inputFile, false).replaceAll("\\s", "");
         
         ArrayList<Token> goldTokens = new ArrayList<>();
-        
+        Token last = new Token("",""); //Dummy token, shouldn't ever get used
+        int tokenInText = 0;
+        int tokenInSentence = 0;
+        int sentenceCount = 0;
         for(int i = 0; i < gold.length(); i++) {
-            
+            if(gold.substring(i,i+2).equalsIgnoreCase("<>")) {
+                tokenInSentence = 0;
+                i+=2;
+                last.tagset = "SPLIT";
+                sentenceCount++;
+            } else {
+                tokenInText++;
+                tokenInSentence++;
+                last = new Token(tokenInText, tokenInSentence, "" + gold.charAt(i), "_");
+                goldTokens.add(last);
+                
+            }
         }
+        //Shouldn't need this
+//        goldTokens.get(goldTokens.size() - 1).tagset = "<SPLIT>";
+        System.out.println("Sentences: " + sentenceCount + "\nCharacters: " + tokenInText);
         
-        
+                
         return goldTokens;
     }
     

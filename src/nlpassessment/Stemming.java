@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Neal.
+ * Copyright 2016 Neal Logan.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ public class Stemming {
         return (String[])unique.toArray();
     }
     
-    //Removes unique words; ignores the first token in each line
+    //Removes unique splitLines; ignores the first token in each unstemmedLine
     public static void cleanStemTest(String inputFile, String outputFile) {
 
         ArrayList<String> input = IO.readFileAsLines(inputFile);
@@ -80,45 +80,122 @@ public class Stemming {
     }
 
     //
-    public static void stemAll(String testFile, String outFile) {
+    public static void stemAll(String testFile) {
 
         stemming.Stemmer porter1Stemmer = new Porter1();
         stemming.Stemmer porter2Stemmer = new Porter2();
         stemming.Stemmer lancasterStemmer = new Lancaster();
 
+        //Get the stemming test case
         ArrayList<String> lines = IO.readFileAsLines(testFile);
 
-        ArrayList<String[]> words = new ArrayList<>();
+        ArrayList<String[]> splitLines = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
             String[] line = lines.get(i).split("\\s+");
-            words.add(line);
+            splitLines.add(line);
         }
 
-        ArrayList<String[]> porter1 = new ArrayList<>();
-        ArrayList<String[]> porter2 = new ArrayList<>();
-        ArrayList<String[]> lancaster = new ArrayList<>();
+        ArrayList<String[]> porter1Stemmed = new ArrayList<>();
+        ArrayList<String[]> porter2Stemmed = new ArrayList<>();
+        ArrayList<String[]> lancasterStemmed = new ArrayList<>();
 
-        for (int i = 0; i < words.size(); i++) {
-            String[] line = words.get(i);
-            String[] p1Line = new String[line.length];
-            String[] p2Line = new String[line.length];
-            String[] lanLine = new String[line.length];
+        //For each unstemmedLine
+        for (int i = 0; i < splitLines.size(); i++) {
+            String[] unstemmedLine = splitLines.get(i);
+            String[] porter1Line = new String[unstemmedLine.length];
+            String[] porter2Line = new String[unstemmedLine.length];
+            String[] lancasterLine = new String[unstemmedLine.length];
 
-            p1Line[0] = "" + line[0];
-            p2Line[0] = "" + line[0];
-            lanLine[0] = "" + line[0];
+            //Keep the initial unstemmedLine-marking token <stem>
+            porter1Line[0] = "" + unstemmedLine[0];
+            porter2Line[0] = "" + unstemmedLine[0];
+            lancasterLine[0] = "" + unstemmedLine[0];
 
-            for (int j = 1; j < line.length; j++) {
-                p1Line[j] = porter1Stemmer.stem(line[j]);
-                p2Line[j] = porter2Stemmer.stem(line[j]);
-                lanLine[j] = lancasterStemmer.stem(line[j]);
+            //Stem each word, add to the appropriate unstemmedLine & list
+            for (int j = 1; j < unstemmedLine.length; j++) {
+                porter1Line[j] = porter1Stemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
+                porter2Line[j] = porter2Stemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
+                lancasterLine[j] = lancasterStemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
+//                System.out.println("raw: " + unstemmedLine[j] +"  p1: " + porter1Line[j] + "  p2: " + porter2Line[j] + "  lan: " + lancasterLine[j]);
             }
-
-            porter1.add(p1Line);
-            porter2.add(p2Line);
-            lancaster.add(lanLine);
+            
+            //Add current stemmed lines to their respective lists
+            porter1Stemmed.add(porter1Line);
+            porter2Stemmed.add(porter2Line);
+            lancasterStemmed.add(lancasterLine);
         }
+        
+        //Prep for file output
+        ArrayList<String> porter1Combined = new ArrayList<>();
+        ArrayList<String> porter2Combined = new ArrayList<>();
+        ArrayList<String> lancasterCombined = new ArrayList<>();
+        
+        for(String[] line : porter1Stemmed) {
+            porter1Combined.add(IO.arrayToString(line, true));
+        }
+        for(String[] line : porter2Stemmed) {
+            porter2Combined.add(IO.arrayToString(line, true));
+        }
+        for(String[] line : lancasterStemmed) {
+            lancasterCombined.add(IO.arrayToString(line, true));
+        }
+        
+        IO.writeFile(porter1Combined, "porter1-stemmed.txt");
+        IO.writeFile(porter2Combined, "porter2-stemmed.txt");
+        IO.writeFile(lancasterCombined, "lancaster-stemmed.txt");
+        
     }
+    
+    
+    public static void collapseAll (){
+    
+        collapse("porter1-stemmed.txt", "porter1-uniqueStems.txt");
+        collapse("porter2-stemmed.txt", "porter2-uniqueStems.txt");
+        collapse("lancaster-stemmed.txt", "lancaster-uniqueStems.txt");
+        
+    }
+    
+    private static void collapse(String inputFile, String outputFile) {
+        
+        ArrayList<String> lines = IO.readFileAsLines(inputFile);        
+        
+        ArrayList<String> collapsedLines = new ArrayList<>();
+        
+        for(String line : lines) {
+            
+            String[] splitLine = line.split("\\s+");
+            String collapsedLine = splitLine[0];
+            
+            HashSet<String> uniqueStems = new HashSet<>();
+            
+            //Put each stem in the set to ensure uniqueness
+            for(int i = 1; i < splitLine.length; i++) {
+                uniqueStems.add(splitLine[i].toLowerCase().trim());
+            }
+          
+//            for(String uniqueStem : uniqueStems) {
+//                System.out.print(uniqueStem + " ");
+//            }
+//            System.out.println("\n");
+            
+            //
+            for(String uniqueStem : uniqueStems) {
+                if(!uniqueStem.isEmpty()) {
+                    collapsedLine += (" " + uniqueStem);
+                }
+            }
+            
+            collapsedLines.add(collapsedLine);
+            
+        }
+        
+        IO.writeFile(collapsedLines, outputFile);
+    }
+    
+    
+    
+    
+    
     
     //Takes a stemmed & collapsed test file & creates a report
     public static void buildReport(String testFile, String reportFile) {
