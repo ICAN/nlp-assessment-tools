@@ -110,10 +110,6 @@ public class NLTK {
     }
 
     //NAMED ENTITY RECOGNITION - NER
-    
-    
-    
-    
     //SENTENCE SPLITTING
     //Tokenizes by character, excluding all whitespace, numbering the characters
     //in each sentence
@@ -131,10 +127,10 @@ public class NLTK {
             }
 
             for (int i = 0; i < combined.length(); i++) {
-              
-                 output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
-                    tokenCount++;
-             
+
+                output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
+                tokenCount++;
+
             }
         }
 

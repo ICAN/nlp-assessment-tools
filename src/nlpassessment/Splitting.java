@@ -47,7 +47,7 @@ public class Splitting {
     }
     
     //
-    public static ArrayList<Token> getGoldAsCharacterTokens (String inputFile) {
+    public static ArrayList<Token> goldStringFileToCharacterTokens (String inputFile) {
         
         //Exclude newline characters, whitespace
         String gold = IO.readFileAsString(inputFile, false).replaceAll("\\s", "");
@@ -58,10 +58,10 @@ public class Splitting {
         int tokenInSentence = 0;
         int sentenceCount = 0;
         for(int i = 0; i < gold.length(); i++) {
-            if(gold.substring(i,i+2).equalsIgnoreCase("<>")) {
+            if(gold.substring(i,i+2).equalsIgnoreCase(SPLIT_PATTERN)) {
                 tokenInSentence = 0;
                 i+=2;
-                last.tagset = "SPLIT";
+                last.tagset = SPLIT_TAG;
                 sentenceCount++;
             } else {
                 tokenInText++;
@@ -106,26 +106,19 @@ public class Splitting {
     public static void condenseSentences(String inputFile, String outputFile) {
         ArrayList<Token> input = IO.standardLinesToTokens(IO.readFileAsLines(inputFile));
         
-        ArrayList<Token> output = new ArrayList<>();
+        ArrayList<String> output = new ArrayList<>();
         
-        String combined = "\n<SENTENCE 1>\t";
-        int sentenceCount = 1;
-        int runningToken = 0;
+        String sentence = "";
         for(Token token : input) {
-            combined+= token.token;
-            runningToken++;
-            if(runningToken > 40) {
-                combined += "\n<>\t\t";
-                runningToken = 0;
-            }
+            sentence += token.token;
             
             if(token.tagset.equalsIgnoreCase("SPLIT")) {
-                sentenceCount++;
-                output.add(new Token(sentenceCount, 0, combined, ""));
-                combined = "\n<SENTENCE " + sentenceCount + ">\t";
+                sentence += "<>";
+                output.add(sentence + "");
+                sentence = "";
             }
         }
-        IO.writeFile(IO.tokensToShortLines(output), outputFile);
+        IO.writeFile(output, outputFile);
     }
     
     

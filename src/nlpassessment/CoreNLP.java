@@ -23,14 +23,57 @@
  */
 package nlpassessment;
 
+import java.io.File;
+import java.lang.ProcessBuilder.Redirect;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CoreNLP {
 
     //PUBLIC METHODS
+    //A script for running the CoreNLP pipeline
+    //Uses commands designed for windows
+    //Path might need to be changed for other OS
+    public static void runCoreNLP(String inputFileName) {
+
+
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + s);
+
+        //Order of command-line arguments changed because it doesn't work 
+        //if you put them in the order specified in the CoreNLP instructions
+        String cmd = "java -cp \"c:\\NLP\\CoreNLP\\3.6.0\\*\" -Xmx2g "
+                + "edu.stanford.nlp.pipeline.StanfordCoreNLP -outputFormat conll "
+                + "-file " + inputFileName + " -annotators tokenize,ssplit,pos,lemma,ner";
+
+        ProcessBuilder pb = new ProcessBuilder(cmd.split("\\s"));
+//        System.out.println("Process created");
+//        pb.directory(new File("c:\\NLP\\CoreNLP\\3.6.0\\"));
+
+        try {
+
+            File log = new File("0_CoreNLP-log.txt");
+//            System.out.println("Created test log");
+            pb.redirectErrorStream(true);
+            pb.redirectOutput(Redirect.appendTo(log));
+
+            Process process = pb.start();
+//            Process process = Runtime.getRuntime().exec(cmd.split("\\s"));
+//            System.out.println("Process started");
+//            System.out.println("CoreNLP path is " + Paths.get("").toAbsolutePath().toString());
+            System.out.println("CoreNLP finished, returned: " + process.waitFor());
+
+        } catch (Exception e) {
+            System.out.println("Error running CoreNLP\nMessage: " + e.getMessage());
+
+        }
+
+    }
+
     public static void standardizePOS(String inputFile, String outputFile) {
-        //Simplify NLTK POS
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
@@ -50,9 +93,8 @@ public class CoreNLP {
     //TODO: Test
     public static void standardizeSplits(String inputFile, String outputFile) {
         ArrayList<String> raw = IO.readFileAsLines(inputFile);
-        ArrayList<String> clean = cleanRawSplits(raw);
-//        IO.writeFile(clean, outputFile);
-        ArrayList<Token> tokens = cleanSplitLinesToCharacters(clean);
+        ArrayList<Token> tokens = tokenizeRawSplits(raw);
+
         IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
     }
 
@@ -75,7 +117,6 @@ public class CoreNLP {
     }
 
     //PRIVATE METHODS
-    //GENERAL CORENLP METHODS
     /*
      Confirms that the string is a valid line
      */
@@ -220,7 +261,6 @@ public class CoreNLP {
     private static ArrayList<String> cleanRawSplits(ArrayList<String> lines) {
         ArrayList<String> intermediate = new ArrayList<>();
 
-
         //Combining multi-line sentences 
         ArrayList<String> output = new ArrayList<>();
         String combined = "";
@@ -234,43 +274,48 @@ public class CoreNLP {
                 combined += line;
             }
         }
-        
+
         if (!combined.equals("")) {
             output.add(combined);
         }
-        
+
         return output;
     }
 
     //Tokenizes by whitespace; number tokens according to place in sentence
     //TODO: Finish/test
-    private static ArrayList<Token> cleanSplitLinesToCharacters(ArrayList<String> lines) {
+    private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
         HashMap<String, String> map = getBracketMap();
         ArrayList<Token> output = new ArrayList<>();
-        int tokenCount = 1;
-        int sentenceCount = 0;
+        int characterInText = 0;
+        int characterInSentence = 0;
+        for (int i = 1; i < lines.size(); i++) {
 
-        for (String line : lines) {
-
+            String line = lines.get(i);
             if (line.matches("Sentence #[0-9]+.*")) {
-                System.out.println("ERROR: CLEAN FIRST sent:" + line);
+                characterInSentence = 0;
+            } else if (line.matches("\\[Text=.+ CharacterOffsetEnd=[0-9]+\\]")) {
+                //Do nothing, we don't want these
+//                System.out.println("ERROR: CLEAN FIRST sent:" + line);
             } else {
-                sentenceCount++;
+
                 String[] split = line.split("\\s+");
 
-                for (int i = 0; i < split.length; i++) {
-                    split[i] = renormalizeBracket(split[i], map);
+                //Renormalize brackets and build combined renormalized string
+                for (int j = 0; j < split.length; j++) {
+                    split[j] = renormalizeBracket(split[j], map);
                 }
-
                 String combined = "";
-
-                for (int i = 0; i < split.length; i++) {
-                    combined += split[i];
+                for (int j = 0; j < split.length; j++) {
+                    combined += split[j];
                 }
 
-                for (int i = 0; i < combined.length(); i++) {
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
-                    tokenCount++;
+                //Tokenize by character
+                for (int j = 0; j < combined.length(); j++) {
+                    characterInText++;
+                    characterInSentence++;
+                    output.add(new Token(characterInText, characterInSentence, "" + combined.charAt(j), "_"));
+
                 }
             }
         }

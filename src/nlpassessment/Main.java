@@ -23,6 +23,8 @@
  */
 package nlpassessment;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,92 +33,92 @@ import java.util.HashMap;
  * @author Neal
  */
 public class Main {
+
     /**
      * @param args the command line arguments
      */
-    
+
     public static void main(String[] args) {
-        //POS-TAGGING STUFF
+
+        
+
+        CoreNLP.runCoreNLP("");
+        
+        
+        
+//POS-TAGGING STUFF
 //        standardizeAllPOS("","");
 //        produceMinimalCommonTokenLists("pos", 3);
 //        producePOSConsensus("","",0.85);
 //        testAllPOS("pos-gold-5b.txt");
-
         //STEMMING STUFF
 //        Stemming.stemAll("raw-stem-v6.txt");
 //        Stemming.collapseAll();
-        
-        
         //SENTENCE-SPLITTING STUFF
 //        standardizeAllSplits("", "");
 //        produceMinimalCommonTokenLists("split", 8);
 //        tagAllSplits("", "");
-//        produceSplitConsensus("", "", .55);
+//        produceSplitConsensus("", "", .75);
 //        produceSplitCondensed();
-        
+//        Splitting.goldToRaw("gold-split-v6d.txt", "raw-split-v6d.txt");
+//        IO.writeFile(IO.tokensToStandardLines(Splitting.goldStringFileToCharacterTokens("all-split-consensus-condensed.txt")), "gold-split-tokens-v6e.txt");
 //        printTagCounts("core-split-std.txt");
 //        printTagCounts("mbsp-split-std.txt");
 //        printTagCounts("nltk-split-std.txt");
-//        printTagCounts("mbsp-split-std.txt");
+//        printTagCounts("spacy-split-std.txt");
 //        printTagCounts("open-split-std.txt");
-        
-        
+//        
+//        printTagCounts("core-split-tagged.txt");
+//        printTagCounts("mbsp-split-tagged.txt");
+//        printTagCounts("nltk-split-tagged.txt");
+//        printTagCounts("spacy-split-tagged.txt");
+//        printTagCounts("open-split-tagged.txt");
+//        printTagCounts("all-split-consensus.txt");
+//        printTagCounts("gold-split-tokens-v6e.txt");
+//        printTagCounts("gold-split-tokens-v6d.txt");
+//                printTagCounts("gold-split-tokens-v6c.txt");
+//        printTagCounts("gold-split-restricted-v6c.txt");
         //CORE SENT SPLITTING DEBUGGING
 //        CoreNLP.cleanSplits("core-split-out.txt", "core-split-clean.txt");
 //        CoreNLP.standardizeSplits("core-split-out.txt", "core-split-std.txt");
 //        Splitting.tagFinalCharacters("core-split-std.txt", "core-split-tagged.txt");
 //        Splitting.condenseSentences("core-split-tagged.txt", "core-split-condensed.txt");
 //        printTagCounts("core-split-tagged.txt");
-        
         //NLTK SENT SPLITTING DEBUGGING
 //        NLTK.standardizeSplits("nltk-split-out.txt", "nltk-split-std.txt");
 //        Splitting.tagFinalCharacters("nltk-split-std.txt", "nltk-split-tagged.txt");
 //        Splitting.condenseSentences("nltk-split-tagged.txt", "nltk-split-condensed.txt");
 //        printTagCounts("nltk-split-tagged.txt");
-
         //MBSP SENT SPLITTING DEBUGGING
 //        System.out.print("Non-empty lines" + IO.countNonemptyLines("mbsp-split-out.txt"));
 //        MBSP.standardizeSplits("mbsp-split-out.txt", "mbsp-split-std.txt");
 //        Splitting.tagFinalCharacters("mbsp-split-std.txt", "mbsp-split-tagged.txt");
 //        Splitting.condenseSentences("mbsp-split-tagged.txt", "mbsp-split-condensed.txt");
 //        printTagCounts("mbsp-split-tagged.txt");
-        
         //SPACY SENT SPLITTING DEBUGGING
 //        System.out.print("Non-empty lines" + IO.countNonemptyLines("spacy-split-out.txt"));
 //        Spacy.standardizeSplits("spacy-split-out.txt", "spacy-split-std.txt");
 //        Splitting.tagFinalCharacters("spacy-split-std.txt", "spacy-split-tagged.txt");
 //        Splitting.condenseSentences("spacy-split-tagged.txt", "spacy-split-condensed.txt");
 //        printTagCounts("spacy-split-tagged.txt");
-        
         //OPENNLP SENT SPLITTING DEBUGGING
 //        System.out.print("Non-empty lines" + IO.countNonemptyLines("open-split-out.txt"));
 //        OpenNLP.standardizeSplits("open-split-out.txt", "open-split-std.txt");
 //        Splitting.tagFinalCharacters("open-split-std.txt", "open-split-tagged.txt");
 //        Splitting.condenseSentences("open-split-tagged.txt", "open-split-condensed.txt");
 //        printTagCounts("open-split-tagged.txt");
-        
-        
-//        Splitting.goldToRaw("gold-split-v6c.txt", "raw-split-v6c.txt");
-
-//        IO.writeFile(IO.tokensToStandardLines(Splitting.getGoldAsCharacterTokens("gold-split-v6c.txt")), "gold-split-tokens-v6c.txt");
-        
-        
-        
+//        
 //        printTagCounts("mbsp-split-tagged.txt");
 //        printTagCounts("open-split-tagged.txt");
 //        printTagCounts("nltk-split-tagged.txt");
 //        printTagCounts("core-split-tagged.txt");
 //        printTagCounts("spacy-split-tagged.txt");
 //        printTagCounts("all-split-consensus.txt");
-
-
-
+//IO.countNonemptyLines("gold-split-v6d.txt");
 //        IO.countNonemptyLines("all-split-consensus-condensed.txt");
 //        IO.countNonemptyLines("open-split-out.txt");
     }
-    
-    
-    
+
     public static void printTagCounts(String fileName) {
         HashMap<String, Integer> tagCounts = Comparator.getTagCounts(
                 IO.readFileAsStandardTokens(fileName));
@@ -287,7 +289,7 @@ public class Main {
         Splitting.condenseSentences("spacy-split-tagged.txt", "spacy-split-condensed.txt");
         Splitting.condenseSentences("all-split-consensus.txt", "all-split-consensus-condensed.txt");
     }
-    
+
     public static void tagAllSplits(String inputPath, String outputPath) {
         Splitting.tagFinalCharacters("mbsp-split-restricted.txt", "mbsp-split-tagged.txt");
         Splitting.tagFinalCharacters("open-split-restricted.txt", "open-split-tagged.txt");
@@ -295,7 +297,5 @@ public class Main {
         Splitting.tagFinalCharacters("nltk-split-restricted.txt", "nltk-split-tagged.txt");
         Splitting.tagFinalCharacters("spacy-split-restricted.txt", "spacy-split-tagged.txt");
     }
-
-    
 
 }

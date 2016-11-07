@@ -24,8 +24,10 @@
 package nlpassessment;
 
 import java.io.File;
+
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,6 +36,24 @@ import java.util.Scanner;
  * @author Neal
  */
 public class IO {
+
+    
+    //Waits for the process to end & returns the result
+    public static int runCommand(String cmd) {
+
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+
+        try {
+
+            Process process = pb.start();
+            process.waitFor();
+            return process.exitValue();
+
+        } catch (Exception e) {
+            System.out.println("Error running command: " + cmd + "\nMessage: " + e.getMessage());
+            return -1;
+        }
+    }
 
     public static int countNonemptyLines(String fileName) {
         ArrayList<String> lines = readFileAsLines(fileName);
@@ -72,12 +92,12 @@ public class IO {
 
     public static String arrayToString(String[] tokens, boolean spacesBetweenTokens) {
         String string = tokens[0];
-        for(int i = 1; i < tokens.length; i++) {
+        for (int i = 1; i < tokens.length; i++) {
             string += (" " + tokens[i]);
         }
         return string;
     }
-    
+
     /*
      Reads a file and returns its lines in an arraylist
      */
