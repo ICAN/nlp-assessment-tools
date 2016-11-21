@@ -23,12 +23,9 @@
  */
 package nlpassessment;
 
-import stemming.Porter1;
-import stemming.Porter2;
-import stemming.Lancaster;
-
 import java.util.ArrayList;
 import java.util.HashSet;
+import static nlpassessment.Utility.countTokensPerLine;
 
 /**
  *
@@ -37,175 +34,198 @@ import java.util.HashSet;
  * A family of methods for running stemmers and assessing results
  *
  */
-public class Stemming {    
-    
-    public static String[] getUnique(String[] input) {
+public class Stemming {
+
+    //TODO: Test
+    public static HashSet<String> getUnique(String[] input) {
         HashSet<String> unique = new HashSet<>();
-        
-        for(String string : input) {
-            unique.add("" + string);
-        }        
-        
-        return (String[])unique.toArray();
+
+        for (String string : input) {
+            unique.add(string.trim());
+        }
+        return unique;
+
     }
-    
+
     //Removes unique splitLines; ignores the first token in each unstemmedLine
     public static void cleanStemTest(String inputFile, String outputFile) {
 
-        ArrayList<String> input = IO.readFileAsLines(inputFile);
-        ArrayList<String> output = new ArrayList<>();
+        ArrayList<String> inputLines = Utility.readFileAsLines(inputFile);
+        ArrayList<String> outputLines = new ArrayList<>();
 
-        for (int i = 0; i < input.size(); i++) {
-            String[] inputLine = input.get(i).split("\\s");
-            String outputLine = inputLine[0];
-            inputLine[0] = "";
-                        
-            String[] unique = getUnique(inputLine);
-                        
-            if(!inputLine[0].matches("<.*>")) {
-                System.out.println("ERROR: " + inputLine[0] + " IS NOT A VALID LINE MARKER");
-                System.exit(-1);
-            }
-            
-            for(String word : unique) {
-                if(word.matches("<.*>")) {
-                    System.out.println("ERROR: " + word + " IS NOT A VALID TOKEN");
+        for (int i = 0; i < inputLines.size(); i++) {
+            String outputLine = "";
+            //Get a set of unique tokens from the current input line
+            HashSet<String> unique = getUnique(inputLines.get(i).split("\\s+"));
+
+            //Add all unique words to current output line
+            for (String word : unique) {
+                //Exclude hyphenated tokens
+                if (!word.matches(".*-.*")) {
+                    outputLine += (word.trim() + " ");
                 }
-                outputLine += (" " + word);
             }
-            output.add(outputLine);
+            //Add current output line to output
+            outputLines.add(outputLine);
         }
 
-        IO.writeFile(output, outputFile);
+        Utility.writeFile(outputLines, outputFile);
     }
 
-    //
-    public static void stemAll(String testFile) {
-
-        stemming.Stemmer porter1Stemmer = new Porter1();
-        stemming.Stemmer porter2Stemmer = new Porter2();
-        stemming.Stemmer lancasterStemmer = new Lancaster();
+    //Stems entire document word by word
+    //TODO: Test
+    public static void stemDocument(String inputFile, String outputFile, stemming.Stemmer stemmer) {
 
         //Get the stemming test case
-        ArrayList<String> lines = IO.readFileAsLines(testFile);
+        ArrayList<String> inputLines = Utility.readFileAsLines(inputFile);
+        ArrayList<String> stemmedLines = new ArrayList<>();
 
-        ArrayList<String[]> splitLines = new ArrayList<>();
-        for (int i = 0; i < lines.size(); i++) {
-            String[] line = lines.get(i).split("\\s+");
-            splitLines.add(line);
-        }
+        //For each inputLine
+        for (String inputLine : inputLines) {
 
-        ArrayList<String[]> porter1Stemmed = new ArrayList<>();
-        ArrayList<String[]> porter2Stemmed = new ArrayList<>();
-        ArrayList<String[]> lancasterStemmed = new ArrayList<>();
-
-        //For each unstemmedLine
-        for (int i = 0; i < splitLines.size(); i++) {
-            String[] unstemmedLine = splitLines.get(i);
-            String[] porter1Line = new String[unstemmedLine.length];
-            String[] porter2Line = new String[unstemmedLine.length];
-            String[] lancasterLine = new String[unstemmedLine.length];
+            String[] splitLine = inputLine.split("\\s+");
+            String stemmedLine = "";
 
             //Keep the initial unstemmedLine-marking token <stem>
-            porter1Line[0] = "" + unstemmedLine[0];
-            porter2Line[0] = "" + unstemmedLine[0];
-            lancasterLine[0] = "" + unstemmedLine[0];
+//            stemmedLine[0] = "" + unstemmedLine[0];
+            //Stem each word, add to the stemmed line
+            for (String token : splitLine) {
 
-            //Stem each word, add to the appropriate unstemmedLine & list
-            for (int j = 1; j < unstemmedLine.length; j++) {
-                porter1Line[j] = porter1Stemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
-                porter2Line[j] = porter2Stemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
-                lancasterLine[j] = lancasterStemmer.stem(unstemmedLine[j]).replaceAll("[^\\w]", "");
-//                System.out.println("raw: " + unstemmedLine[j] +"  p1: " + porter1Line[j] + "  p2: " + porter2Line[j] + "  lan: " + lancasterLine[j]);
+//                System.out.print(token + "-");
+                token = token.trim().replaceAll("\\W+", "");
+//                System.out.print(token + "-");   
+                token = stemmer.stem(token);
+//                System.out.print(token + "-");   
+//                token = token.trim();
+//                System.out.print(token + "-\n"); 
+                stemmedLine += token + " ";
             }
-            
-            //Add current stemmed lines to their respective lists
-            porter1Stemmed.add(porter1Line);
-            porter2Stemmed.add(porter2Line);
-            lancasterStemmed.add(lancasterLine);
+
+            //Add current stemmed line to stemmed lines
+            stemmedLines.add(stemmedLine);
+
         }
-        
-        //Prep for file output
-        ArrayList<String> porter1Combined = new ArrayList<>();
-        ArrayList<String> porter2Combined = new ArrayList<>();
-        ArrayList<String> lancasterCombined = new ArrayList<>();
-        
-        for(String[] line : porter1Stemmed) {
-            porter1Combined.add(IO.arrayToString(line, true));
-        }
-        for(String[] line : porter2Stemmed) {
-            porter2Combined.add(IO.arrayToString(line, true));
-        }
-        for(String[] line : lancasterStemmed) {
-            lancasterCombined.add(IO.arrayToString(line, true));
-        }
-        
-        IO.writeFile(porter1Combined, "porter1-stemmed.txt");
-        IO.writeFile(porter2Combined, "porter2-stemmed.txt");
-        IO.writeFile(lancasterCombined, "lancaster-stemmed.txt");
-        
+
+        Utility.writeFile(stemmedLines, outputFile);
+
     }
-    
-    
-    public static void collapseAll (){
-    
-        collapse("porter1-stemmed.txt", "porter1-uniqueStems.txt");
-        collapse("porter2-stemmed.txt", "porter2-uniqueStems.txt");
-        collapse("lancaster-stemmed.txt", "lancaster-uniqueStems.txt");
-        
-    }
-    
-    private static void collapse(String inputFile, String outputFile) {
-        
-        ArrayList<String> lines = IO.readFileAsLines(inputFile);        
-        
+
+    //TODO: Test
+    //Probably okay
+    public static void collapseStemmingResults(String inputFile, String outputFile) {
+
+        ArrayList<String> lines = Utility.readFileAsLines(inputFile);
+
         ArrayList<String> collapsedLines = new ArrayList<>();
-        
-        for(String line : lines) {
-            
+
+        for (String line : lines) {
+
             String[] splitLine = line.split("\\s+");
-            String collapsedLine = splitLine[0];
-            
-            HashSet<String> uniqueStems = new HashSet<>();
-            
-            //Put each stem in the set to ensure uniqueness
-            for(int i = 1; i < splitLine.length; i++) {
-                uniqueStems.add(splitLine[i].toLowerCase().trim());
-            }
-          
-//            for(String uniqueStem : uniqueStems) {
-//                System.out.print(uniqueStem + " ");
-//            }
-//            System.out.println("\n");
-            
-            //
-            for(String uniqueStem : uniqueStems) {
-                if(!uniqueStem.isEmpty()) {
-                    collapsedLine += (" " + uniqueStem);
+
+            HashSet<String> uniqueStems = getUnique(splitLine);
+
+            String collapsedLine = "";
+
+            for (String uniqueStem : uniqueStems) {
+                if (!uniqueStem.isEmpty()) {
+                    collapsedLine += (uniqueStem.trim() + " ");
                 }
             }
-            
+
             collapsedLines.add(collapsedLine);
+
+        }
+
+        Utility.writeFile(collapsedLines, outputFile);
+    }
+
+    //Takes a cleaned test file (all tokens in line must be unique and must be part of the test)
+    //and a collapsed stemmer output file (must already be collapsed so that each line consists only of unique tokens)
+    public static void assessStemmingResults(String testFile, String stemmerOutputFile, String dataOutputFile) {
+
+        ArrayList<String> testLines = Utility.readFileAsLines(testFile);
+        ArrayList<String> stemmerOutputLines = Utility.readFileAsLines(stemmerOutputFile);
+
+        //Validity checks
+        if (testLines.size() != stemmerOutputLines.size()) {
+            System.out.println("Test file and stemmer output file contain different numbers of lines");
+        } else if (Utility.countNonemptyLines(testFile) != Utility.countNonemptyLines(stemmerOutputFile)) {
+            System.out.println("Test file and stemmer output file contain different numbers of non-empty lines");
+        }
+
+        int totalTestTokens = 0;
+        int totalStemmedTokens = 0;
+
+        //Intraline results
+        Integer[] testTokensPerLine = countTokensPerLine(testLines);
+        Integer[] stemmedTokensPerLine = countTokensPerLine(stemmerOutputLines);
+        Double[] proportionOfUniqueTokensRemaining = new Double[testTokensPerLine.length];
+
+        for (int i = 0; i < testTokensPerLine.length; i++) {
+            proportionOfUniqueTokensRemaining[i] = (double) stemmedTokensPerLine[i] / (double) testTokensPerLine[i];
+//            System.out.println(relativeStemmedTokens[i] + " ");
+        }
+
+        //TODO: Add more interline assessment metrics
+        //Interline results
+
+        Integer[] numberOfLinesContainingMatches = new Integer[testLines.size()];
+                
+        //For each line, 
+        //Determine how many other lines contain tokens matching a token the current line
+        for (int currentLineIndex = 0; currentLineIndex < testTokensPerLine.length; currentLineIndex++) {
+            int linesContainingMatches = 0;        
+            
+            for (int comparedLineIndex= 0; comparedLineIndex < testTokensPerLine.length; comparedLineIndex++) {
+                boolean matchFoundInThisLine = false;
+                //Don't compare lines to themselves                
+                if(currentLineIndex!=comparedLineIndex) {
+                    
+                    for(String tokenInCurrentLine : stemmerOutputLines.get(currentLineIndex).split("\\s+")) {
+                        for(String tokenInComparedLine : stemmerOutputLines.get(comparedLineIndex).split("\\s+")) {
+                            if(tokenInCurrentLine.trim().equalsIgnoreCase(tokenInComparedLine.trim())) {
+                                matchFoundInThisLine = true;
+                            }
+                        }
+                    }                    
+                }
+                if(matchFoundInThisLine) {
+                    linesContainingMatches += 1;
+                }
+            }
+            numberOfLinesContainingMatches[currentLineIndex] = linesContainingMatches;            
+        }
+
+        //Prepare TSV lines & field headers
+        ArrayList<String> assessmentLines = new ArrayList<>();
+        assessmentLines.add("line number\t"
+                + "unstemmed tokens\t"
+                + "stemmed tokens\t"
+                + "proportion of tokens remaining\t"
+                + "number of lines containing matching tokens\t");
+        
+        //Add data fields
+        for(int i = 0; i < testTokensPerLine.length; i++) {
+            //Line number
+            String line = (i+1) + "\t";
+            //Unstemmed tokens in line
+            line += testTokensPerLine[i] + "\t";
+            //Stemmed tokens in line
+            line += stemmedTokensPerLine[i] + "\t";
+            //Proportion of tokens remaining
+            line += proportionOfUniqueTokensRemaining[i] + "\t";
+            
+            
+            //Number of other lines which contain a token which matches a token in this line
+            line += numberOfLinesContainingMatches[i] + "\t";
+            
+            assessmentLines.add(line);
             
         }
         
-        IO.writeFile(collapsedLines, outputFile);
-    }
-    
-    
-    
-    
-    
-    
-    //Takes a stemmed & collapsed test file & creates a report
-    public static void buildReport(String testFile, String reportFile) {
-        
-        ArrayList<String> input = IO.readFileAsLines(testFile);
-        
-        
+        Utility.writeFile(assessmentLines, dataOutputFile);
         
         
     }
-    
 
 }

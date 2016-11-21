@@ -33,17 +33,17 @@ public class Spacy {
 
     //Good
     public static void standardizePOS(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //Looks good
     public static void standardizeSplits(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -62,15 +62,17 @@ public class Spacy {
     private static ArrayList<Token> tokenizeRawPOS(ArrayList<String> lines) {
 
         ArrayList<Token> taggedTokens = new ArrayList<Token>();
-        
+
         int tokenCount = 1;
         for (String line : lines) {
 
             String[] split = line.split("\\s+");
-            
+
             if (split.length == 2) {
-                if(!split[0].trim().equalsIgnoreCase("")) {
-                    taggedTokens.add(new Token(tokenCount, 0, split[0], split[1]));
+                if (!split[0].trim().equalsIgnoreCase("")) {
+                    Token token = new Token(split[0]);
+                    token.tags.put("pos", split[1]);
+                    token.indexInText = tokenCount;
                     tokenCount++;
                 }
             } else {
@@ -84,58 +86,9 @@ public class Spacy {
 
     }
 
-    //PRIVATE METHODS
-    //POS-TAGGING
-    //TODO: Write this
-    private static ArrayList<Token> tokenizeRawPOSV3(ArrayList<String> lines) {
-
-        ArrayList<Token> taggedTokens = new ArrayList<Token>();
-        
-        int tokenCount = 0;
-        for (String line : lines) {
-
-            String[] split = line.split("\\s+");
-            
-            if(!validateLineV3(line)) {
-                
-            } else if (split.length == 4) {
-                System.out.println("Length 4 split: " + line);
-                tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[3]));
-            } else if (split.length == 3) {
-                tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[1], split[2]));
-            } else if (split.length == 2 
-                    && split[split.length-1].equalsIgnoreCase("SPACE")) {
-                //Ignore these, looks like they're always spaces
-                //Weirdly, they are sometimes tagged "SPACE" and others "PUNCT"
-            } else {
-                System.out.println("Invalid line (incorrect split) " + line);
-            }
-
-        }
-
-        return taggedTokens;
-
-    }
-    
-    
-    private static boolean validateLineV3(String line) {
-        String[] split = line.split("\\s+");
-        
-        if(split.length < 3) {
-            return false;
-        } else if (split[1].equalsIgnoreCase("'s")){
-            return false;
-        }
-        
-        
-        return true;
-    }
-    
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tagset = simplifyPOSTag(token.tagset);
+            token.tags.put("pos", simplifyPOSTag(token.tags.get("pos")));
         }
     }
 
@@ -155,14 +108,7 @@ public class Spacy {
         }
     }
 
-    
     //NAMED ENTITY RECOGNITION - NER
-    
-    
-    
-    
-    
-    
     //SENTENCE SPLITTING
 //Tokenizes by character, excluding all whitespace, numbering the characters
     //in each sentence
@@ -179,15 +125,15 @@ public class Spacy {
             }
 
             for (int i = 0; i < combined.length(); i++) {
-               
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
-                    tokenCount++;
-    
+                Token token = new Token("" + combined.charAt(i));
+                token.indexInText = tokenCount;
+                token.indexInSentence = i + 1;
+                token.tags.put("split", "_");
+                output.add(token);
+                tokenCount++;
             }
         }
         return output;
     }
-    
-    
-    
+
 }

@@ -1,0 +1,100 @@
+<control> subcontrol wellcontrol noncontrol precontrol overcontrol control uncontrol quasicontrol
+<contrib> overcontribut noncontribut contribut contrubut uncontribut precontribut
+<norm> nonnorm hypernorm antinorm seminorm abnorm overnorm transnorm normalcy quasinorm unnorm norm
+<produc> product nonproduc outproduc superproduc interproduc misproduc produc unproduc
+<democr> nondemocr democr undemocr predemocr quasidemocr superdemocr antidemocr hyperdemocr prodemocr
+<dev> antidevelop hyperdevelop predevelop nondevelop subdevelop superdevelop develop undevelop postdevelop
+<foc> unfocus overfocus refocus unfocuss misfocuss overfocuss focus refocuss foc misfocus
+<ident> unident indent ident overident preident id reident
+<complet> precomplet subcomplet complet uncomplet
+<realiz> nonr unr real prer under hyper
+<relig> prereligy quasireligy religy antireligy overreligy nonreligy
+<measur> remeas outmeas undermeas meas premeas mismeas intermeas
+<recogniz> recogn unrecogn prerecogn nonrecogn
+<judg> unjudg judgelik subjudg rejudg unjudgelik judg underjudg
+<tradit> nontradit antitradit semitradit untradit protradit tradit pretradit
+<defin> definit predefin semidefin nondefin redefin defin misdefin undefin
+<responsib> nonrespons quasirespons superrespons unrespons prerespons respons interrespons
+<descri> describ undescrib overdescrib nondescrib predescrib redescrib
+<prov> preprov overprov unprov nonprov prov
+<natur> nat transn antin hypern subn non pren
+<increas> nonincreas increas unincreas reincreas preincreas superincreas proincreas
+<involv> preinvolv reinvolv uninvolv interinvolv involv noninvolv overinvolv
+<commerc> precommerc anticommerc countercommerc semicommerc noncommerc procommerc commerc supercommerc
+<crit> noncrit crit anticrit postcrit
+<demonstr> demonst counterdemonst redemonst predemonst undemonst subdemonst
+<effec> subeffect preeffect effect uneffect supereffect
+<plan> replan outplan planless preplan underplan overplan unplan plan misplan
+<refor> reform unreform
+<succe> success presuccess nonsuccess semisuccess
+<polit> subpolit nonpolit unpolit prepolit polit overpolit antipolit
+<debat> deb nondeb outdeb overdeb interdeb predeb redeb undeb postdeb
+<level> relevel antilevel unlevel level
+<trade> intertrad untrad undertrad nontrad trad retrad protrad
+<nat> nat pron antin subn un non pren
+<encourag> overenco preenco enco unenco reenco
+<observ> unobserv nonobserv preobserv reobserv observ
+<reveal> rev nonrev prerev unrev
+<strik> nonstrik outstrick strik prostrik antistrik outstrik understrik prestrik poststrik
+<gov> ungovern countergovern semigovern subgovern govern regovern undergovern nongovern
+<physic> unphys phys nonphys transphys antiphys
+<indep> independ superindepend preindepend nonindepend
+<dream> undreamlik dreamless dreamlik dream redream undream
+<improv> superimprov improv preimprov
+<interes> interest overinterest
+<profes> profess nonprofess unprofess
+<posit> superposit posit overposit unposit
+<buil> misbuild underbuild superbuild prebuild build built outbuild overbuilt unbuild unbuilt
+<practic> mispract impract repract overpract nonpract prepract pract outpract
+<prevent> prevent unprev prev nonprev preventabil nonprevent unprevent
+<train> undertrain untrain nontrain semitrain pretrain train
+<offic> unoff suboff quasioff nonoff underoff preoff off
+<ston> unston stony ston stonelik stoneless
+benefit benefit prebenefit unbenefit
+<soc> presoc hypersoc intersoc soc oversoc unsoc nonsoc
+<examin> superexamin unexamin examin subexamin preexamin
+<modern> modern mondern unmodern antimodern nonmodern
+<expla> explain expl unexplain misexplain nonexplain
+<subj> unsubject subject nonsubject subjectlik
+<driv> undr driv redr predrov nondr drov predr redrov
+<internat> intern unintern nonintern
+<clos> preclos overclos clos unclos nonclos
+<introd> reintroduc subintroduc unintroduc introduc
+<travel> outtravel nontravel travel untravel pretravel
+<admit> admit admitt readmit nonadmit unadmit preadmit
+<spread> underspread antispread prespread respread spread unspread
+<cultur> noncult cult anticult precult transcult
+<grind> regrind grind unground ungrind ground
+<maint> unmaintain maintain maint undermaintain
+<discus> undiscuss nondiscuss discuss
+average underav av unav superav subav
+<human> hum unhum humanoid demihum humanlik
+<doct> undoct doct
+<play> play unplay nonplay playlik
+factor unfact fact
+<pow> overpow pow unpow superpow
+<smil> subsmil smil smileless outsmil unsmil
+<shak> unshak shook shak reshak
+<refer> misref ref unrefer preref prerefer refer referr misrefer
+<assoc> assocy superassocy nonassocy unassocy reassocy
+<shap> preshap shap outshap unshap transshap
+<environ> interenviron proenviron nonenviron preenviron environ
+<compar> comp precomp recomp uncomp intercomp
+<milit> nonmilit supermilit antimilit milit promilit paramilit premilit unmilit
+<person> hyperperson unperson person multiperson nonperson superperson imperson
+<handl> prehandl overhandl handl rehandl
+<underst> nonunderstand understand understood preunderstand
+<stat> stat counterst ant subst outst unst
+<expr> unexpress express
+<wild> semiwild overwild wild unwild
+<perfect> perfect nonperfect unperfect superperfect
+<pressur> underpress unpress interpress press superpress nonpress
+<suff> presuff outsuff suff nonsuff insuff
+<break> brok break nonbreak rebreak rebrok unbreak
+<drink> drank drink outdrink overdrink
+<buy> bought rebuy buy prebuy unbuy nonbuy
+<chang> changeless chang unchang
+<talk> nontalk talk untalk
+<hear> outhear unhear rehear hear heard
+<plac> preplac plac placeless unplac
+<light> light

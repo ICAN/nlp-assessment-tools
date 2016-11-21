@@ -34,10 +34,10 @@ public class MBSP {
     //PUBLIC METHODS
 
     public static void standardizePOS(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //FUNCTION NOT SUPPORTED
@@ -48,9 +48,9 @@ public class MBSP {
 
     //TODO: Write this
     public static void standardizeSplits(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -74,7 +74,10 @@ public class MBSP {
                 //Validate line and add
                 if ((split[0] + " " + split[1]).matches(".+\\s+[A-Z\\p{Punct}]+.*")) {
                     textTokenCount++;
-                    taggedTokens.add(new Token(textTokenCount, 0, split[0], split[1]));
+                    Token token = new Token(split[0]);
+                    token.indexInText = textTokenCount;
+                    token.tags.put("pos", split[1]);
+                    taggedTokens.add(token);
                 } else {
                     System.out.println("Failed to validate line " + " " + split[0] + " " + split[1]);
                 }
@@ -88,7 +91,7 @@ public class MBSP {
 
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tagset = simplifyPOSTag(token.tagset);
+            token.tags.put("pos", simplifyPOSTag(token.tags.get("pos")));
         }
     }
 
@@ -113,10 +116,11 @@ public class MBSP {
         }
     }
 
-    //NAMED ENTITY RECOGNITION
+    
     //SENTENCE SPLITTING
     //Tokenizes by character, excluding all whitespace, numbering the characters
     //in each sentence
+    //TODO: Write this
     private static ArrayList<Token> tokenizeRawSplits(ArrayList<String> lines) {
         ArrayList<Token> output = new ArrayList<>();
 
@@ -131,7 +135,7 @@ public class MBSP {
             
             for(int i = 0; i < combined.length(); i++) {
              
-                    output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
+                
                     tokenCount++;
             
             }    

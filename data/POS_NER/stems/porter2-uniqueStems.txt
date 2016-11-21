@@ -1,0 +1,100 @@
+<control> controllingli subcontrol wellcontrol noncontrol precontrol overcontrol control uncontrol quasicontrol
+<contrib> overcontribut noncontribut contribut contrubut uncontribut precontribut
+<norm> nonnorm hypernorm normal antinorm seminorm abnorm overnorm transnorm normalci quasinorm unnorm norm
+<produc> product nonproduc outproduc intraproduct superproduc interproduc misproduc produc unproduc interproduct
+<democr> predemocrat undemocrat pseudodemocrat democrat superdemocrat antidemocrat prodemocrat hyperdemocrat nondemocrat quasidemocrat democraci
+<dev> development nondevelop nondevelopment postdevelopment hyperdevelopment develop antidevelop hyperdevelop predevelop undevelopment subdevelop superdevelop developmentari
+<foc> unfocus overfocus refocus unfocuss misfocuss overfocuss focus refocuss focu misfocus
+<ident> reidentifi identifi preidentifi unidentifi ident identif overidentifi indentifi
+<complet> precomplet subcomplet complet completed uncomplet
+<realiz> nonrealiz nonreal hyperr prereal realiz unreal realis underr
+<relig> prereligi quasireligi religi antireligi pseudoreligi overreligi nonreligi ultrareligi
+<measur> outmeasur remeasur premeasur undermeasur mismeasur measur intermeasur
+<recogniz> recogn recogniz unrecogniz unrecogn recognis prerecogn nonrecogn
+<judg> unjudg judgeabl judgelik subjudg rejudg judgingli unjudgelik judg underjudg
+<tradit> nontradit nontraditionari semitradit protradit tradit traditionari antitradit semitradition antitradition untradit untradition tradition nontradition pretradit
+<defin> definit predefin semidefin nondefin redefin defin misdefin undefin
+<responsib> nonrespons quasirespons unresponsibli quasiresponsibli superrespons unrespons responsibli prerespons superresponsibli respons interrespons nonresponsibli
+<descri> describ undescrib overdescrib nondescrib predescrib redescrib
+<prov> preproven prove provabl preprov overprov unprov nonprov provenli overproven
+<natur> prenatur natur antinatur nonnatur hypernatur subnatur transnatur
+<increas> nonincreas increasingli increasedli increas unincreas reincreas preincreas superincreas proincreas
+<involv> involved preinvolv reinvolv uninvolv interinvolv involv involvedli noninvolv overinvolv
+<commerc> noncommerci anticommerci ultracommerci commerci precommerci procommerci semicommerci countercommerci supercommerci
+<crit> critic noncrit pseudocrit anticrit postcrit noncritic anticritic
+<demonstr> demonstratedli predemonstr redemonstr counterdemonstr subdemonstr undemonstr demonstr
+<effec> subeffect preeffect effect uneffect supereffect
+<plan> replan outplan planless preplan underplan overplan unplan plan misplan planlessli
+<refor> reform reformingli unreform
+<succe> nonsuccessfulli successfulli presuccessfulli success presuccess nonsuccess succeed succe semisuccess semisuccessfulli
+<polit> subpolit nonpolit unpolit prepolit polit pseudopolit overpolit antipolit
+<debat> nondeb outdeb debat predebat debatingli overdeb interdeb predeb redeb undeb nondebat postdeb
+<level> relevel antilevel unlevel level unlevelli levelli
+<trade> intertrad untrad tradeabl trade undertrad nontrad retrad tradabl protrad
+<nat> nation pseudonation antin prenat unnat nonnation pronat pseudon nonnat nationalist unnation antination subnat
+<encourag> encouragingli reencourag preencourag overencourag unencourag encourag
+<observ> nonobservingli observedli unobserv nonobserv preobserv reobserv observ observingli
+<reveal> revealedli nonrev reveal unreveal revealingli prerev unrevealingli revealing unrev
+<strik> outstricken nonstrik strike prostrik antistrik outstrik understrik prestrik poststrik
+<gov> ungovern government countergovern subgovern nongovernment govern regovern undergovern semigovernment ungovernment nongovern
+<physic> unphys nonphys transphys antiphys physic antiphysic
+<indep> independ pseudoindepend superindepend preindepend nonindepend
+<dream> undreamlik dreamless dreamingli dreamlik dream dreamfulli redream dreamlessli undream
+<improv> improvingli superimprov improv preimprov
+<interes> overinterested interest interestedli overinterestedli interested overinterest
+<profes> unprofessori profess professor nonprofessori professori pseudoprofessori
+<posit> superposit posit overposit unposit
+<buil> misbuild underbuild superbuild buildabl prebuild build built outbuild overbuilt unbuild unbuilt
+<practic> practic impract repract overpractic overpract prepract outpract repractic mispract outpractic mispractic nonpractic prepractic impractic
+<prevent> prevent preventingli preventabilti unprev preventibli nonprevent unprevent
+<train> undertrain untrain nontrain semitrain trainabl pretrain train
+<offic> preoffici suboffici nonoffici offic offici unoffici pseudooffici underoffici quasioffici
+<ston> unston stoni stonabl stoneabl stonelik stoneless stone
+benefit benefitt benefit prebenefit unbenefit
+<soc> unsoci oversoci presoci nonsoci social hypersoci intersoci pseudosoci
+<examin> superexamin unexamin examin subexamin examinatori preexamin examiningli
+<modern> modernli modern antimodernli mondern nonmodernli unmodern antimodern nonmodern
+<expla> explain unexplain explan misexplain nonexplain
+<subj> unsubject subjected subject nonsubject subjectedli subjectlik
+<driv> undriv drove drivabl driveabl predrov redriv drive nondriv predriv redrov
+<internat> intern unintern nonintern noninternation internation pseudointern
+<clos> closeabl preclos overclos unclos closabl close nonclos
+<introd> reintroduc subintroduc unintroduc introduc
+<travel> outtravel nontravel travel untravel pretravel
+<admit> nonadmittedli admit unadmittedli admitt readmit nonadmit unadmit preadmit
+<spread> underspread antispread prespread respread spread unspread spreadabl
+<cultur> cultur pseudocultur precultur transcultur anticultur noncultur
+<grind> regrind groundabl grind groundedli unground ungrind grindingli ground grounded grindabl
+<maint> unmaintain maintain mainten undermaintain
+<discus> undiscuss nondiscuss discuss
+average underaverag subaverag unaverag averag superaverag
+<human> humanoid unhumanli demihuman unhuman human humanlik
+<doct> doctor doctori undoctor
+<play> plai playabl unplai playingli nonplai playlik
+factor unfactor factor
+<pow> overpow overpowerfulli power unpow ultrapow powerfulli superpow
+<smil> smilingli smiling subsmil smileless outsmil smilelessli unsmil unsmilingli smile
+<shak> shakabl unshak shake shook shakeabl reshak
+<refer> misref preref refer referr referenti unref
+<assoc> associ superassoci associatori nonassoci unassoci reassoci
+<shap> preshap outshap shape shapeabl unshap shapabl transshap
+<environ> environment nonenvironment preenvironment interenvironment environ proenvironment
+<compar> intercompar precompar recompar compar uncompar
+<milit> unmilitarili nonmilitari unmilitari paramilitari militarili militari premilitari antimilitari promilitari pseudomilitarili supermilitari pseudomilitari
+<person> hyperperson unperson person multiperson nonperson superperson imperson
+<handl> prehandl handleabl overhandl handl rehandl
+<underst> nonunderstand nonunderstandingli understand understood understandingli preunderstand
+<stat> outstat counterst unstat stateabl antist substat state statabl
+<expr> unexpress expressli express
+<wild> overwildli unwildli semiwildli semiwild overwild wild wilder wildli unwild
+<perfect> perfect nonperfect unperfect perfectedli superperfectli
+<pressur> nonpressur interpressur superpressur pressur unpressur underpressur
+<suff> suffer presuff insuffer outsuff nonsuffer
+<break> breakabl broke break nonbreak rebreak rebrok unbreak
+<drink> drank drinkabl drink outdrink overdrink
+<buy> buyabl bought rebui bui prebui unbuy unbui nonbui
+<chang> changelessli changeless unchangingli chang unchang changed unchanging
+<talk> nontalk talkabl talk untalk
+<hear> hearabl outhear unhear rehear hear heard
+<plac> preplac placeabl place unplac placelessli
+<light> lightfulli light lightli

@@ -30,12 +30,13 @@ import java.util.HashMap;
  *
  * @author Neal
  */
+
 public class Combinator {
-    //Returns the consensus of the inputs
+    
+    //Returns the consensus of the input token lists
     //Inputs must already be standardized and restricted to common tokens 
     //so that input list lengths are identical and all tokens match
-    //Tagsets must consist of a single tag
-    public static ArrayList<Token> getTagConsensus(ArrayList<ArrayList<Token>> inputs, double threshold) {
+    public static ArrayList<Token> getTagConsensus(ArrayList<ArrayList<Token>> inputs, double threshold, String target){
 
         int agreement = 0;
         int unanimousDecision = 0;
@@ -47,7 +48,10 @@ public class Combinator {
         for (int i = 0; i < inputs.get(0).size(); i++) {
 
             HashMap<String, Integer> tagCount = new HashMap<>();
-            Token token = new Token(i, 0, inputs.get(0).get(i).token, "??");
+            Token token = new Token(inputs.get(0).get(i).token);
+            token.indexInText = i;
+                        
+            
             System.out.print("\nToken: " + token.token + " ");
 
             //Count instances of each tagset for this token i
@@ -56,7 +60,7 @@ public class Combinator {
                 //Tokens must match
                 assert list.get(i).token.equalsIgnoreCase(list.get((i + 1) % inputs.size()).token);
 
-                String tag = list.get(i).tagset;
+                String tag = list.get(i).tags.get(target);
                 System.out.print(tag + " ");
                 if (tagCount.containsKey(tag)) {
                     tagCount.put(tag, tagCount.get(tag) + 1);
@@ -68,8 +72,8 @@ public class Combinator {
             //Find & set consensus tagset
             for (String tag : tagCount.keySet()) {
                 if (tagCount.get(tag) > inputs.size() * threshold) {
-                    token.tagset = tag;
-                    System.out.print(" : " + tag);
+                    token.tags.put(target, tag);
+//                    System.out.print(" : " + tag);
                     agreement++;
                     if (tagCount.get(tag) == inputs.size()) {
                         unanimousDecision++;
@@ -77,7 +81,7 @@ public class Combinator {
                 }
             }
 
-            if (token.tagset.equalsIgnoreCase("??")) {
+            if (token.tags.get(target).equalsIgnoreCase("??")) {
                 System.out.print(" : ????");
                 disagreement++;
             }
@@ -86,7 +90,8 @@ public class Combinator {
 
         assert (agreement + disagreement) == inputs.get(0).size();
 
-        System.out.println("\nTokens: " + (agreement + disagreement)
+        System.out.println("\nTarget tag type: " + target
+                + "\nTokens: " + (agreement + disagreement)
                 + "\nDisagreement: " + disagreement
                 + "\nAgreements: " + agreement
                 + "\nUnanimous: " + unanimousDecision);
@@ -103,68 +108,68 @@ public class Combinator {
     //Inputs must already be standardized and restricted to common tokens 
     //so that input list lengths are identical and all tokens match
     //Accomodates
-    public static ArrayList<Token> getMultitagConsensus(ArrayList<ArrayList<Token>> inputs, double threshold) {
-
-        int agreement = 0;
-        int unanimousDecision = 0;
-        int disagreement = 0;
-
-        ArrayList<Token> consensus = new ArrayList<>();
-
-        //For each token i
-        for (int i = 0; i < inputs.get(0).size(); i++) {
-
-            HashMap<String, Integer> tagCount = new HashMap<>();
-            Token token = new Token(i, 0, inputs.get(0).get(i).token, "??");
-            System.out.print("\nToken: " + token.token + " ");
-
-            //Count instances of each tagset for this token i
-            for (ArrayList<Token> list : inputs) {
-
-                //Tokens must match
-                assert list.get(i).token.equalsIgnoreCase(list.get((i + 1) % inputs.size()).token);
-
-                String tag = list.get(i).tagset;
-                System.out.print(tag + " ");
-                if (tagCount.containsKey(tag)) {
-                    tagCount.put(tag, tagCount.get(tag) + 1);
-                } else {
-                    tagCount.put(tag, 1);
-                }
-            }
-
-            //Find & set consensus tagset
-            for (String tag : tagCount.keySet()) {
-                if (tagCount.get(tag) > inputs.size() * threshold) {
-                    token.tagset = tag;
-                    System.out.print(" : " + tag);
-                    agreement++;
-                    if (tagCount.get(tag) == inputs.size()) {
-                        unanimousDecision++;
-                    }
-                }
-            }
-
-            if (token.tagset.equalsIgnoreCase("??")) {
-                System.out.print(" : ????");
-                disagreement++;
-            }
-            consensus.add(token);
-        }
-
-        assert (agreement + disagreement) == inputs.get(0).size();
-
-        System.out.println("\nTokens: " + (agreement + disagreement)
-                + "\nDisagreement: " + disagreement
-                + "\nAgreements: " + agreement
-                + "\nUnanimous: " + unanimousDecision);
-
-        System.out.print("\nSizes: ");
-        for (int i = 0; i < inputs.size(); i++) {
-            System.out.print(inputs.get(i).size() + " ");
-        }
-        return consensus;
-    }
+//    public static ArrayList<Token> getMultitagConsensus(ArrayList<ArrayList<Token>> inputs, double threshold) {
+//
+//        int agreement = 0;
+//        int unanimousDecision = 0;
+//        int disagreement = 0;
+//
+//        ArrayList<Token> consensus = new ArrayList<>();
+//
+//        //For each token i
+//        for (int i = 0; i < inputs.get(0).size(); i++) {
+//
+//            HashMap<String, Integer> tagCount = new HashMap<>();
+//            Token token = new Token(i, 0, inputs.get(0).get(i).token, "??");
+//            System.out.print("\nToken: " + token.token + " ");
+//
+//            //Count instances of each tagset for this token i
+//            for (ArrayList<Token> list : inputs) {
+//
+//                //Tokens must match
+//                assert list.get(i).token.equalsIgnoreCase(list.get((i + 1) % inputs.size()).token);
+//
+//                String tag = list.get(i).tagset;
+//                System.out.print(tag + " ");
+//                if (tagCount.containsKey(tag)) {
+//                    tagCount.put(tag, tagCount.get(tag) + 1);
+//                } else {
+//                    tagCount.put(tag, 1);
+//                }
+//            }
+//
+//            //Find & set consensus tagset
+//            for (String tag : tagCount.keySet()) {
+//                if (tagCount.get(tag) > inputs.size() * threshold) {
+//                    token.tagset = tag;
+//                    System.out.print(" : " + tag);
+//                    agreement++;
+//                    if (tagCount.get(tag) == inputs.size()) {
+//                        unanimousDecision++;
+//                    }
+//                }
+//            }
+//
+//            if (token.tagset.equalsIgnoreCase("??")) {
+//                System.out.print(" : ????");
+//                disagreement++;
+//            }
+//            consensus.add(token);
+//        }
+//
+//        assert (agreement + disagreement) == inputs.get(0).size();
+//
+//        System.out.println("\nTokens: " + (agreement + disagreement)
+//                + "\nDisagreement: " + disagreement
+//                + "\nAgreements: " + agreement
+//                + "\nUnanimous: " + unanimousDecision);
+//
+//        System.out.print("\nSizes: ");
+//        for (int i = 0; i < inputs.size(); i++) {
+//            System.out.print(inputs.get(i).size() + " ");
+//        }
+//        return consensus;
+//    }
     
     
     

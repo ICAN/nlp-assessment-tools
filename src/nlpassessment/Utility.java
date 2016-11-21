@@ -35,9 +35,8 @@ import java.util.Scanner;
  *
  * @author Neal
  */
-public class IO {
+public class Utility {
 
-    
     //Waits for the process to end & returns the result
     public static int runCommand(String cmd) {
 
@@ -67,13 +66,27 @@ public class IO {
 
         return lineCount;
     }
+    
+    public static int countLinesMatching (String fileName, String regex) {
+        ArrayList<String> lines = readFileAsLines(fileName);
+        int lineCount = 0;
+        for (String line : lines) {
+            if (!line.trim().matches(regex)) {
+                lineCount++;
+            }
+        }
+        System.out.println("Non-empty lines in " + fileName + ": " + lineCount);
 
-    public static ArrayList<Token> readFileAsStandardTokens(String fileName) {
-        return standardLinesToTokens(readFileAsLines(fileName));
+        return lineCount;
+    }
+    
+
+    public static ArrayList<Token> readFileAsStandardTokens(String fileName, String targetTag) {
+        return standardLinesToTokens(readFileAsLines(fileName), targetTag);
     }
 
-    public static ArrayList<Token> readFileAsShortTokens(String fileName, int lineLength) {
-        return shortLinesToTokens(readFileAsLines(fileName), lineLength);
+    public static ArrayList<Token> readFileAsShortTokens(String fileName, int lineLength, String targetTag) {
+        return shortLinesToTokens(readFileAsLines(fileName), lineLength, targetTag);
     }
 
     public static String listToString(ArrayList<String> lines, boolean insertLineBreaks) {
@@ -97,7 +110,16 @@ public class IO {
         }
         return string;
     }
-
+    
+    public static Integer[] countTokensPerLine(ArrayList<String> lines) {
+        Integer[] tokenCounts = new Integer[lines.size()];
+        for(int i = 0; i < lines.size(); i++) {
+            tokenCounts[i] = lines.get(i).split("\\s+").length;
+        }
+        return tokenCounts;
+    }
+    
+    
     /*
      Reads a file and returns its lines in an arraylist
      */
@@ -127,13 +149,18 @@ public class IO {
     //Input: Any standardized set of lines (one token per line, 4 fields per token)
     //Returns a list of tokens corresponding to the tokens on those lines
     //Assumes all tokens are semantic
-    public static ArrayList<Token> standardLinesToTokens(ArrayList<String> lines) {
+    //TODO: Check/test
+    public static ArrayList<Token> standardLinesToTokens(ArrayList<String> lines, String targetTag) {
 
         ArrayList<Token> tokens = new ArrayList<>();
         for (String line : lines) {
             String[] split = line.split("\\s+");
             if (split.length == 4) {
-                tokens.add((new Token(Integer.parseInt(split[0]), Integer.parseInt(split[1]), split[2], split[3])));
+                Token token = new Token(split[2]);
+                token.indexInText = Integer.parseInt(split[0]);
+                token.indexInSentence = Integer.parseInt(split[1]);
+                token.tags.put(targetTag, split[3]);
+                tokens.add(token);
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
@@ -141,9 +168,10 @@ public class IO {
         return tokens;
     }
 
-    //Input: Lines in token-whitepace-tagset format
-    //Output: Token list with indexInText set, indexInSentence default to 0, and semantic defaulted to true
-    public static ArrayList<Token> shortLinesToTokens(ArrayList<String> lines, int lineLength) {
+    //Input: Lines in token-whitepace-tag format
+    //Output: Token list with indexInText set, and "semantic" defaulted to true
+    //TODO: FIX
+    public static ArrayList<Token> shortLinesToTokens(ArrayList<String> lines, int lineLength, String targetTag) {
         ArrayList<Token> tokens = new ArrayList<>();
         int tokenCount = 0;
         for (String line : lines) {
@@ -151,11 +179,18 @@ public class IO {
             if (split.length == 3
                     && lineLength == 3) {
                 tokenCount++;
-                tokens.add((new Token(tokenCount, 0, split[0], split[1])));
+                //TODO: THIS IS WRONG
+                Token token = new Token(split[0]);
+                token.indexInText = tokenCount;
+
+                tokens.add(token);
             } else if (split.length == 2
                     && lineLength == 2) {
                 tokenCount++;
-                tokens.add((new Token(tokenCount, 0, split[0], split[1])));
+                Token token = new Token(split[0]);
+                token.indexInText = tokenCount;
+                token.tags.put(targetTag, split[1]);
+                tokens.add(token);
             } else {
                 System.out.println("Invalid line: " + line + " has " + split.length + " tokens.");
             }
@@ -173,10 +208,10 @@ public class IO {
     }
 
     //Includes only Token.token and Token.tagset in each line
-    public static ArrayList<String> tokensToShortLines(ArrayList<Token> tokens) {
+    public static ArrayList<String> tokensToShortLines(ArrayList<Token> tokens, String targetTag) {
         ArrayList<String> lines = new ArrayList<>();
         for (Token token : tokens) {
-            lines.add(token.indexInText + "\t" + token.token + "\t" + token.tagset);
+            lines.add(token.indexInText + "\t" + token.token + "\t" + token.tags.get(targetTag));
         }
         return lines;
     }

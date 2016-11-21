@@ -23,7 +23,7 @@
  */
 package nlpassessment;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -31,32 +31,39 @@ import java.util.ArrayList;
  * 
  */
 public class Token {
-    public int indexInText = -1;
-    public int indexInSentence = -1;
+    public int indexInText = -1; //1-indexed
+    public int indexInSentence = -1; //1-indexed
     public String token = "";
-    public String tagset = "";
+    public HashMap<String, String> tags;
+
     public boolean semantic = true;
-    public boolean multitag = false;
     
-    public String[] getTaglist() {
-        return tagset.split("\\t");
-    }
     
-    public Token(String token, String tag) {
+    public Token(String token) {
         this.token = token;
-        this.tagset = tag;
+        tags = new HashMap<>();
+        tags.put("lemma", "??");
+        tags.put("pos", "??");
+        tags.put("ne", "??");
+        tags.put("split", "??");
     }
     
-    public Token (int tokenInText, int tokenInSentence, String token, String tag) {
-        this.indexInText = tokenInText;
-        this.indexInSentence = tokenInSentence;
-        this.token = token.trim();
-        this.tagset = tag.trim();
-        this.semantic = semantic;
-    }
     
+//    
+//    public Token (int tokenInText, int tokenInSentence, String token, String tag) {
+//        this.indexInText = tokenInText;
+//        this.indexInSentence = tokenInSentence;
+//        this.token = token.trim();
+//        this.semantic = semantic;
+//    }
+    
+    //TODO ensure this is standard
+    //Columns are: wordIndex (in entire text),wordIndex(in sentence), token, lemma, POS, NER
     public String toString() {
-        return indexInText + "\t " + indexInSentence + "\t " + token + "\t " + tagset;
+                
+        return indexInText + "\t " + indexInSentence + "\t " + token + "\t "
+                + tags.get("lemma") + "\t" + tags.get("pos") + "\t" 
+                + tags.get("ne") + "\t" + tags.get("split");
     }
     
 }

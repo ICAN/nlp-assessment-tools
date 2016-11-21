@@ -29,11 +29,14 @@ import java.util.HashMap;
 /**
  *
  * @author Neal
+ * 
+ *  
  */
 public class Restrictor {
 
-    //Returns the "input" i list, excluding those which fail to find a match in "standard"
-    //Does not affect either "input" or "standard"
+    //Returns a new token list based on the "input" token list, 
+    //and excluding those tokens which fail to find a match in "standard"
+    //"input" and "standard" lists are not modified
     //TODO: rewrite/clarify
     //skipCatchupRange helps determine how far to look when dealing with token mismatches
     //Higher skipCatchupRange numbers search further; 3 seems to work well for word-tokens
@@ -147,10 +150,11 @@ public class Restrictor {
     //and restricts from there
     public static ArrayList<Token> getCommonlTokenList(ArrayList<ArrayList<Token>> inputs, int base, int skipCatchupRange) {
 
-        //Start with arbitrary base i list
+        //Start with arbitrary base token list
         ArrayList<Token> output = inputs.get(base);
 
-        //Iterate through other lists, restricting base list
+        //Iterate through other lists, restricting base list to tokens for which
+        //matches are found in the other lists
         for (int i = 0; i < inputs.size(); i++) {
             if (i != base) {
                 output = Restrictor.getCommonTokenList(output, inputs.get(i), skipCatchupRange);
@@ -165,13 +169,6 @@ public class Restrictor {
         System.out.print("\nOutput length: " + output.size());
         return output;
     }
-
-    //Returns a list of tokens, excluding any tokens which don't appear in *all* input lists
-    //Uses the default i list at inputs[0] as the base list (so its tags and other data are used)
-    public static ArrayList<Token> getCommonTokenList(ArrayList<ArrayList<Token>> inputs, int skipCatchupRange) {
-        return getCommonlTokenList(inputs, 0, skipCatchupRange);
-    }
-
     
 
 

@@ -101,7 +101,7 @@ public class Porter1 implements Stemmer {
         stem();
         String stemmed = new String(b);
         this.reset();
-        return stemmed;
+        return stemmed.trim();
     }
     
 

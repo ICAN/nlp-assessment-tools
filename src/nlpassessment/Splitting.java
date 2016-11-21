@@ -24,6 +24,8 @@
 package nlpassessment;
 
 import java.util.ArrayList;
+import nlpassessment.Utility;
+import nlpassessment.Token;
 
 /**
  *
@@ -38,11 +40,11 @@ public class Splitting {
     public static void goldToRaw(String inputFile, String outputFile) {
         
         //Include newline characters
-        String gold = IO.readFileAsString(inputFile, true);
+        String gold = Utility.readFileAsString(inputFile, true);
         
         String raw = gold.replaceAll(SPLIT_PATTERN, "");
         
-        IO.writeFile(raw, outputFile);
+        Utility.writeFile(raw, outputFile);
         
     }
     
@@ -50,10 +52,10 @@ public class Splitting {
     public static ArrayList<Token> goldStringFileToCharacterTokens (String inputFile) {
         
         //Exclude newline characters, whitespace
-        String gold = IO.readFileAsString(inputFile, false).replaceAll("\\s", "");
+        String gold = Utility.readFileAsString(inputFile, false).replaceAll("\\s", "");
         
         ArrayList<Token> goldTokens = new ArrayList<>();
-        Token last = new Token("",""); //Dummy token, shouldn't ever get used
+        Token last = new Token(""); //Dummy token, shouldn't ever get used
         int tokenInText = 0;
         int tokenInSentence = 0;
         int sentenceCount = 0;
@@ -61,12 +63,15 @@ public class Splitting {
             if(gold.substring(i,i+2).equalsIgnoreCase(SPLIT_PATTERN)) {
                 tokenInSentence = 0;
                 i+=2;
-                last.tagset = SPLIT_TAG;
+                last.tags.put("split", SPLIT_TAG);
                 sentenceCount++;
             } else {
                 tokenInText++;
                 tokenInSentence++;
-                last = new Token(tokenInText, tokenInSentence, "" + gold.charAt(i), "_");
+                last = new Token("" + gold.charAt(i));
+                last.indexInText = tokenInText;
+                last.indexInSentence = tokenInSentence;
+                last.tags.put("split", "_");
                 goldTokens.add(last);
                 
             }
@@ -84,7 +89,7 @@ public class Splitting {
     //Takes standardized, common-token-restricted outputs 
     //Tags the last character in each sentence "SPLIT"
     public static void tagFinalCharacters(String inputFile, String outputFile) {
-        ArrayList<Token> tokens = IO.standardLinesToTokens(IO.readFileAsLines(inputFile));
+        ArrayList<Token> tokens = Utility.standardLinesToTokens(Utility.readFileAsLines(inputFile), "split");
 
         int splits = 0;
         for(int i = 0; i < tokens.size()-1; i++) {
@@ -92,19 +97,19 @@ public class Splitting {
             if(tokens.get(i+1).indexInSentence <= tokens.get(i).indexInSentence) {
                 splits++;
                 //Tag the current token
-                tokens.get(i).tagset = "SPLIT";
+                tokens.get(i).tags.put("split", SPLIT_TAG);
                 
             }
         }
         //Assume a sentence split at the end
         splits++;
-        tokens.get(tokens.size()-1).tagset = "SPLIT";
+        tokens.get(tokens.size()-1).tags.put("split", SPLIT_TAG);
         
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
     
     public static void condenseSentences(String inputFile, String outputFile) {
-        ArrayList<Token> input = IO.standardLinesToTokens(IO.readFileAsLines(inputFile));
+        ArrayList<Token> input = Utility.standardLinesToTokens(Utility.readFileAsLines(inputFile), "split");
         
         ArrayList<String> output = new ArrayList<>();
         
@@ -112,17 +117,16 @@ public class Splitting {
         for(Token token : input) {
             sentence += token.token;
             
-            if(token.tagset.equalsIgnoreCase("SPLIT")) {
+            if (token.tags.get("split").equalsIgnoreCase(SPLIT_TAG)) {
                 sentence += "<>";
                 output.add(sentence + "");
                 sentence = "";
             }
         }
-        IO.writeFile(output, outputFile);
+        Utility.writeFile(output, outputFile);
     }
     
-    
-    
+        
     
     
 }

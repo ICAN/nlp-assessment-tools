@@ -35,28 +35,28 @@ public class OpenNLP {
     //PUBLIC METHODS
     //Works as of V5
     public static void standardizePOS(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawPOS(raw);
         simplifyPOSTags(tokens);
         correctSpecialTokens(tokens);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Finish components
     public static void standardizeNER(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawNER(raw);
-        simplifyNERTags(tokens);
+        simplifyNETags(tokens);
         correctSpecialTokens(tokens);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //Looks good
     public static void standardizeSplits(String inputFile, String outputFile) {
-        ArrayList<String> raw = IO.readFileAsLines(inputFile);
+        ArrayList<String> raw = Utility.readFileAsLines(inputFile);
         ArrayList<Token> tokens = tokenizeRawSplits(raw);
         correctSpecialTokens(tokens);
-        IO.writeFile(IO.tokensToStandardLines(tokens), outputFile);
+        Utility.writeFile(Utility.tokensToStandardLines(tokens), outputFile);
     }
 
     //TODO: Write this
@@ -94,8 +94,9 @@ public class OpenNLP {
 
             if (split.length == 2) {
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim()));
-//                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
+                Token token = new Token(split[0].trim());
+                token.indexInText = tokenCount;
+                taggedTokens.add(token);
             } else {
 //                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
             }
@@ -106,25 +107,25 @@ public class OpenNLP {
 
     private static void simplifyPOSTags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tagset = simplifyPOSTag(token.tagset);
+            token.tags.put("pos", simplifyPOSTag(token.tags.get("pos")));
         }
     }
 
-    private static String simplifyPOSTag(String tag) {
+    private static String simplifyPOSTag(String posTag) {
 
-        if (tag.matches("NN.*")
-                || tag.equals("PRP")
-                || tag.equals("WP")) {
+        if (posTag.matches("NN.*")
+                || posTag.equals("PRP")
+                || posTag.equals("WP")) {
             return "NN";
-        } else if (tag.matches("JJ.*")
-                || tag.equals("WP$")
-                || tag.equals("PRP$")) {
+        } else if (posTag.matches("JJ.*")
+                || posTag.equals("WP$")
+                || posTag.equals("PRP$")) {
             return "JJ";
-        } else if (tag.matches("V.*")
-                || tag.equals("MD")) {
+        } else if (posTag.matches("V.*")
+                || posTag.equals("MD")) {
             return "VB";
-        } else if (tag.matches("RB.*")
-                || tag.equals("WRB")) {
+        } else if (posTag.matches("RB.*")
+                || posTag.equals("WRB")) {
             return "RB";
         } else {
             return "Other";
@@ -143,24 +144,24 @@ public class OpenNLP {
 
             if (split.length == 2) {
                 tokenCount++;
-                taggedTokens.add(new Token(tokenCount, 0, split[0].trim(), split[1].trim()));
-//                System.out.println("Tokenized + " + line + " as: " + split[0] + "\t" + split[1]);
+                //TODO: Check following
+                Token token = new Token(split[0].trim());
+                token.tags.put("ne", split[1].trim());
             } else {
-//                System.out.println("Failed to tokenize '" + line + "'\nTokens: " + split.length + "\n");
             }
 
         }
         return taggedTokens;
     }
 
-    private static void simplifyNERTags(ArrayList<Token> tokens) {
+    private static void simplifyNETags(ArrayList<Token> tokens) {
         for (Token token : tokens) {
-            token.tagset = simplifyPOSTag(token.tagset);
+            token.tags.put("ne", simplifyPOSTag(token.tags.get("ne")));
         }
     }
 
     //TODO: Write
-    private static String simplifyNERTag(String tag) {
+    private static String simplifyNETag(String tag) {
 
         if (tag.matches("")) {
             return "None";
@@ -186,8 +187,10 @@ public class OpenNLP {
             }
 
             for (int i = 0; i < combined.length(); i++) {
-
-                output.add(new Token(tokenCount, i + 1, "" + combined.charAt(i), "_"));
+                Token token = new Token("" + combined.charAt(i));
+                token.indexInText = tokenCount;
+                token.indexInSentence = i + 1;
+                token.tags.put("split", "_");
                 tokenCount++;
 
             }
